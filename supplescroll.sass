@@ -1,0 +1,89 @@
+/* BLOCKBOUNCE STYLE to prevent bounce effect on page
+html,
+body
+  height: 100%
+  width: 100%
+  overflow: hidden
+
+/* this class escapes the no-bounce block on OSX
+.touchscroll
+  overflow: scroll
+  /* inertial scrolling on OSX
+  -webkit-overflow-scrolling: touch
+
+$highlight-color: #CECEF6
+$dark-highlight-color: #8181F7
+
+.page-filler
+  height: 100%
+
+.relative_position
+  position: relative
+
+.toc
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  h7 
+    font-size: 1em
+    padding: 0
+    margin: 0
+    font-weight: normal
+    letter-spacing: 0.1em
+    line-height: 1.2em
+    text-transform: none
+  h1
+    text-transform: uppercase
+    padding-top: 0.5em
+  h2
+    padding-top: 0.5em
+  h3
+    padding-left: 0.5em
+  h4
+    padding-left: 1.0em
+  h5
+    padding-left: 1.5em
+  h6
+    padding-left: 2.0em
+  h7
+    padding-left: 2.5em
+  a,
+  a:visited
+    display: block
+    padding: 3px 5px
+    border-left: 3px solid transparent
+    text-decoration: none
+    color: #333
+    padding-left: 10px
+    padding-right: 20px
+  a.active
+    border-left: 3px solid $dark-highlight-color
+    background-color: $highlight-color
+
+a.figlink
+  text-decoration: none
+a.figlink.active
+  background-color: $highlight-color
+a.figlink.active:link,
+a.figlink.active:visited
+  color: #339
+
+.fig-in-text
+  display: none
+
+.fig-in-figlist
+  padding-left: 20px
+  padding-right: 20px
+  padding-top: 20px
+  padding-bottom: 10px
+  border-right: 3px solid transparent
+.fig-in-figlist.active
+  background-color: $highlight-color
+  color: #339
+  border-right: 3px solid $dark-highlight-color
+.fig-in-figlist a
+  text-decoration: none
+
