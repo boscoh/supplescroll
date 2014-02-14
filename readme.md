@@ -1,19 +1,28 @@
 template: lucidity.haml
+
 ---
 
 # SUPPLESCROLL
 
+is a plugin to transform your document into an interactive experience.
+
+# Installation
+
+Downlaoad the .zip file from
+
+<http://github.com/boscoh/supplescroll/master/zip>
+
+
+# Making Article
+
 Makes the next level of Article
 
-
      > embellish .
-  
 
 Will generate the website
 
 
-
-## Page Generation
+## Writing your article
 
 Uses the embellish format for posts
 
@@ -28,7 +37,7 @@ Set the template in the header
 
 ## Table of Contents
 
-generated from headers
+A Table of Contents is automatically generated from the generated from headers
 
 a header id is assigned to every header
 
