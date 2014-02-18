@@ -160,8 +160,7 @@ init = () ->
   text_width = supplescroll.get_outer_width(text)
 
   supplescroll.init_touchscroll()
-  supplescroll.set_figures_and_toc(
-      toc_href, text_href, figlist_href)
+  supplescroll.build_page(toc_href, text_href, figlist_href)
 
   $(window).resize(resize_window)
   resize_window()
@@ -176,8 +175,7 @@ init = () ->
 </ol>
 <h3>Page Builder</h3>
 <p>The page builder is in the module <code>supplescroll.js</code>, which obviously, must be loaded first via the <code>&lt;script&gt;</code> tag in the HTML file. The function to build the page is:</p>
-<div class="codehilite"><pre>supplescroll.set_figures_and_toc(
-    toc_href, text_href, figlist_href)
+<div class="codehilite"><pre>supplescroll.build_page(toc_href, text_href, figlist_href)
 </pre></div>
 
 
@@ -194,10 +192,9 @@ init = () ->
 <p>However, for that to work, the <code>&lt;div&gt;</code> container must be sized properly. That is the explicit size of the <code>&lt;div&gt;</code> must be smaller than the onscreen window and the CSS attribute <code>overflow:auto</code> must be set.</p>
 <p>Furthermore, the page builder will add suffcient white-space to the end of these <code>&lt;div&gt;</code>s so that scrolling will always take the child element of interest to the top of the <code>&lt;div&gt;</code>.</p>
 <h3>Scrolling Callback</h3>
-<p>On scrolling, the main text will scan for the first figure link, and if a new one pops up, will scroll the Figure List to the that figure.</p>
-<p>The <code>supplescroll</code> module overrides the <code>scroll</code> callback function in the main text element in order to detect which headers and figures are currently onscreen.</p>
+<p>The <code>supplescroll</code> module overrides the <code>scroll</code> callback function in the main text element in order to detect which headers and figures are currently onscreen. On scrolling, the main text will scan for the first figure link, and if a new one pops up, will scroll the Figure List to the that figure.</p>
 <p>For the <code>scroll</code> callback to work, it is <strong>imperative</strong> that the main text element has the CSS style:</p>
-<div class="codehilite"><pre>position: relative
+<div class="codehilite"><pre>position:relative
 </pre></div>
 
 
@@ -209,25 +206,36 @@ init = () ->
 <p>Well, I wanted multiple columns that spanned the whole page, where some columns had fixed widths, and others would expand to fill the remaining space. As well, I wanted the columns to fill the height of the page, but also to drop certain columns for mobile devices.</p>
 <p>Alas, you cannot do all that with CSS. </p>
 <p>So I wrote my own resize function. Here's a snippet for three-column resize <a href="#fig-resize-3"></a></p>
-<div id="fig-resize-3">
+<div id="fig-resize-3"> Code fragment showing three-column resize
 <pre>
-sidebar.css('display','block')
-figures.css('display','block')
+toc.css('display','block')
+figlist.css('display','block')
+
+# this function allows for some padding in the 
+# body to be filter through the resize function
+body_padding_left = parseInt($(document.body).css('padding-left'))
+body_padding_right = parseInt($(document.body).css('padding-right'))
 
 supplescroll.set_outer_width(text, text_width)
-supplescroll.set_left(sidebar, page_margin)
-left = supplescroll.get_right(sidebar)
+supplescroll.set_left(toc, body_padding_left)
+
+left = supplescroll.get_right(toc)
 supplescroll.set_left(text, left)
-figlist_width = window_width - page_margin - page_margin \
-    - supplescroll.get_outer_width(sidebar) \
-    - supplescroll.get_outer_width(text)
+
 left = supplescroll.get_right(text)
-supplescroll.set_left(figures, left)
-supplescroll.set_outer_width(figures, figlist_width)
+supplescroll.set_left(figlist, left)
+
+figlist_width = \
+    window_width \
+    - body_padding_left \
+    - body_padding_right \
+    - supplescroll.get_outer_width(toc) \
+    - supplescroll.get_outer_width(text)
+supplescroll.set_outer_width(figlist, figlist_width)
 </pre>
 </div>
 
-<p>First, we make sure <code>sidebar</code> (Table of Contents) and <code>figures</code> (Figure List) are switched on with <code>display:block</code>. To turn these off in 1-column display, these would be set to <code>display:none</code>.</p>
+<p>First, we make sure <code>toc</code> (Table of Contents) and <code>figlist</code> (Figure List) are switched on with <code>display:block</code>. To turn these off in 1-column display, these would be set to <code>display:none</code>.</p>
 <p>In three column mode, we want the main text to have a fixed width <code>text_width</code> for easy reading. </p>
 <p>For the resizing to work, it's important that we set all the elements to <code>position:absolute</code>. This allows the <code>supplescroll</code> element moving helper functions to work: </p>
 <div class="codehilite"><pre>set_left
@@ -251,7 +259,7 @@ get_bottom
 <p><code>init_touchscroll()</code> shuts down inertial scrolling of all elements except the ones indicated by <code>.touchscroll</code>.</p>
 <p>As well <code>init_touchscroll()</code> is used avoid another default behavior of iOS. If an element has been scrolled to the edge of its scrolling areathis will trigger the inertial scrolling of its parent, and so on up, until the whole page scrolls. To avoid this <code>init_touchscroll()</code> introduces a little hack that prevents any <code>.touchscroll</code> element from reaching the edge.</p>
       <div class='timestamp'>
-        <i><a href='http://github.com/boscoh/supplescroll'>supplescroll<a></i>:perspex theme
+        <i><a href='http://github.com/boscoh/supplescroll'>supplescroll</a></i>:perspex theme
       </div>
     </div>
   </div>

@@ -182,8 +182,7 @@ init = () ->
   text_width = supplescroll.get_outer_width(text)
 
   supplescroll.init_touchscroll()
-  supplescroll.set_figures_and_toc(
-      toc_href, text_href, figlist_href)
+  supplescroll.build_page(toc_href, text_href, figlist_href)
 
   $(window).resize(resize_window)
   resize_window()
@@ -201,8 +200,7 @@ The `init` function [](#fig-init):
 
 The page builder is in the module `supplescroll.js`, which obviously, must be loaded first via the `<script>` tag in the HTML file. The function to build the page is:
 
-    supplescroll.set_figures_and_toc(
-        toc_href, text_href, figlist_href)
+    supplescroll.build_page(toc_href, text_href, figlist_href)
      
 The three parameters are hrefs referring to an element in the DOM of the HTML page. If `toc_href` is empty string, the Table of Contents will not be built. Similarly for `figlist_href`.
 
@@ -232,13 +230,11 @@ Furthermore, the page builder will add suffcient white-space to the end of these
 
 ### Scrolling Callback
  
-On scrolling, the main text will scan for the first figure link, and if a new one pops up, will scroll the Figure List to the that figure.
-
-The `supplescroll` module overrides the `scroll` callback function in the main text element in order to detect which headers and figures are currently onscreen.
+The `supplescroll` module overrides the `scroll` callback function in the main text element in order to detect which headers and figures are currently onscreen. On scrolling, the main text will scan for the first figure link, and if a new one pops up, will scroll the Figure List to the that figure.
 
 For the `scroll` callback to work, it is __imperative__ that the main text element has the CSS style:
 
-    position: relative
+    position:relative
 
 Otherwise, the positions of elements in the main text cannot be calculated correctly.
 
@@ -258,25 +254,36 @@ Alas, you cannot do all that with CSS.
 So I wrote my own resize function. Here's a snippet for three-column resize [](#fig-resize-3)
 
 
-<div id="fig-resize-3">
+<div id="fig-resize-3"> Code fragment showing three-column resize
 <pre>
-sidebar.css('display','block')
-figures.css('display','block')
+toc.css('display','block')
+figlist.css('display','block')
+
+# this function allows for some padding in the 
+# body to be filter through the resize function
+body_padding_left = parseInt($(document.body).css('padding-left'))
+body_padding_right = parseInt($(document.body).css('padding-right'))
 
 supplescroll.set_outer_width(text, text_width)
-supplescroll.set_left(sidebar, page_margin)
-left = supplescroll.get_right(sidebar)
+supplescroll.set_left(toc, body_padding_left)
+
+left = supplescroll.get_right(toc)
 supplescroll.set_left(text, left)
-figlist_width = window_width - page_margin - page_margin \
-    - supplescroll.get_outer_width(sidebar) \
-    - supplescroll.get_outer_width(text)
+
 left = supplescroll.get_right(text)
-supplescroll.set_left(figures, left)
-supplescroll.set_outer_width(figures, figlist_width)
+supplescroll.set_left(figlist, left)
+
+figlist_width = \
+    window_width \
+    - body_padding_left \
+    - body_padding_right \
+    - supplescroll.get_outer_width(toc) \
+    - supplescroll.get_outer_width(text)
+supplescroll.set_outer_width(figlist, figlist_width)
 </pre>
 </div>
 
-First, we make sure `sidebar` (Table of Contents) and `figures` (Figure List) are switched on with `display:block`. To turn these off in 1-column display, these would be set to `display:none`.
+First, we make sure `toc` (Table of Contents) and `figlist` (Figure List) are switched on with `display:block`. To turn these off in 1-column display, these would be set to `display:none`.
 
 In three column mode, we want the main text to have a fixed width `text_width` for easy reading. 
 

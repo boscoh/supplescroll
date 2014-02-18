@@ -104,7 +104,7 @@
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         div_dom = _ref[_i];
         div_id = $(div_dom).attr('id');
-        if ((div_id != null) && div_id.slice(0, 3) === 'fig') {
+        if ((div_id != null) && div_id.slice(0, 3) === 'fig' && (div_id !== 'figure-list')) {
           div = $(div_dom);
           div.prepend('(Figure ' + num_fig + '). ');
           new_div = div.clone();

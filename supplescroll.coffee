@@ -97,7 +97,7 @@ class FigureList
     num_fig = 1
     for div_dom in $(@text_href).find('div')
       div_id = $(div_dom).attr('id')
-      if div_id? and div_id[0..2] == 'fig'
+      if div_id? and div_id[0..2] == 'fig' and (div_id != 'figure-list')
         div = $(div_dom)
         div.prepend('(Figure ' + num_fig + '). ') 
         new_div = div.clone()
