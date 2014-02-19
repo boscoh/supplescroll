@@ -174,7 +174,7 @@ a.figlink.active:link, a.figlink.active:visited {
     font-size: 12px;
   }
   code, pre {
-    font-size: 8px;
+    font-size: 10px;
   }
   #main-text {
     padding-left: 10px;
@@ -192,12 +192,12 @@ a.figlink.active:link, a.figlink.active:visited {
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 480px) {
   body {
-    width: auto;
-    margin: 0;
-    padding-left: 20px;
-    padding-right: 20px;
+    font-size: 8px;
+  }
+  code, pre {
+    font-size: 7px;
   }
   h1 {
     padding-top: 2em;
@@ -206,9 +206,15 @@ a.figlink.active:link, a.figlink.active:visited {
   h2 {
     font-size: 12px;
   }
+  h3, h4, h5, h6, h7 {
+    font-size: 10px;
+  }
   .fig-in-text {
     display: block;
     background-color: #F0F0FF;
     padding: 3px;
+  }
+  .fig-in-text img {
+    width: 100%;
   }
 }

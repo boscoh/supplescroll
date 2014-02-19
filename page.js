@@ -9,7 +9,7 @@
 
   two_column_width = 1200;
 
-  one_columnn_width = 500;
+  one_columnn_width = 480;
 
   text = null;
 

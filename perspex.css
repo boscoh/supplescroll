@@ -162,7 +162,7 @@ a.fig-in-figlist, a.fig-in-figlist {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 480px) {
   #main-text {
     font-size: 10px;
     line-height: 1.2em;
