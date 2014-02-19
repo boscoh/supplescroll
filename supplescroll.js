@@ -60,7 +60,7 @@
           figlink = _ref[_i];
           if (figlink.attr('href') === hash) {
             fig = $(hash);
-            fig.ready(this.select_figlink_and_scroll_to_fig_fn(figlink));
+            fig.ready(this.select_figlink_fn(figlink));
           }
         }
       } else {
@@ -69,7 +69,8 @@
     }
 
     FigureList.prototype.make_toc = function() {
-      var div, header, header_dom, header_href, header_id, headerlink, n_header, toc, _i, _len, _ref, _results;
+      var div, finish, header, header_dom, header_href, header_id, headerlink, n_header, toc, _i, _len, _ref, _results,
+        _this = this;
       toc = $(this.toc_href);
       div = $('<div>').addClass('toc');
       toc.append(div);
@@ -89,7 +90,10 @@
         headerlink = $('<a>').attr('href', header_href);
         headerlink.append(header.clone().attr('id', ''));
         this.headerlinks[header_id] = headerlink;
-        headerlink.click(this.scroll_to_href_in_text_fn(header_href, false));
+        finish = function() {
+          return _this.select_onscreen_figlink_and_figure();
+        };
+        headerlink.click(this.scroll_to_href_in_text_fn(header_href, false, finish));
         _results.push(div.append(headerlink));
       }
       return _results;
@@ -104,7 +108,7 @@
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         div_dom = _ref[_i];
         div_id = $(div_dom).attr('id');
-        if ((div_id != null) && div_id.slice(0, 3) === 'fig' && (div_id !== 'figure-list')) {
+        if ((div_id != null) && div_id.slice(0, 3) === 'fig') {
           div = $(div_dom);
           div.prepend('(Figure ' + num_fig + '). ');
           new_div = div.clone();
@@ -120,7 +124,7 @@
     };
 
     FigureList.prototype.make_figlinks = function() {
-      var fig, fig_div_dom, fig_href, fig_id, fig_label, figlink, figlink_dom, figlink_href, figlink_id, figlink_label, i, i_fig, n_fig, n_figlink, new_fig_href, num_fig, orig_fig_href, reverse_link, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2, _results;
+      var click_fn, fig, fig_div_dom, fig_href, fig_id, fig_label, figlink, figlink_dom, figlink_href, figlink_id, figlink_label, i, i_fig, n_fig, n_figlink, new_fig_href, num_fig, orig_fig_href, reverse_link, select_fig_fn, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2, _results;
       this.i_fig_dict = {};
       this.fig_hrefs = [];
       this.fig_href_from_orig = {};
@@ -151,17 +155,19 @@
         figlink_id = 'figlink' + n_figlink;
         figlink.attr('id', figlink_id);
         figlink.addClass('figlink');
-        figlink.click(this.select_figlink_and_scroll_to_fig_fn(figlink));
+        figlink.click(this.select_figlink_fn(figlink));
         orig_fig_href = figlink.attr('href');
-        fig_href = this.fig_href_from_orig[orig_fig_href];
-        i_fig = this.i_fig_dict[fig_href];
-        figlink_label = '(Figure ' + i_fig + ')&rArr;';
-        figlink.html(figlink_label);
-        figlink.attr('href', fig_href);
-        figlink_href = '#' + figlink_id;
-        reverse_link = $('<a>').append('&lArr;').attr('href', figlink_href);
-        reverse_link.click(this.scroll_to_href_in_text_fn(figlink_href, false));
         if (orig_fig_href in this.fig_href_from_orig) {
+          fig_href = this.fig_href_from_orig[orig_fig_href];
+          i_fig = this.i_fig_dict[fig_href];
+          figlink_label = '(Figure ' + i_fig + ')&rArr;';
+          figlink.html(figlink_label);
+          figlink.attr('href', fig_href);
+          figlink_href = '#' + figlink_id;
+          reverse_link = $('<a>').append('&lArr;').attr('href', figlink_href);
+          select_fig_fn = this.select_figlink_fn(figlink);
+          click_fn = this.scroll_to_href_in_text_fn(figlink_href, false, select_fig_fn);
+          reverse_link.click(click_fn);
           this.figlinks.push(figlink);
           this.fig_label_dict[fig_href].append(reverse_link);
           n_figlink += 1;
@@ -197,14 +203,17 @@
       return $(selected_fig_href).addClass('active');
     };
 
-    FigureList.prototype.select_figlink_and_scroll_to_fig = function(figlink, callback) {
-      var fig_href, figlist;
+    FigureList.prototype.select_figlink_and_scroll_to_fig = function(figlink) {
+      var callback, fig_href, figlist;
       if (this.selected_figlink === figlink) {
         return;
       }
       this.select_figlink(figlink);
       fig_href = this.selected_figlink.attr('href');
       figlist = $(this.figlist_href);
+      callback = function() {
+        return window.location.hash = figlink.attr('href');
+      };
       if (figlist.css('display') === 'none') {
         return $(this.text_href).scrollTo(fig_href, 500, callback);
       } else {
@@ -212,16 +221,13 @@
       }
     };
 
-    FigureList.prototype.select_figlink_and_scroll_to_fig_fn = function(figlink) {
+    FigureList.prototype.select_figlink_fn = function(figlink) {
       var _this = this;
       return function(e) {
-        var finish;
-        e.preventDefault();
-        finish = function() {
-          return window.location.hash = figlink.attr('href');
-        };
-        _this.select_figlink_and_scroll_to_fig(figlink, finish);
-        return false;
+        if ((e != null) && e.hasOwnProperty('preventDefault')) {
+          e.preventDefault();
+        }
+        return _this.select_figlink_and_scroll_to_fig(figlink);
       };
     };
 
@@ -246,7 +252,7 @@
     };
 
     FigureList.prototype.scroll_to_href_in_text = function(href, is_autodetect_figlink, callback) {
-      var finish,
+      var finish, settings,
         _this = this;
       if (this.is_scrolling) {
         return;
@@ -260,29 +266,51 @@
           return callback();
         }
       };
-      return $(this.text_href).scrollTo(href, 500, {
-        onAfter: function() {
-          return setTimeout(finish, 250);
-        },
+      finish = function() {
+        return setTimeout(finish, 250);
+      };
+      settings = {
+        onAfter: finish,
         offset: {
           top: -15
         }
-      });
+      };
+      return $(this.text_href).scrollTo(href, 500, settings);
     };
 
-    FigureList.prototype.scroll_to_href_in_text_fn = function(href, is_autodetect_figlink) {
+    FigureList.prototype.scroll_to_href_in_text_fn = function(href, is_autodetect_figlink, callback) {
       var _this = this;
       return function(e) {
         e.preventDefault();
-        _this.scroll_to_href_in_text(href, is_autodetect_figlink, function() {
-          return _this.scroll_in_text();
-        });
+        _this.scroll_to_href_in_text(href, is_autodetect_figlink, callback);
         return false;
       };
     };
 
-    FigureList.prototype.scroll_in_text = function() {
-      var figlink, header, onscreen_figlink, onscreen_header, text, _i, _j, _len, _len1, _ref, _ref1;
+    FigureList.prototype.select_onscreen_figlink_and_figure = function() {
+      var figlink, onscreen_figlink, text, _i, _len, _ref;
+      text = $(this.text_href);
+      if (this.selected_figlink != null) {
+        if (is_onscreen(text, this.selected_figlink)) {
+          return;
+        }
+      }
+      onscreen_figlink = null;
+      _ref = this.figlinks;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        figlink = _ref[_i];
+        if (is_onscreen(text, figlink)) {
+          onscreen_figlink = figlink;
+          break;
+        }
+      }
+      if (onscreen_figlink != null) {
+        return this.select_figlink_and_scroll_to_fig(onscreen_figlink);
+      }
+    };
+
+    FigureList.prototype.select_onscreen_header = function() {
+      var header, onscreen_header, text, _i, _len, _ref;
       text = $(this.text_href);
       onscreen_header = null;
       _ref = this.headers;
@@ -294,26 +322,14 @@
         }
       }
       if (onscreen_header != null) {
-        this.select_header(onscreen_header);
+        return this.select_header(onscreen_header);
       }
+    };
+
+    FigureList.prototype.scroll_in_text = function() {
+      this.select_onscreen_header();
       if (this.is_autodetect_figlink) {
-        if (this.selected_figlink != null) {
-          if (is_onscreen(text, this.selected_figlink)) {
-            return;
-          }
-        }
-        onscreen_figlink = null;
-        _ref1 = this.figlinks;
-        for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-          figlink = _ref1[_j];
-          if (is_onscreen(text, figlink)) {
-            onscreen_figlink = figlink;
-            break;
-          }
-        }
-        if (onscreen_figlink != null) {
-          return this.select_figlink_and_scroll_to_fig(onscreen_figlink);
-        }
+        return this.select_onscreen_figlink_and_figure();
       }
     };
 

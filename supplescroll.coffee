@@ -63,7 +63,7 @@ class FigureList
         if figlink.attr('href') == hash
           fig = $(hash)
           # wait till all assets have been loaded!
-          fig.ready(@select_figlink_and_scroll_to_fig_fn(figlink))
+          fig.ready(@select_figlink_fn(figlink))
     else
       @scroll_in_text()
 
@@ -88,7 +88,9 @@ class FigureList
       headerlink = $('<a>').attr('href', header_href)
       headerlink.append(header.clone().attr('id', ''))
       @headerlinks[header_id] = headerlink
-      headerlink.click(@scroll_to_href_in_text_fn(header_href, false))
+      finish = () =>
+        @select_onscreen_figlink_and_figure()
+      headerlink.click(@scroll_to_href_in_text_fn(header_href, false, finish))
       div.append(headerlink)
 
   transfer_figs: () ->
@@ -97,7 +99,7 @@ class FigureList
     num_fig = 1
     for div_dom in $(@text_href).find('div')
       div_id = $(div_dom).attr('id')
-      if div_id? and div_id[0..2] == 'fig' and (div_id != 'figure-list')
+      if div_id? and div_id[0..2] == 'fig'
         div = $(div_dom)
         div.prepend('(Figure ' + num_fig + '). ') 
         new_div = div.clone()
@@ -137,20 +139,23 @@ class FigureList
       figlink_id = 'figlink'+n_figlink
       figlink.attr('id', figlink_id)
       figlink.addClass('figlink')
-      figlink.click(@select_figlink_and_scroll_to_fig_fn(figlink))
+      figlink.click(@select_figlink_fn(figlink))
 
       orig_fig_href = figlink.attr('href')
-      fig_href = @fig_href_from_orig[orig_fig_href]
-      i_fig =  @i_fig_dict[fig_href]
-      figlink_label = '(Figure ' + i_fig + ')&rArr;'
-      figlink.html(figlink_label)
-      figlink.attr('href', fig_href)
-
-      figlink_href = '#'+figlink_id
-      reverse_link = $('<a>').append('&lArr;').attr('href', figlink_href)
-      reverse_link.click(@scroll_to_href_in_text_fn(figlink_href, false))
 
       if orig_fig_href of @fig_href_from_orig
+        fig_href = @fig_href_from_orig[orig_fig_href]
+        i_fig =  @i_fig_dict[fig_href]
+        figlink_label = '(Figure ' + i_fig + ')&rArr;'
+        figlink.html(figlink_label)
+        figlink.attr('href', fig_href)
+
+        figlink_href = '#'+figlink_id
+        reverse_link = $('<a>').append('&lArr;').attr('href', figlink_href)
+        select_fig_fn = @select_figlink_fn(figlink)
+        click_fn = @scroll_to_href_in_text_fn(figlink_href, false, select_fig_fn)
+        reverse_link.click(click_fn)
+
         @figlinks.push(figlink)
         @fig_label_dict[fig_href].append(reverse_link)
         n_figlink += 1
@@ -175,24 +180,24 @@ class FigureList
     selected_fig_href = @selected_figlink.attr('href')
     $(selected_fig_href).addClass('active')
 
-  select_figlink_and_scroll_to_fig: (figlink, callback) ->
+  select_figlink_and_scroll_to_fig: (figlink) ->
     if @selected_figlink == figlink
       return
     @select_figlink(figlink)
     fig_href = @selected_figlink.attr('href')
     figlist = $(@figlist_href)
+    callback = () ->
+        window.location.hash = figlink.attr('href')
     if figlist.css('display') == 'none'
       $(@text_href).scrollTo(fig_href, 500, callback)
     else
       figlist.scrollTo(fig_href, 500, callback)
 
-  select_figlink_and_scroll_to_fig_fn: (figlink) ->
+  select_figlink_fn: (figlink) ->
     (e) => 
-      e.preventDefault()
-      finish = () -> 
-        window.location.hash = figlink.attr('href')
-      @select_figlink_and_scroll_to_fig(figlink, finish)
-      false
+      if e? and e.hasOwnProperty('preventDefault')
+        e.preventDefault()
+      @select_figlink_and_scroll_to_fig(figlink)
 
   select_header: (header) ->
     if @selected_header == header
@@ -224,25 +229,35 @@ class FigureList
       @is_scrolling = false
       if callback?
         callback()
-    $(@text_href).scrollTo(
-        href, 
-        500, 
-        { 
-          onAfter:()->setTimeout(finish, 250),
-          offset: { top:-15 }
-        })
+    finish = ()->setTimeout(finish, 250)
+    settings = { onAfter:finish, offset:{ top:-15 }}
+    $(@text_href).scrollTo(href, 500, settings)
 
-  scroll_to_href_in_text_fn: (href, is_autodetect_figlink) ->
+  scroll_to_href_in_text_fn: (href, is_autodetect_figlink, callback) ->
     (e) =>
       e.preventDefault()
-      @scroll_to_href_in_text(href, is_autodetect_figlink, ()=>@scroll_in_text())
+      @scroll_to_href_in_text(href, is_autodetect_figlink, callback)
       false
 
-  scroll_in_text: () ->
-    # $(@text_href) must be position:relative to work
+  select_onscreen_figlink_and_figure: () ->
     text = $(@text_href)
+    # check if @selected_figlink is onsceen
+    if @selected_figlink?
+      if is_onscreen(text, @selected_figlink)
+        return
+    # check if @selected_figlink is onsceen
+    onscreen_figlink = null
+    for figlink in @figlinks
+      if is_onscreen(text, figlink)
+        onscreen_figlink = figlink
+        break
+    if onscreen_figlink?
+      @select_figlink_and_scroll_to_fig(onscreen_figlink)
 
+  select_onscreen_header: () ->
+    text = $(@text_href)
     # check for onscreen header, and update toc
+    # no big changes, so can always run
     onscreen_header = null
     for header in @headers
       if is_onscreen(text, header)
@@ -251,19 +266,12 @@ class FigureList
     if onscreen_header? 
       @select_header(onscreen_header)
 
+  scroll_in_text: () ->
+    # $(@text_href) must be position:relative to work
+    @select_onscreen_header()
     if @is_autodetect_figlink
-      # check if @selected_figlink is onsceen
-      if @selected_figlink?
-        if is_onscreen(text, @selected_figlink)
-          return
-      # check if @selected_figlink is onsceen
-      onscreen_figlink = null
-      for figlink in @figlinks
-        if is_onscreen(text, figlink)
-          onscreen_figlink = figlink
-          break
-      if onscreen_figlink?
-        @select_figlink_and_scroll_to_fig(onscreen_figlink)
+      @select_onscreen_figlink_and_figure()
+
 
 
 build_page = (toc_href, text_href, figlist_href) ->
