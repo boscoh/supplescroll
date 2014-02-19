@@ -192,7 +192,7 @@ a.figlink.active:link, a.figlink.active:visited {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
   body {
     width: auto;
     margin: 0;
