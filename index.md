@@ -1,4 +1,4 @@
-template: yeolde.haml
+template: lucid.haml
 title: supplescroll
 
 ---

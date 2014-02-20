@@ -8,7 +8,7 @@ figlist_href = '#figure-list'
 two_column_width = 1200
 one_columnn_width = 480
 max_youtube_video_width = 500
-youtube_video_ratio = 3/4
+youtube_video_ratio = 9/16
 
 # declare module variables
 text = null
@@ -75,19 +75,19 @@ resize_window = () ->
       parent_width = iframe.parent().width()
       if parent_width < max_youtube_video_width
         iframe.css('width', '100%')
+        height = parent_width * youtube_video_ratio
       else
         iframe.css('width', max_youtube_video_width + 'px')
-      height = parent_width * youtube_video_ratio
+        height = max_youtube_video_width * youtube_video_ratio
       iframe.css('height', height + 'px')
     )
 
     $('.fig-in-text iframe[src*="youtube.com"]').each(() ->
       iframe = $(this)
-      parent_width = iframe.parent().outerWidth()
+      parent_width = iframe.parent().width()
       iframe.css('width', '100%')
       height = parent_width * youtube_video_ratio
       iframe.css('height', height + 'px')
-      console.log(parent_width, height)
     )
 
     # and now for images

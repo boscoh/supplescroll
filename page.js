@@ -13,7 +13,7 @@
 
   max_youtube_video_width = 500;
 
-  youtube_video_ratio = 3 / 4;
+  youtube_video_ratio = 9 / 16;
 
   text = null;
 
@@ -61,20 +61,20 @@
         parent_width = iframe.parent().width();
         if (parent_width < max_youtube_video_width) {
           iframe.css('width', '100%');
+          height = parent_width * youtube_video_ratio;
         } else {
           iframe.css('width', max_youtube_video_width + 'px');
+          height = max_youtube_video_width * youtube_video_ratio;
         }
-        height = parent_width * youtube_video_ratio;
         return iframe.css('height', height + 'px');
       });
       $('.fig-in-text iframe[src*="youtube.com"]').each(function() {
         var height, iframe, parent_width;
         iframe = $(this);
-        parent_width = iframe.parent().outerWidth();
+        parent_width = iframe.parent().width();
         iframe.css('width', '100%');
         height = parent_width * youtube_video_ratio;
-        iframe.css('height', height + 'px');
-        return console.log(parent_width, height);
+        return iframe.css('height', height + 'px');
       });
       _ref = $('img');
       _results = [];
