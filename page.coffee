@@ -7,6 +7,8 @@ figlist_href = '#figure-list'
 # responsive web settings
 two_column_width = 1200
 one_columnn_width = 480
+max_youtube_video_width = 500
+youtube_video_ratio = 3/4
 
 # declare module variables
 text = null
@@ -64,7 +66,31 @@ resize_window = () ->
         - supplescroll.get_outer_width(text)
     supplescroll.set_outer_width(figlist, figlist_width)
 
+  # resize images and videos!
   if window_width >= one_columnn_width
+
+    # special youtube video handler
+    $('.fig-in-figlist iframe[src*="youtube.com"]').each(() ->
+      iframe = $(this)
+      parent_width = iframe.parent().width()
+      if parent_width < max_youtube_video_width
+        iframe.css('width', '100%')
+      else
+        iframe.css('width', max_youtube_video_width + 'px')
+      height = parent_width * youtube_video_ratio
+      iframe.css('height', height + 'px')
+    )
+
+    $('.fig-in-text iframe[src*="youtube.com"]').each(() ->
+      iframe = $(this)
+      parent_width = iframe.parent().outerWidth()
+      iframe.css('width', '100%')
+      height = parent_width * youtube_video_ratio
+      iframe.css('height', height + 'px')
+      console.log(parent_width, height)
+    )
+
+    # and now for images
     for img_dom in $('img')
       img_elem = $(img_dom)
       parent_width = figlist_width - supplescroll.get_spacing_width(img_elem.parent())

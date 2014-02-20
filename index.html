@@ -2,9 +2,11 @@
 <head>
   <meta content='initial-scale=1.0' name='viewport' />
   <link href='supplescroll.css' rel='stylesheet' />
-  <link href='lucid.css' rel='stylesheet' />
+  <link href='yeolde.css' rel='stylesheet' />
+  <link href='http://fonts.googleapis.com/css?family=Cardo:700,400,400italic' type='text/css' rel='stylesheet' />
   
     <title>supplescroll</title>
+
   
 </head>
 <body>
@@ -14,7 +16,7 @@
       <h1>SUPPLESCROLL</h1>
 <p><em>scrolling articles to your heart's delight</em></p>
 <p>Supplescroll is a javascript plugin that decorates a webpage with an interactive table of contents and figure list, and knits them together with some supple scrolling.</p>
-<p>It turns <a href="https://github.com/boscoh/supplescroll/blob/master/index.md">markdown</a>(<a href="https://raw2.github.com/boscoh/supplescroll/master/index.md">raw</a>) into an <a href="http://boscoh.github.com/supplescroll">interactive webpage</a>.</p>
+<p>It turns this <a href="https://github.com/boscoh/supplescroll/blob/master/index.md">markdown</a>(<a href="https://raw2.github.com/boscoh/supplescroll/master/index.md">raw</a>) into this <a href="http://boscoh.github.com/supplescroll">webapp</a>.</p>
 <p>Features:</p>
 <ul>
 <li>table of contents generated from headers</li>
@@ -27,7 +29,7 @@
 </ul>
 <h2>Installation</h2>
 <p>To install the package, download from github:</p>
-<p>&nbsp;&nbsp;&nbsp; <a href="http://github.com/boscoh/supplescroll/master/zip">supperscroll zip package</a></p>
+<p>&nbsp;&nbsp;&nbsp; <a href="http://github.com/boscoh/supplescroll/master/zip">supplescroll zip package</a></p>
 <p>Then copy <code>index.md</code> to <code>article.md</code>, and start hacking away.</p>
 <p>Then you should install <a href="http://boscoh.github.io/embellish">embellish</a>, which includes a coffeescript and sass compiler. </p>
 <p>Then run:</p>
@@ -84,12 +86,14 @@ I will talk about a code fragment [](#fig-code-fragment).
 </pre></div>
 
 
+<h3>Headers</h3>
 <p>Write the text in markdown, making sure to use proper markdown headers, which will be used to construct the table of contents:</p>
 <div class="codehilite"><pre># A Header
 ## A Secondary Header
 </pre></div>
 
 
+<h3>Figures</h3>
 <p>To create a figure, you must escape markdown with a <code>&lt;div&gt;</code> tag, and give the <code>&lt;div&gt;</code> an appropriate <code>id</code>:</p>
 <div class="codehilite"><pre>&lt;div id=&#39;fig-code&#39;&gt;
 &lt;code&gt;&lt;pre&gt;Hello World&lt;/pre&gt;&lt;/code&gt;
@@ -98,12 +102,44 @@ I will talk about a code fragment [](#fig-code-fragment).
 
 
 <p>Note: if you want to display HTML-code, make sure you escape special HTML characters (<code>&lt;</code>, <code>&amp;</code>) properly. Use an <a href="http://www.freeformatter.com/html-escape.html">HTML-escape sanitizer</a>.</p>
+<h3>Images</h3>
+<p>You'd probably want to insert a photo:</p>
+<div class="codehilite"><pre>&lt;div id=&#39;fig-photo&#39;&gt;
+  &lt;img src=&#39;photo.jpg&#39;&gt;
+&lt;/div&gt;
+</pre></div>
+
+
+<p>which would take you here <a href="#fig-photo"></a>.</p>
+<div id='fig-photo'> A sample photo
+  <img src='photo.jpg'>
+</div>
+
+<h3>Youtube Videos</h3>
+<p>Or how about a youtube video:</p>
+<div class="codehilite"><pre>&lt;div id=&#39;fig-youtube&#39;&gt;
+  Link to youtube
+  &lt;br&gt;&lt;br&gt;
+  &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;//www.youtube.com/embed/Fk5reVYChlo?list=FLnRk0rt9QwA9a_mmCvlfXDw&amp;start=52&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+</pre></div>
+
+
+<p>which would take you here <a href="#fig-youtube"></a>.</p>
+<div id='fig-youtube'>
+  Link to youtube
+  <br><br>
+  <iframe src="http://www.youtube.com/embed/Fk5reVYChlo?list=FLnRk0rt9QwA9a_mmCvlfXDw&start=52" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<h3>Figure links</h3>
 <p>In the main text, links to figures are identified as relative links to <code>#fig*</code>:</p>
 <div class="codehilite"><pre>I will talk about a code fragment [](#fig-code-fragment).
 </pre></div>
 
 
 <p>These will be properly formatted, and linked to the relevant figure.</p>
+<h3>&amp; Compile</h3>
 <p>You then compile the page with: </p>
 <div class="codehilite"><pre> &gt; embellish .
 </pre></div>
@@ -314,8 +350,9 @@ supplescroll.set_outer_height
 </ol>
 <p>The <code>.touchscroll</code> class enables inertia touch-based scrolling through the <code>-webkit-overflow-scrolling:touch</code> attribute, and sets <code>overflow:auto</code>. </p>
 <p><code>init_touchscroll()</code> shuts down inertial scrolling of all elements except the ones indicated by <code>.touchscroll</code>. As well, it adds a hack to avoid an unwanted default behavior of iOS. Normally, if an element has been scrolled to the edge of its scrolling area, this will trigger the inertial scrolling of its parent, and so on up, until the whole page scrolls. To avoid this <code>init_touchscroll()</code> overrides the <code>touch</code> callback with a function that prevents any <code>.touchscroll</code> element from reaching its edge.</p>
+<p>&copy; 2014, Bosco K. Ho.</p>
       <div class='timestamp'>
-        <i><a href='http://github.com/boscoh/supplescroll'>supplescroll</a></i>:lucid theme
+        <a href="http://github.com/boscoh/supplescroll">supplescroll</a>:<i>Ye Olde!</i> theme
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-template: lucid.haml
+template: yeolde.haml
 title: supplescroll
 
 ---
@@ -12,7 +12,7 @@ _scrolling articles to your heart's delight_
 
 Supplescroll is a javascript plugin that decorates a webpage with an interactive table of contents and figure list, and knits them together with some supple scrolling.
 
-It turns [markdown](https://github.com/boscoh/supplescroll/blob/master/index.md)([raw](https://raw2.github.com/boscoh/supplescroll/master/index.md)) into an [interactive webpage](http://boscoh.github.com/supplescroll).
+It turns this [markdown](https://github.com/boscoh/supplescroll/blob/master/index.md)([raw](https://raw2.github.com/boscoh/supplescroll/master/index.md)) into this [webapp](http://boscoh.github.com/supplescroll).
 
 Features:
 
@@ -30,7 +30,7 @@ Features:
 
 To install the package, download from github:
 
-&nbsp;&nbsp;&nbsp; [supperscroll zip package](http://github.com/boscoh/supplescroll/master/zip)
+&nbsp;&nbsp;&nbsp; [supplescroll zip package](http://github.com/boscoh/supplescroll/master/zip)
 
 Then copy `index.md` to `article.md`, and start hacking away.
 
@@ -103,10 +103,17 @@ For embellish to work, two lines of: `---` are needed to separate the header and
     ---
     ---
 
+
+
+### Headers
+
 Write the text in markdown, making sure to use proper markdown headers, which will be used to construct the table of contents:
 
     # A Header
     ## A Secondary Header
+
+
+### Figures
 
 To create a figure, you must escape markdown with a `<div>` tag, and give the `<div>` an appropriate `id`:
 
@@ -116,11 +123,51 @@ To create a figure, you must escape markdown with a `<div>` tag, and give the `<
 
 Note: if you want to display HTML-code, make sure you escape special HTML characters (`<`, `&`) properly. Use an [HTML-escape sanitizer](http://www.freeformatter.com/html-escape.html).
 
+
+### Images
+
+You'd probably want to insert a photo:
+
+    <div id='fig-photo'>
+      <img src='photo.jpg'>
+    </div>
+
+which would take you here [](#fig-photo).
+
+<div id='fig-photo'> A sample photo
+  <img src='photo.jpg'>
+</div>
+
+
+### Youtube Videos
+
+Or how about a youtube video:
+
+    <div id='fig-youtube'>
+      Link to youtube
+      <br><br>
+      <iframe width="560" height="315" src="//www.youtube.com/embed/Fk5reVYChlo?list=FLnRk0rt9QwA9a_mmCvlfXDw&start=52" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+which would take you here [](#fig-youtube).
+
+<div id='fig-youtube'>
+  Link to youtube
+  <br><br>
+  <iframe src="http://www.youtube.com/embed/Fk5reVYChlo?list=FLnRk0rt9QwA9a_mmCvlfXDw&start=52" frameborder="0" allowfullscreen></iframe>
+</div>
+
+
+### Figure links
+
 In the main text, links to figures are identified as relative links to `#fig*`:
 
     I will talk about a code fragment [](#fig-code-fragment).
 
 These will be properly formatted, and linked to the relevant figure.
+
+
+### & Compile
 
 You then compile the page with: 
 
@@ -381,4 +428,6 @@ Touch-based scrolling of webpages on iOS devices is really nice. However, the de
 The `.touchscroll` class enables inertia touch-based scrolling through the `-webkit-overflow-scrolling:touch` attribute, and sets `overflow:auto`. 
 
 `init_touchscroll()` shuts down inertial scrolling of all elements except the ones indicated by `.touchscroll`. As well, it adds a hack to avoid an unwanted default behavior of iOS. Normally, if an element has been scrolled to the edge of its scrolling area, this will trigger the inertial scrolling of its parent, and so on up, until the whole page scrolls. To avoid this `init_touchscroll()` overrides the `touch` callback with a function that prevents any `.touchscroll` element from reaching its edge.
+
+&copy; 2014, Bosco K. Ho.
 
