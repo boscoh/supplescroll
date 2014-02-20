@@ -12,6 +12,8 @@ _scrolling articles to your heart's delight_
 
 Supplescroll is a javascript plugin that decorates a webpage with an interactive table of contents and figure list, and knits them together with some supple scrolling.
 
+It turns [markdown](https://github.com/boscoh/supplescroll/blob/master/index.md)([raw](https://raw2.github.com/boscoh/supplescroll/master/index.md)) into an [interactive webpage](http://boscoh.github.com/supplescroll).
+
 Features:
 
 - table of contents generated from headers
@@ -22,7 +24,7 @@ Features:
 - the URL hashes respond to the text
 - iOS-aware responsive-web themes
 
-It turns this [markdown](https://github.com/boscoh/supplescroll/blob/master/index.md) into this [interactive webpage](http://boscoh.github.com/supplescroll).
+
 
 ## Installation
 
@@ -39,6 +41,7 @@ Then run:
     > embellish .
 
 And open `article.html`.
+
 
 
 ## Source Code
@@ -202,6 +205,7 @@ Note: the supplescroll modules are actually written in coffeescript, then compil
 Below, we'll discuss how supplescroll works with respect to the `lucid.haml` theme.
 
 
+
 ### Page Loader
 
 Your page needs to initialize supplescroll with javascript. In the package, `page.js` provides the entry point. Since `jquery` is included we can use jquery to register our `init` function.
@@ -232,6 +236,7 @@ The `init` function [](#fig-init):
 3. calls the touchscroll initializer
 
 
+
 ### Page Builder
 
 The page builder is in the module `supplescroll.js`, which obviously, must be loaded first via the `<script>` tag in the HTML file. The function to build the page is:
@@ -253,6 +258,7 @@ The figure `<div>` id's are renamed consecutively from `(figure 1)` onwards.
 Finally, the location url is scannd and the initial header is assigned to the hash. 
 
 
+
 ### Smooth Scrolling with ScrollTo
 
 One of the things that the page builder does is to put in custom callbacks for links, which use the `ScrollTo` plugin to smoothly  scroll to the text or figure of interest.
@@ -262,6 +268,7 @@ However, for that to work, the `<div>` container must be sized properly. That is
     overflow:auto
 
 Furthermore, the page builder will add suffcient white-space to the end of these `<div>`s so that scrolling will always take the child element of interest to the top of the `<div>`.
+
 
 
 ### Scrolling Callback
@@ -275,6 +282,7 @@ For the `scroll` callback to work, it is __imperative__ that the main text eleme
 Otherwise, the positions of elements in the main text cannot be calculated correctly.
 
 To do this, wrap the main-text in the HTML with the utility class `.relative_position`
+
 
 
 ### Overriding the resize function
@@ -362,6 +370,7 @@ We can also calculate exactly the `figlist_width` needed to fill the remaining s
 Note: Firefox sometimes screws up the sizes unless the `<doctype>` in the `<head>` is defined to html.
 
 
+
 ### Touchscroll on IOS
 
 Touch-based scrolling of webpages on iOS devices is really nice. However, the default scrolling in iOS does not work well with the `ScrollTo` library. To make it work properly, you need to do two things:
@@ -372,3 +381,4 @@ Touch-based scrolling of webpages on iOS devices is really nice. However, the de
 The `.touchscroll` class enables inertia touch-based scrolling through the `-webkit-overflow-scrolling:touch` attribute, and sets `overflow:auto`. 
 
 `init_touchscroll()` shuts down inertial scrolling of all elements except the ones indicated by `.touchscroll`. As well, it adds a hack to avoid an unwanted default behavior of iOS. Normally, if an element has been scrolled to the edge of its scrolling area, this will trigger the inertial scrolling of its parent, and so on up, until the whole page scrolls. To avoid this `init_touchscroll()` overrides the `touch` callback with a function that prevents any `.touchscroll` element from reaching its edge.
+
