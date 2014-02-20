@@ -10,19 +10,17 @@ title: supplescroll
 
 _scrolling articles to your heart's delight_
 
-
-
-`supplescroll` is a javascript plugin that builds a table of contents and Figure List dynamically from an article webpage, and binds them together through interactive links and supple scrolling.
+Supplescroll is a javascript plugin that decorates an  webpage with a table of contents and figure list, and binds them together through supple scrolling.
 
 Features:
 
-- table of contents generated from headers `<h1>`'s etc.
-- Figure List generated from `<div>`s marked with `id="fig*"`
-- links to figures autoscrolls the Figure List
+- table of contents generated from headers
+- figure list generated from `<div>`s
 - back links of figures to references in text
-- scroll-aware table of contents
+- smooth scrolling
+- table of contents aware of text position
 - the URL hashes respond to the text
-- responsive-web-design themes that enable iOS touch
+- iOS-aware responsive-web themes
 
 
 
@@ -30,14 +28,14 @@ Features:
 
 Downlaoad the [zip](http://github.com/boscoh/supplescroll/master/zip) file from github.
 
-`supplescroll` was inspired by, and uses Ariel Flesier's lovely [jquery.ScrollTo](http://plugins.jquery.com/project/ScrollTo) library, which is a [jquery](http://jquery.com/) plugin.
+Supplescroll was inspired by, and uses Ariel Flesier's lovely [jquery.ScrollTo](http://plugins.jquery.com/project/ScrollTo) library, which is a [jquery](http://jquery.com/) plugin.
 
 
 
 
 ## Write Article with Embellish
 
-The easiest way to use `supplescroll` is to compile your article with the static website generator [embellish](http://boscoh.github.com/embellish).
+The easiest way to use supplescroll is to compile your article with the static website generator [embellish](http://boscoh.github.com/embellish).
 
 To write the article, use the YAML/markdown format, for example in [](#fig-markdown).
 
@@ -64,15 +62,23 @@ The format consists of a:
 2. an excerpt
 2. body in [markdown](https://daringfireball.net/projects/markdown/basics)
 
-In the header, give the name of a `supplesscroll` template you want to use:
+In the header, give the name of a supplescroll template you want to use:
 
     template: lucid.haml
 
-There are two templates provided that you can use with `supplescroll`: `lucid` and `pesrpex`.
+There are several templates provided in the package:
 
-For embellish to work, two lines of: `---` are needed to separate the header and excerpt from the main body. Whilst the second is optional, it's confusing to `embellish` if there are any other `---` lines in the text.
+- `lucid.haml`
+- `perspex.haml`
+- `yeolde.haml`
 
-Write the text in markdown, making sure to use proper markdown headers, which will be used to construct the Table of Contents:
+For embellish to work, two lines of: `---` are needed to separate the header and excerpt from the main body. Whilst the excerpt is optional, to avoid potential bugs with `---` later in the text, I'd suggest:
+    
+    template: lucid.haml
+    ---
+    ---
+
+Write the text in markdown, making sure to use proper markdown headers, which will be used to construct the table of contents:
 
     # A Header
     ## A Secondary Header
@@ -83,25 +89,27 @@ To create a figure, you must escape markdown with a `<div>` tag, and give the `<
     <code><pre>Hello World</pre></code>
     </div>
 
-Note: make sure you escape the characters properly if using HTML special characters such as `<`, `&` etc. Use an HTML-escape sanitizer.
+Note: if you want to display HTML-code, make sure you escape special HTML characters (`<`, `&`) properly. Use an [HTML-escape sanitizer](http://www.freeformatter.com/html-escape.html).
 
-In the main text, links to figures will be properly formatted, they are written:
+In the main text, links to figures are identified as relative links to `#fig*`:
 
     I will talk about a code fragment [](#fig-code-fragment).
 
-Now that the article is finished, you can compile the website with: 
+These will be properly formatted, and linked to the relevant figure.
+
+You then compile the page with: 
 
      > embellish .
 
-The article, using the `lucid` theme consists of the files:
+Which makes `example.html`. The function webpage, which uses the lucid theme, consists of the files:
 
-- example.html
-- jquery-2.0.3.js
-- jquery.scrollTo.js
-- supplescroll.js
-- supplescroll.css
-- lucid.css
-- lucid.js
+- `example.html`
+- `jquery-2.0.3.js`
+- `jquery.scrollTo.js`
+- `supplescroll.js`
+- `supplescroll.css`
+- `page.js`
+- `lucid.css`
 
 
 
@@ -109,6 +117,7 @@ The article, using the `lucid` theme consists of the files:
 
 Of course, you don't have to use `embellish` to build your HTML file, you can write it yourself. To use the `lucid` theme, you'd make an HTML file like `article.html` [](#fig-html).
 
+This shows all the necessary declarations, style-sheets & javascript modules.
 
 <div id='fig-html'> <code>article.html</code> - a hand-coded HTML article page that works with the lucid theme.
 <pre>
@@ -141,7 +150,7 @@ Of course, you don't have to use `embellish` to build your HTML file, you can wr
 &lt;script src='jquery-2.0.3.js' type='text/javascript'&gt;&lt;/script&gt;
 &lt;script src='jquery.scrollTo.js' type='text/javascript'&gt;&lt;/script&gt;
 &lt;script src='supplescroll.js' type='text/javascript'&gt;&lt;/script&gt;
-&lt;script src='lucid.js' type='text/javascript'&gt;&lt;/script&gt;
+&lt;script src='page.js' type='text/javascript'&gt;&lt;/script&gt;
 </pre>
 </div>
 
@@ -151,7 +160,7 @@ As above, header tags `<h1>`'s etc., will be used to build the table of contents
 
     <h1> This is My Article Header </h1>
 
-Any `<div>`s with `id="fig*"` will be copied into the Figure List.
+Any `<div>`s with `id="fig*"` will be copied into the figure list.
 
     <div id="fig-code-fragment"> A Code Fragment
       <pre>Hello World</pre>
@@ -164,12 +173,16 @@ This is essentially what is generated with `embellish` in the section above.
 
 ## Theme it Yourself
 
-If you are familiar with HTML/CSS/javascript, you might want to theme your templates for `supplescroll`. To do this, you'll have to understand some of the internals of `supplescroll` so that all the HTML elements can happily work together. Naturally, you will follow how the themes are written, but below, we'll discuss how `supplescroll` w.r.t. the lucid theme.
+If you are familiar with the holy triumvirate of HTML/CSS/javascript, you might want to theme your own templates. To do this, you'll have to understand the internals of supplescroll so that all the HTML elements can happily work together. 
+
+Note: the supplescroll modules are actually written in coffeescript, then compiled to javascript.
+
+Below, we'll discuss how supplescroll works with respect to the `lucid.haml` theme.
 
 
 ### Page Loader
 
-Your page needs to initialize `supplescroll` with javascript. In the package, `page.js` provides the entry point. Since `jquery` is included we can use jquery to register our `init` function.
+Your page needs to initialize supplescroll with javascript. In the package, `page.js` provides the entry point. Since `jquery` is included we can use jquery to register our `init` function.
 
     $(window).ready(init) 
    
@@ -177,8 +190,8 @@ Your page needs to initialize `supplescroll` with javascript. In the package, `p
 <pre>
 init = () ->
   text = $(text_href)
-  sidebar = $(toc_href)
-  figures = $(figlist_href)
+  toc = $(toc_href)
+  figlist = $(figlist_href)
   text_width = supplescroll.get_outer_width(text)
 
   supplescroll.init_touchscroll()
@@ -191,7 +204,8 @@ init = () ->
 
 The `init` function [](#fig-init):
 
-1. calls the page builder 
+1. declares page variables
+2. calls the page builder 
 2. registers the resize function
 3. calls the touchscroll initializer
 
@@ -202,15 +216,15 @@ The page builder is in the module `supplescroll.js`, which obviously, must be lo
 
     supplescroll.build_page(toc_href, text_href, figlist_href)
      
-The three parameters are hrefs referring to an element in the DOM of the HTML page. If `toc_href` is empty string, the Table of Contents will not be built. Similarly for `figlist_href`.
+The three parameters are hrefs referring to an element in the DOM of the HTML page. If `toc_href` is empty string, the table of contents will not be built. Similarly for `figlist_href`.
 
-The Table of Contents is built from the header elements (`<h1>`, `<h2>` etc.) in the `text_href` and inserted into the element referred to by `toc_href`.
+The table of contents is built from the header elements (`<h1>`, `<h2>` etc.) in the `text_href` and inserted into the element referred to by `toc_href`.
 
-The text is then scanned for figures, which are identified as `<div>`'s that have id's in the form `fig*`. These `<div>`'s are then copied in the Figure List. The original `<div>`'s are hidden, but can be displayed by CSS class changes.
+The text is then scanned for figures, which are identified as `<div>`'s that have id's in the form `fig*`. These `<div>`'s are then copied in the figure list. The original `<div>`'s are hidden, but can be displayed by CSS class changes.
 
 It's important to ensure that each figure `<div>`s has a unique id.
 
-Then the text is scanned for `<a>` links that point to internal href's in the form `#fig*`. These links are linked to the corresponding figures in the Figure List.
+Then the text is scanned for `<a>` links that point to internal href's in the form `#fig*`. These links are linked to the corresponding figures in the figure list.
 
 The figure `<div>` id's are renamed consecutively from `(figure 1)` onwards.
 
@@ -219,18 +233,18 @@ Finally, the location url is scannd and the initial header is assigned to the ha
 
 ### Smooth Scrolling with ScrollTo
 
-One of the things that the page builder does is to put in custom callbacks for figure links and links in the table of contents. 
+One of the things that the page builder does is to put in custom callbacks for links, which use the `ScrollTo` plugin to smoothly  scroll to the text or figure of interest.
 
-These custom callbacks use the `ScrollTo` plugin to smoothly  scroll to the text or figure of interest.
+However, for that to work, the `<div>` container must be sized properly. That is the explicit size of the `<div>` must be smaller than the onscreen window and have the CSS attribute
 
-However, for that to work, the `<div>` container must be sized properly. That is the explicit size of the `<div>` must be smaller than the onscreen window and the CSS attribute `overflow:auto` must be set.
+    overflow:auto
 
 Furthermore, the page builder will add suffcient white-space to the end of these `<div>`s so that scrolling will always take the child element of interest to the top of the `<div>`.
 
 
 ### Scrolling Callback
  
-The `supplescroll` module overrides the `scroll` callback function in the main text element in order to detect which headers and figures are currently onscreen. On scrolling, the main text will scan for the first figure link, and if a new one pops up, will scroll the Figure List to the that figure.
+The supplescroll module overrides the `scroll` callback function in the main text element in order to detect which headers and figures are currently onscreen. On scrolling, the main text will scan for the first figure link, and if a new one pops up, will scroll the figure list to the that figure.
 
 For the `scroll` callback to work, it is __imperative__ that the main text element has the CSS style:
 
@@ -243,7 +257,7 @@ To do this, wrap the main-text in the HTML with the utility class `.relative_pos
 
 ### Overriding the resize function
 
-The themes in `supplescroll` use custom resize functions to resize columns. This is optional, as you could do resizing through CSS.
+The themes in supplescroll use custom resize functions to resize columns. This is optional, as you could do resizing through CSS.
 
 As a responsible web developer, you might ask, why would you override CSS for resizing?
 
@@ -283,33 +297,56 @@ supplescroll.set_outer_width(figlist, figlist_width)
 </pre>
 </div>
 
-First, we make sure `toc` (Table of Contents) and `figlist` (Figure List) are switched on with `display:block`. To turn these off in 1-column display, these would be set to `display:none`.
+First, we make sure `toc` (table of contents) and `figlist` (figure list) are switched on with `display:block`. To turn these off in 1-column display, these would be set to `display:none`.
 
 In three column mode, we want the main text to have a fixed width `text_width` for easy reading. 
 
-For the resizing to work, it's important that we set all the elements to `position:absolute`. This allows the `supplescroll` element moving helper functions to work: 
+One of the key to manually resizing is to fit the columns exactly onto the width of the window. This will prevent any bouncing effect of the page. This requires first that the CSS of the body and html to:
 
-    set_left
-    set_top
-    get_left
-    get_top
-    get_right
-    get_bottom
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden
+    }
 
-You can put elements next to each other, by getting the `get_right` of the first element, and assigning with `set_left` of the second element.
+Then, we need to set all the resizable elements to `position:absolute`, which will allow the following helper functions to work [](#fig-helper-fns).
 
-I also found that Firefox sometimes screws up the sizes unless the `<doctype>` in the `<head>` is defined.
+<div id="fig-helper-fns">
+  <pre>
+# routines to get the absolute position of a jquery element
+supplescroll.get_left
+supplescroll.get_top
+supplescroll.get_right
+supplescroll.get_bottom
+
+# routines to set the absolute position of a jquery element
+supplescroll.set_left
+supplescroll.set_top
+
+# routines to get the dimensions of a jquery element
+supplescroll.get_outer_width
+supplescroll.get_outer_height
+
+# routines to set the dimensions of a jquery element
+supplescroll.set_outer_width
+supplescroll.set_outer_height
+  </pre>
+</div>
+
+These helper functions can be used in combination with each other to get perfect placement in the resize function [](#fig-resize-3). For example, by getting the right edge of `toc` by `get_right`, and assigning this right edge to the left edge of `text` with `set_left`, we can place `toc` right next to `text`.
+
+We can also calculate exactly the `figlist_width` needed to fill the remaining space, and assign this to `figlist` via `set_outer_width`.
+
+Note: Firefox sometimes screws up the sizes unless the `<doctype>` in the `<head>` is defined to html.
 
 
 ### Touchscroll on IOS
 
 Touch-based scrolling of webpages on iOS devices is really nice. However, the default scrolling in iOS does not work well with the `ScrollTo` library. To make it work properly, you need to do two things:
 
-1. add the CSS class `.touchscroll` to elements that you want to scroll
-2. call `supplescroll.init_touchscroll()` in the page loader
+1. add the class `.touchscroll` to scrollale elements
+2. initialize with `supplescroll.init_touchscroll()` 
 
 The `.touchscroll` class enables inertia touch-based scrolling through the `-webkit-overflow-scrolling:touch` attribute, and sets `overflow:auto`. 
 
-`init_touchscroll()` shuts down inertial scrolling of all elements except the ones indicated by `.touchscroll`.
-
-As well `init_touchscroll()` is used avoid another default behavior of iOS. If an element has been scrolled to the edge of its scrolling areathis will trigger the inertial scrolling of its parent, and so on up, until the whole page scrolls. To avoid this `init_touchscroll()` introduces a little hack that prevents any `.touchscroll` element from reaching the edge.
+`init_touchscroll()` shuts down inertial scrolling of all elements except the ones indicated by `.touchscroll`. As well, it adds a hack to avoid an unwanted default behavior of iOS. Normally, if an element has been scrolled to the edge of its scrolling area, this will trigger the inertial scrolling of its parent, and so on up, until the whole page scrolls. To avoid this `init_touchscroll()` overrides the `touch` callback with a function that prevents any `.touchscroll` element from reaching its edge.

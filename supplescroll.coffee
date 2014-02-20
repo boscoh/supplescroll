@@ -152,6 +152,9 @@ class FigureList
         figlink_href = '#'+figlink_id
         reverse_link = $('<a>').append('&lArr;').attr('href', figlink_href)
         select_fig_fn = @select_figlink_fn(figlink)
+        finish = ()=>
+          select_fig_fn()
+          window.location.hash = @selected_figlink.attr('href')
         click_fn = @scroll_to_href_in_text_fn(figlink_href, false, select_fig_fn)
         reverse_link.click(click_fn)
 
@@ -184,7 +187,6 @@ class FigureList
       # already scrolling so cancel
         return
     finish = () =>
-      window.location.hash = @selected_figlink.attr('href')
       @is_scrolling_figlist = false
       # we've stopped scrolling now
       if @selected_figlink != @next_figlink
