@@ -10,7 +10,7 @@ title: supplescroll
 
 _scrolling articles to your heart's delight_
 
-Supplescroll is a javascript plugin that decorates an  webpage with a table of contents and figure list, and binds them together through supple scrolling.
+Supplescroll is a javascript plugin that decorates a webpage with an interactive table of contents and figure list, and knits them together with some supple scrolling.
 
 Features:
 
@@ -26,10 +26,32 @@ Features:
 
 ## Installation
 
-Downlaoad the [zip](http://github.com/boscoh/supplescroll/master/zip) file from github.
+To install the package, download from github:
 
-Supplescroll was inspired by, and uses Ariel Flesier's lovely [jquery.ScrollTo](http://plugins.jquery.com/project/ScrollTo) library, which is a [jquery](http://jquery.com/) plugin.
+&nbsp;&nbsp;&nbsp; [supperscroll zip package](http://github.com/boscoh/supplescroll/master/zip)
 
+Then copy `readme.md` to `article.md`, and start hacking away.
+
+Then you should install [embellish](http://boscoh.github.com/embellish), which includes a coffeescript and sass compiler. 
+
+Then run:
+
+    > embellish .
+
+And open `article.html`.
+
+
+## Source Code
+
+You can browse the code at
+
+&nbsp;&nbsp;&nbsp; <http://github.com/boscoh/supplescroll>
+
+Please, fork and pull-request. 
+
+New themes particularly welcome!
+
+Supplescroll was inspired by Ariel Flesier's [jquery.ScrollTo](http://plugins.jquery.com/project/ScrollTo) library.
 
 
 
