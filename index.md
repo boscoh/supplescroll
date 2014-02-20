@@ -22,7 +22,7 @@ Features:
 - the URL hashes respond to the text
 - iOS-aware responsive-web themes
 
-It turns this [markdown](https://github.com/boscoh/supplescroll/blob/master/readme.md) into this [interactive webpage](http://boscoh.github.com/suppescroll).
+It turns this [markdown](https://github.com/boscoh/supplescroll/blob/master/index.md) into this [interactive webpage](http://boscoh.github.com/suppescroll).
 
 ## Installation
 
@@ -30,7 +30,7 @@ To install the package, download from github:
 
 &nbsp;&nbsp;&nbsp; [supperscroll zip package](http://github.com/boscoh/supplescroll/master/zip)
 
-Then copy `readme.md` to `article.md`, and start hacking away.
+Then copy `index.md` to `article.md`, and start hacking away.
 
 Then you should install [embellish](http://boscoh.github.io/embellish), which includes a coffeescript and sass compiler. 
 
