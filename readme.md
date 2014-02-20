@@ -32,7 +32,7 @@ To install the package, download from github:
 
 Then copy `readme.md` to `article.md`, and start hacking away.
 
-Then you should install [embellish](http://boscoh.github.com/embellish), which includes a coffeescript and sass compiler. 
+Then you should install [embellish](http://boscoh.github.io/embellish), which includes a coffeescript and sass compiler. 
 
 Then run:
 
