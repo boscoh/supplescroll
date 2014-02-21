@@ -11,15 +11,15 @@ body {
   font-size: 14px;
   line-height: 1.5em;
   letter-spacing: 0.05em;
-  color: #555;
+  color: #333;
 }
 
 h1, h2, h3, h3, h4, h5 {
   font-size: 12px;
   text-transform: uppercase;
   margin: 0;
-  padding-top: 1em;
-  padding-bottom: 0.3em;
+  padding-top: 3em;
+  padding-bottom: 0em;
   font-weight: normal;
   letter-spacing: 0.3em;
   line-height: 1.2em;
@@ -31,7 +31,6 @@ h1 {
 }
 
 h2 {
-  padding-top: 2em;
   font-size: 16px;
 }
 
@@ -90,13 +89,14 @@ code, pre {
   line-height: 1.5em;
 }
 
-.toc h1, .toc h2, .toc h3, .toc h4, .toc h5, .toc h6, .toc h7 {
+.toc h1, .toc h2 {
   text-transform: uppercase;
+  padding-top: 10px;
 }
 
 .toc a {
   display: block;
-  padding: 5px 30px 5px 20px;
+  padding: 2px 30px 2px 20px;
   margin: 0;
 }
 

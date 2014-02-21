@@ -1,6 +1,6 @@
-template: lucid.haml
+template: clown.haml
 title: supplescroll
-
+target: index.html
 ---
 ---
 
