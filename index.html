@@ -5,7 +5,7 @@
   <link href='clown.css' rel='stylesheet' />
   <link href='http://fonts.googleapis.com/css?family=Cardo:700,400,400italic' type='text/css' rel='stylesheet' />
   
-    <title>supplescroll</title>
+    <title>supplescroll documentation</title>
 
   
 </head>
@@ -16,7 +16,7 @@
       <h1>SUPPLESCROLL</h1>
 <p><em>scrolling articles to your heart's delight</em></p>
 <p>Supplescroll is a javascript plugin that decorates a webpage with an interactive table of contents and figure list, and knits them together with some supple scrolling.</p>
-<p>It turns this <a href="https://github.com/boscoh/supplescroll/blob/master/index.md">markdown</a>(<a href="https://raw2.github.com/boscoh/supplescroll/master/index.md">raw</a>) into this <a href="http://boscoh.github.com/supplescroll">webapp</a>.</p>
+<p>It turns this <a href="https://github.com/boscoh/supplescroll/blob/master/readme.md">markdown</a> into this <a href="http://boscoh.github.com/supplescroll">webapp</a>.</p>
 <p>Features:</p>
 <ul>
 <li>table of contents generated from headers</li>
@@ -29,10 +29,10 @@
 </ul>
 <h2>Installation</h2>
 <p>To install the package, download from github:</p>
-<p>&nbsp;&nbsp;&nbsp; <a href="http://github.com/boscoh/supplescroll/master/zip">supplescroll zip package</a></p>
-<p>Then copy <code>index.md</code> to <code>article.md</code>, and start hacking away.</p>
+<p>&nbsp;&nbsp;&nbsp; <a href="https://github.com/boscoh/supplescroll/archive/master.zip">zip-package</a></p>
 <p>Then you should install <a href="http://boscoh.github.io/embellish">embellish</a>, which includes a coffeescript and sass compiler. </p>
-<p>Then run:</p>
+<p>Then edit the file <code>article.md</code> in markdown, following the guide below.</p>
+<p>When you're done, run:</p>
 <div class="codehilite"><pre>&gt; embellish .
 </pre></div>
 
@@ -47,19 +47,36 @@
 <h2>Write Article with Embellish</h2>
 <p>The easiest way to use supplescroll is to compile your article with the static website generator <a href="http://boscoh.github.com/embellish">embellish</a>.</p>
 <p>To write the article, use the YAML/markdown format, for example in <a href="#fig-markdown"></a>.</p>
-<div id="fig-markdown"> <code>example.txt</code> - example of an article in supplescroll
+<div id="fig-markdown"> <code>article.md</code> - example of an article in supplescroll
 <pre>
 template: lucid.haml
---- 
---- 
+title: My Article
+---
+
+---
 # This is my Article in markdown
 
-I will talk about a code fragment [](#fig-code-fragment).
+I will talk about the following things
 
+## Code Fragment
+A code fragment [](#fig-code-fragment)
 &lt;div id=&quot;fig-code-fragment&quot;&gt; A Code Fragment
   &lt;pre&gt;Hello World&lt;/pre&gt;
 &lt;/div&gt;
-</pre>
+
+## A Photo
+a photo [](#fig-photo)
+&lt;div id='fig-photo'&gt;
+  &lt;img src='photo.jpg'&gt;
+&lt;/div&gt;
+
+## A Video
+a video [](#fig-youtube)
+&lt;div id='fig-youtube'&gt;
+  Link to youtube
+  &lt;br&gt;&lt;br&gt;
+  &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/Fk5reVYChlo?list=FLnRk0rt9QwA9a_mmCvlfXDw&amp;start=52&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;</pre>
 </div>
 
 <p>The format consists of a: </p>
@@ -139,15 +156,15 @@ I will talk about a code fragment [](#fig-code-fragment).
 
 
 <p>These will be properly formatted, and linked to the relevant figure.</p>
-<h3>&amp; Compile</h3>
+<h3>Compile to HTML</h3>
 <p>You then compile the page with: </p>
 <div class="codehilite"><pre> &gt; embellish .
 </pre></div>
 
 
-<p>Which makes <code>example.html</code>. The function webpage, which uses the lucid theme, consists of the files:</p>
+<p>Which makes <code>article.html</code>. The function webpage, which uses the lucid theme, consists of the files:</p>
 <ul>
-<li><code>example.html</code></li>
+<li><code>article.html</code></li>
 <li><code>jquery-2.0.3.js</code></li>
 <li><code>jquery.scrollTo.js</code></li>
 <li><code>supplescroll.js</code></li>
@@ -156,9 +173,9 @@ I will talk about a code fragment [](#fig-code-fragment).
 <li><code>lucid.css</code></li>
 </ul>
 <h2>Write Article directly in HTML</h2>
-<p>Of course, you don't have to use <code>embellish</code> to build your HTML file, you can write it yourself. To use the <code>lucid</code> theme, you'd make an HTML file like <code>article.html</code> <a href="#fig-html"></a>.</p>
+<p>Of course, you don't have to use embellish to build your HTML file, you can write it yourself. To use the lucid theme, you'd make an HTML file like <code>article.html</code> <a href="#fig-html"></a>.</p>
 <p>This shows all the necessary declarations, style-sheets &amp; javascript modules.</p>
-<div id='fig-html'> <code>article.html</code> - a hand-coded HTML article page that works with the lucid theme.
+<div id='fig-html'> <code>article.html</code> - key ingredients of an HTML article page that works with the lucid theme.
 <pre>
 &lt;!DOCTYPE html&gt;
 &lt;head&gt;
@@ -212,7 +229,7 @@ I will talk about a code fragment [](#fig-code-fragment).
 <p>Note: the supplescroll modules are actually written in coffeescript, then compiled to javascript.</p>
 <p>Below, we'll discuss how supplescroll works with respect to the <code>lucid.haml</code> theme.</p>
 <h3>Page Loader</h3>
-<p>Your page needs to initialize supplescroll with javascript. In the package, <code>page.js</code> provides the entry point. Since <code>jquery</code> is included we can use jquery to register our <code>init</code> function.</p>
+<p>Your page needs to initialize supplescroll with javascript. In the package, <code>page.js</code> provides the entry point. Since jquery is included we can use jquery to register our <code>init</code> function.</p>
 <div class="codehilite"><pre>$(window).ready(init)
 </pre></div>
 
@@ -254,7 +271,7 @@ init = () ->
 <p>The figure <code>&lt;div&gt;</code> id's are renamed consecutively from <code>(figure 1)</code> onwards.</p>
 <p>Finally, the location url is scannd and the initial header is assigned to the hash. </p>
 <h3>Smooth Scrolling with ScrollTo</h3>
-<p>One of the things that the page builder does is to put in custom callbacks for links, which use the <code>ScrollTo</code> plugin to smoothly  scroll to the text or figure of interest.</p>
+<p>One of the things that the page builder does is to put in custom callbacks for links, which use the jquery.ScrollTo plugin to smoothly  scroll to the text or figure of interest.</p>
 <p>However, for that to work, the <code>&lt;div&gt;</code> container must be sized properly. That is the explicit size of the <code>&lt;div&gt;</code> must be smaller than the onscreen window and have the CSS attribute</p>
 <div class="codehilite"><pre>overflow:auto
 </pre></div>
@@ -341,6 +358,7 @@ supplescroll.set_outer_height
 
 <p>These helper functions can be used in combination with each other to get perfect placement in the resize function <a href="#fig-resize-3"></a>. For example, by getting the right edge of <code>toc</code> by <code>get_right</code>, and assigning this right edge to the left edge of <code>text</code> with <code>set_left</code>, we can place <code>toc</code> right next to <code>text</code>.</p>
 <p>We can also calculate exactly the <code>figlist_width</code> needed to fill the remaining space, and assign this to <code>figlist</code> via <code>set_outer_width</code>.</p>
+<p>Finally, the resize function looks for images in the <code>figlist</code> and resizes them to fit the column. If the column is big enough, then the image will be displayed at its natural dimensions. Simarly, youtube videos will be resized until it reaches a maximum size. A fixed aspect ratio is applied to all youtube videos.</p>
 <p>Note: Firefox sometimes screws up the sizes unless the <code>&lt;doctype&gt;</code> in the <code>&lt;head&gt;</code> is defined to html.</p>
 <h3>Touchscroll on IOS</h3>
 <p>Touch-based scrolling of webpages on iOS devices is really nice. However, the default scrolling in iOS does not work well with the <code>ScrollTo</code> library. To make it work properly, you need to do two things:</p>
@@ -350,6 +368,8 @@ supplescroll.set_outer_height
 </ol>
 <p>The <code>.touchscroll</code> class enables inertia touch-based scrolling through the <code>-webkit-overflow-scrolling:touch</code> attribute, and sets <code>overflow:auto</code>. </p>
 <p><code>init_touchscroll()</code> shuts down inertial scrolling of all elements except the ones indicated by <code>.touchscroll</code>. As well, it adds a hack to avoid an unwanted default behavior of iOS. Normally, if an element has been scrolled to the edge of its scrolling area, this will trigger the inertial scrolling of its parent, and so on up, until the whole page scrolls. To avoid this <code>init_touchscroll()</code> overrides the <code>touch</code> callback with a function that prevents any <code>.touchscroll</code> element from reaching its edge.</p>
+<h3>Overriding styles</h3>
+<p>All the selections are displayed through CSS class changes, with the <code>.active</code> class applied to the active header in the <code>#table-of-contents</code>, the active <code>.figlink</code> in the <code>#main-text</code>, and the active <code>.fig-in-list</code> in <code>#figure-list</code>. These classes can be overriden to apply the display of your choice.</p>
 <p>&copy; 2014, Bosco K. Ho.</p>
       <div class='timestamp'>
         <a href="http://github.com/boscoh/supplescroll">supplescroll</a>:<i>night</i> theme

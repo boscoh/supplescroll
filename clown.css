@@ -7,7 +7,7 @@ a:link, a:visited {
 }
 
 body {
-  background-color: #CC3;
+  background-color: #FF6;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 14px;
   line-height: 1.5em;
@@ -121,11 +121,11 @@ code, pre {
   padding: 2px;
   border: 1px solid #663;
   border-radius: 5px;
-  background-color: #DA81F5;
+  background-color: #FF33CC;
 }
 #main-text a.figlink.active:link, #main-text a.figlink.active:visited {
-  color: #031;
-  text-decoration: underline;
+  color: #900;
+  text-decoration: none;
 }
 #main-text .timestamp {
   margin-top: 6em;
@@ -134,15 +134,14 @@ code, pre {
 }
 
 #figure-list {
-  font-size: 10px;
+  font-size: 12px;
   text-transform: uppercase;
   line-height: 1.2em;
-  background-color: #495;
-  color: #020;
+  background-color: #937;
+  color: #AAA;
 }
 #figure-list code, #figure-list pre {
-  font-size: 10px;
-  background-color: #354;
+  background-color: #534;
 }
 #figure-list .fig-in-figlist {
   padding: 30px 40px 20px 40px;
@@ -153,15 +152,20 @@ code, pre {
 }
 #figure-list .fig-in-figlist a, #figure-list .fig-in-figlist a:link,
 #figure-list .fig-in-figlist a:visited {
-  color: #031;
+  color: #A77;
 }
 #figure-list .fig-in-figlist.active {
-  background-color: #DA81F5;
+  background-color: #FF33CC;
+  color: #333;
 }
 #figure-list .fig-in-figlist.active pre, #figure-list .fig-in-figlist.active code {
   border: 1px solid #668;
-  background-color: #E2A9F3;
-  color: #323;
+  background-color: #CC0099;
+  color: #000;
+}
+#figure-list .fig-in-figlist.active a:link,
+#figure-list .fig-in-figlist.active a:visited {
+  color: #900;
 }
 
 @media (max-width: 1200px) {
@@ -181,13 +185,16 @@ code, pre {
 @media (max-width: 480px) {
   h1 {
     font-size: 18px;
-    padding-top: 30px;
+    padding-top: 50px;
   }
   h2, h3, h4 {
     font-size: 12px;
   }
   .fig-in-text {
     display: block;
+    background-color: #FF33CC;
+    color: #333;
+    padding: 5px 10px;
   }
   .fig-in-text img {
     width: 100%;
