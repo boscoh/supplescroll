@@ -121,7 +121,7 @@ code, pre {
   padding: 2px;
   border: 1px solid #663;
   border-radius: 5px;
-  background-color: #385;
+  background-color: #DA81F5;
 }
 #main-text a.figlink.active:link, #main-text a.figlink.active:visited {
   color: #031;
@@ -156,12 +156,12 @@ code, pre {
   color: #031;
 }
 #figure-list .fig-in-figlist.active {
-  background-color: #385;
+  background-color: #DA81F5;
 }
 #figure-list .fig-in-figlist.active pre, #figure-list .fig-in-figlist.active code {
   border: 1px solid #668;
-  background-color: #243;
-  color: #797;
+  background-color: #E2A9F3;
+  color: #323;
 }
 
 @media (max-width: 1200px) {

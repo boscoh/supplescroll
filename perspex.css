@@ -91,7 +91,7 @@ code, pre {
 
 .toc h1, .toc h2 {
   text-transform: uppercase;
-  padding-top: 10px;
+  padding-top: 3px;
 }
 
 .toc a {
@@ -131,7 +131,7 @@ a.figlink.active:link, a.figlink.active:visited {
 
 .fig-in-figlist.active pre, .fig-in-figlist.active code {
   border: 1px solid #CCE;
-  background-color: #E9E9F9;
+  background-color: #E3E3FF;
 }
 
 a.fig-in-figlist, a.fig-in-figlist {
