@@ -180,12 +180,12 @@ code, pre {
 
 @media (max-width: 480px) {
   #main-text {
-    font-size: 12px;
+    font-size: 10px;
     line-height: 1.5em;
     letter-spacing: 0em;
   }
   #main-text pre, #main-text code {
-    font-size: 10px;
+    font-size: 9px;
   }
   h1 {
     font-size: 18px;
