@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+  <meta content='initial-scale=1.0' name='viewport' />
+  <link href='supplescroll.css' rel='stylesheet' />
+  <link href='clown.css' rel='stylesheet' />
+  <link href='http://fonts.googleapis.com/css?family=Cardo:700,400,400italic' type='text/css' rel='stylesheet' />
+  
+    <title>My Article</title>
+
+  
+</head>
+<body>
+  <div id='table-of-contents' class='touchscroll'></div>
+  <div id='main-text' class='touchscroll'>
+    <div class='relative_position'>
+      <h1>This is my Article in markdown</h1>
+<p>I will talk about the following things</p>
+<h2>Code Fragment</h2>
+<p>A code fragment <a href="#fig-code-fragment"></a></p>
+<h3>A sub-heading</h3>
+<p>More words</p>
+<div id="fig-code-fragment"> A Code Fragment <pre>Hello World</pre></div>
+
+<h2>A Photo</h2>
+<p>a photo <a href="#fig-photo"></a></p>
+<div id='fig-photo'><img src='photo.jpg'></div>
+
+<h2>A Video</h2>
+<p>a video <a href="#fig-youtube"></a>
+<div id='fig-youtube'>Link to youtube<br><br>
+  <iframe width="560" height="315" src="http://www.youtube.com/embed/Fk5reVYChlo?list=FLnRk0rt9QwA9a_mmCvlfXDw&start=52" frameborder="0" allowfullscreen></iframe>
+</div></p>
+      <div class='timestamp'>
+        <a href="http://github.com/boscoh/supplescroll">supplescroll</a>:<i>night</i> theme
+      </div>
+    </div>
+  </div>
+  <div id='figure-list' class='touchscroll'></div>
+</body>
+<script src='jquery-2.0.3.js' type='text/javascript'></script>
+<script src='jquery.scrollTo.js' type='text/javascript'></script>
+<script src='supplescroll.js' type='text/javascript'></script>
+<script src='page.js' type='text/javascript'></script>

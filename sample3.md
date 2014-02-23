@@ -1,6 +1,5 @@
-template: dark.haml
+template: lucid.haml
 title: supplescroll documentation
-target: index.html
 
 ---
 ---

@@ -1,30 +1,36 @@
-a {
-  text-decoration: underline;
-}
-
-a:link, a:visited {
-  color: #88A;
-}
-
 body {
-  background-color: #FF6;
+  background-color: #3A6;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 14px;
   line-height: 1.5em;
   letter-spacing: 0.05em;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+blockquote {
+  border-left: 5px solid #3A6;
+  margin-left: 0;
+  padding-left: 2em;
+  color: #3A6;
+}
+
+a {
+  text-decoration: underline;
+}
+a:link, a:visited {
+  color: #88A;
 }
 
 h1, h2, h3, h3, h4, h5, h6, h7 {
-  font-size: 12px;
-  text-transform: uppercase;
   margin: 0;
   padding-top: 4em;
   padding-bottom: 0em;
+  font-size: 12px;
   font-weight: normal;
   letter-spacing: 0.3em;
   line-height: 1.2em;
+  text-transform: uppercase;
 }
 
 h1 {
@@ -42,17 +48,16 @@ code {
 }
 
 pre {
-  overflow: auto;
   padding: 5px 20px;
 }
 
 code, pre {
-  text-transform: none;
+  overflow: auto;
   background-color: #333;
   border: 1px solid #555;
   border-radius: 5px;
-  color: #888;
   font-size: 13px;
+  color: #888;
   line-height: 1.5em;
 }
 
@@ -83,12 +88,13 @@ code, pre {
 #table-of-contents .toc h7 {
   text-transform: uppercase;
   letter-spacing: 0.2em;
+  margin: 0;
   padding-top: 0em;
   padding-bottom: 0em;
   font-style: italic;
 }
 #table-of-contents .toc h1, #table-of-contents .toc h2 {
-  padding-top: 0.5em;
+  padding-top: 0.2em;
   font-style: normal;
 }
 #table-of-contents .toc a {
@@ -97,13 +103,13 @@ code, pre {
   padding-right: 20px;
 }
 #table-of-contents .toc a, #table-of-contents .toc a:visited {
-  color: #099;
+  color: #99A;
 }
 #table-of-contents .toc a.active {
   background-color: #900;
 }
 #table-of-contents .toc a.active:link, #table-of-contents .toc a.active:visited {
-  color: #B66;
+  color: #FF6;
 }
 
 #main-text {
@@ -112,19 +118,19 @@ code, pre {
 }
 #main-text h1, #main-text h2, #main-text h3, #main-text h4, #main-text h5,
 #main-text h6, #main-text h7 {
-  color: #B66;
+  color: #FF6;
 }
 #main-text code, #main-text pre {
   background-color: #522;
 }
 #main-text a.figlink.active {
   padding: 2px;
-  border: 1px solid #663;
   border-radius: 5px;
+  border: 1px solid #330;
   background-color: #FF33CC;
 }
 #main-text a.figlink.active:link, #main-text a.figlink.active:visited {
-  color: #900;
+  color: #330;
   text-decoration: none;
 }
 #main-text .timestamp {
@@ -132,19 +138,38 @@ code, pre {
   text-align: right;
   border-top: 1px solid #CCC;
 }
+#main-text .fig-in-text {
+  display: none;
+  font-size: 12px;
+  line-height: 1.2em;
+  text-transform: uppercase;
+  background-color: #FF33CC;
+  color: #330;
+  padding: 10px 10px;
+}
+#main-text .fig-in-text code, #main-text .fig-in-text pre {
+  text-transform: none;
+  background-color: #CC0099;
+  color: #000;
+  border: 1px solid #330;
+}
+#main-text .fig-in-text img {
+  width: 100%;
+}
 
 #figure-list {
   font-size: 12px;
   text-transform: uppercase;
   line-height: 1.2em;
   background-color: #937;
-  color: #AAA;
+  color: #330;
 }
 #figure-list code, #figure-list pre {
+  text-transform: none;
   background-color: #534;
 }
 #figure-list .fig-in-figlist {
-  padding: 30px 40px 20px 40px;
+  padding: 30px 15px 20px 15px;
 }
 #figure-list .fig-in-figlist img {
   padding-top: 10px;
@@ -159,7 +184,7 @@ code, pre {
   color: #333;
 }
 #figure-list .fig-in-figlist.active pre, #figure-list .fig-in-figlist.active code {
-  border: 1px solid #668;
+  border: 1px solid #330;
   background-color: #CC0099;
   color: #000;
 }
@@ -173,10 +198,6 @@ code, pre {
     padding-left: 15px;
     padding-right: 15px;
   }
-  #figure-list .fig-in-figlist {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
   h1 {
     font-size: 25px;
   }
@@ -184,19 +205,13 @@ code, pre {
 
 @media (max-width: 480px) {
   h1 {
-    font-size: 18px;
-    padding-top: 50px;
+    font-size: 20px;
+    padding-top: 70px;
   }
   h2, h3, h4 {
     font-size: 12px;
   }
-  .fig-in-text {
+  #main-text .fig-in-text {
     display: block;
-    background-color: #FF33CC;
-    color: #333;
-    padding: 5px 10px;
-  }
-  .fig-in-text img {
-    width: 100%;
   }
 }

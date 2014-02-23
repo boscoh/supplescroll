@@ -1,6 +1,5 @@
-template: dark.haml
+template: light.haml
 title: supplescroll documentation
-target: index.html
 
 ---
 ---
@@ -68,7 +67,7 @@ To write the article, use the YAML/markdown format, for example in [](#fig-markd
 
 <div id="fig-markdown"> <code>article.md</code> - example of an article in supplescroll
 <pre>
-template: lucid.haml
+template: light.haml
 title: My Article
 ---
 ---

@@ -1,8 +1,8 @@
 !!! 5
 %head
-  %meta{name:"viewport", content:"initial-scale=1, maximum-scale=1"}
+  %meta{content:'initial-scale=1.0', name:'viewport'}
   %link{rel:'stylesheet', href:'supplescroll.css'}
-  %link{rel:'stylesheet', href:'perspex.css'}
+  %link{rel:'stylesheet', href:'lucid.css'}
   - if page.title:
     %title {{ page.title }}
 %body
@@ -11,9 +11,11 @@
     .relative_position
       {{ page.content }}
       .timestamp
-        <i><a href='http://github.com/boscoh/supplescroll'>supplescroll</a></i>:perspex theme
+        <i><a href='http://github.com/boscoh/supplescroll'>supplescroll</a></i>:lucid theme
   #figure-list.touchscroll
+
 %script{type:'text/javascript', src:'jquery-2.0.3.js'}
 %script{type:'text/javascript', src:'jquery.scrollTo.js'}
 %script{type:'text/javascript', src:'supplescroll.js'}
 %script{type:'text/javascript', src:'page.js'}
+
