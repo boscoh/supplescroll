@@ -133,13 +133,16 @@ code, pre {
 }
 #main-text .fig-in-text {
   font-style: italic;
-  letter-spacing: 0em;
+  letter-spacing: 0.1em;
   background-color: #F0F0FF;
   padding: 6px;
 }
 #main-text .fig-in-text pre, #main-text .fig-in-text code {
   border: 1px solid #CCE;
   background-color: #F0F0FF;
+}
+#main-text .fig-in-text code, #main-text .fig-in-text pre {
+  letter-spacing: 0.05em;
 }
 #main-text .fig-in-text img {
   padding: 10px;
@@ -154,7 +157,10 @@ code, pre {
 #figure-list {
   line-height: 1.2em;
   font-style: italic;
-  letter-spacing: 0em;
+  letter-spacing: 0.1em;
+}
+#figure-list code, #figure-list pre {
+  letter-spacing: 0.05em;
 }
 #figure-list .fig-in-figlist {
   border-top: 1px solid #CCC;

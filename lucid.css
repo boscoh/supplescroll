@@ -115,7 +115,6 @@ code, pre {
   padding-right: 20px;
 }
 .toc a.active, .toc a:visited.active {
-  padding: 5px 0px;
   background-color: #EEF;
   border-left: 3px solid #AAE;
 }

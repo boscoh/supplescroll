@@ -23,7 +23,11 @@ Features:
 - table of contents aware of text position
 - the URL hashes respond to the text
 - iOS-aware responsive-web themes
-
+  - `dark.haml` ([sample](http://boscoh.github.com/supplescroll/index.html))
+  - `light.haml` ([sample](http://boscoh.github.com/supplescroll/sample2.html))
+  - `lucid.haml` ([sample](http://boscoh.github.com/supplescroll/sample3.html))
+  - `yeolde.haml` ([sample](http://boscoh.github.com/supplescroll/sample4.html))
+  - `clown.haml` ([sample](http://boscoh.github.com/supplescroll/sample5.html))
 
 
 ## Installation
@@ -109,11 +113,11 @@ In the header, give the name of a supplescroll template you want to use:
 
 There are several templates provided in the package:
 
-- `dark.haml` ([sample](index.html))
-- `light.haml` ([sample](sample2.html))
-- `lucid.haml` ([sample](sample3.html))
-- `yeolde.haml` ([sample](sample4.html))
-- `clown.haml` ([sample](sample5.html))
+  - `dark.haml` ([sample](http://boscoh.github.com/supplescroll/index.html))
+  - `light.haml` ([sample](http://boscoh.github.com/supplescroll/sample2.html))
+  - `lucid.haml` ([sample](http://boscoh.github.com/supplescroll/sample3.html))
+  - `yeolde.haml` ([sample](http://boscoh.github.com/supplescroll/sample4.html))
+  - `clown.haml` ([sample](http://boscoh.github.com/supplescroll/sample5.html))
 
 For embellish to work, two lines of: `---` are needed to separate the header and excerpt from the main body. Whilst the excerpt is optional, to avoid potential bugs with `---` later in the text, I'd suggest:
     
