@@ -424,14 +424,10 @@
   resize_img_dom = function(img_dom, width) {
     var img_elem;
     img_elem = $(img_dom);
-    if (img_dom.naturalWidth < width) {
-      return img_elem.css({
-        'width': ''
-      });
+    if (img_dom.naturalWidth > 0 && img_dom.naturalWidth < width) {
+      return img_elem.css('width', '');
     } else {
-      return img_elem.css({
-        'width': '100%'
-      });
+      return img_elem.css('width', '100%');
     }
   };
 

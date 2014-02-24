@@ -31,6 +31,14 @@
       figlist.css('display', 'none');
       supplescroll.set_left(text, 0);
       supplescroll.set_outer_width(text, window_width);
+      $('.fig-in-text iframe[src*="youtube.com"]').each(function() {
+        var height, iframe, parent_width;
+        iframe = $(this);
+        parent_width = iframe.parent().width();
+        iframe.width(parent_width);
+        height = parent_width * youtube_video_ratio;
+        return iframe.height(height);
+      });
     } else if (window_width <= two_column_width) {
       toc.css('display', 'none');
       figlist.css('display', 'block');
@@ -55,7 +63,7 @@
       supplescroll.set_outer_width(figlist, figlist_width);
     }
     if (window_width >= one_columnn_width) {
-      $('.fig-in-figlist iframe[src*="youtube.com"]').each(function() {
+      $('.fig-in-list iframe[src*="youtube.com"]').each(function() {
         var height, iframe, parent_width;
         iframe = $(this);
         parent_width = iframe.parent().width();
@@ -66,14 +74,6 @@
           iframe.css('width', max_youtube_video_width + 'px');
           height = max_youtube_video_width * youtube_video_ratio;
         }
-        return iframe.css('height', height + 'px');
-      });
-      $('.fig-in-text iframe[src*="youtube.com"]').each(function() {
-        var height, iframe, parent_width;
-        iframe = $(this);
-        parent_width = iframe.parent().width();
-        iframe.css('width', '100%');
-        height = parent_width * youtube_video_ratio;
         return iframe.css('height', height + 'px');
       });
       _ref = $('img');
@@ -88,11 +88,10 @@
           };
         };
         resize_fn = make_resize_fn(img_dom, parent_width);
-        resize_fn(img_dom, parent_width);
         if (init === true) {
           _results.push(img_elem.load(resize_fn));
         } else {
-          _results.push(void 0);
+          _results.push(resize_fn(img_dom, parent_width));
         }
       }
       return _results;

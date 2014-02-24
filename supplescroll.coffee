@@ -336,10 +336,10 @@ set_left = (div, left) -> div.css('left', left)
 
 resize_img_dom = (img_dom, width) ->
   img_elem = $(img_dom)
-  if img_dom.naturalWidth < width
-    img_elem.css('width': '')
+  if img_dom.naturalWidth > 0 and img_dom.naturalWidth < width
+    img_elem.css('width', '')
   else
-    img_elem.css('width': '100%')
+    img_elem.css('width', '100%')
 
 
 # routines to handle the touchscroll on iOS devices

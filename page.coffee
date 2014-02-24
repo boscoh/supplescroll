@@ -28,6 +28,14 @@ resize_window = () ->
     supplescroll.set_left(text, 0)
     supplescroll.set_outer_width(text, window_width)
 
+    $('.fig-in-text iframe[src*="youtube.com"]').each(() ->
+      iframe = $(this)
+      parent_width = iframe.parent().width()
+      iframe.width(parent_width)
+      height = parent_width * youtube_video_ratio
+      iframe.height(height)
+    )
+
   else if window_width <= two_column_width
     toc.css('display','none')
     figlist.css('display','block')
@@ -70,7 +78,7 @@ resize_window = () ->
   if window_width >= one_columnn_width
 
     # special youtube video handler
-    $('.fig-in-figlist iframe[src*="youtube.com"]').each(() ->
+    $('.fig-in-list iframe[src*="youtube.com"]').each(() ->
       iframe = $(this)
       parent_width = iframe.parent().width()
       if parent_width < max_youtube_video_width
@@ -82,14 +90,6 @@ resize_window = () ->
       iframe.css('height', height + 'px')
     )
 
-    $('.fig-in-text iframe[src*="youtube.com"]').each(() ->
-      iframe = $(this)
-      parent_width = iframe.parent().width()
-      iframe.css('width', '100%')
-      height = parent_width * youtube_video_ratio
-      iframe.css('height', height + 'px')
-    )
-
     # and now for images
     for img_dom in $('img')
       img_elem = $(img_dom)
@@ -97,10 +97,11 @@ resize_window = () ->
       make_resize_fn = (img_dom, parent_width) ->
           () -> supplescroll.resize_img_dom(img_dom, parent_width)
       resize_fn = make_resize_fn(img_dom, parent_width)
-      resize_fn(img_dom, parent_width)
       if init == true
         # in case image has not been loaded yet!
         img_elem.load(resize_fn)
+      else
+        resize_fn(img_dom, parent_width)
 
 
 init = () ->
