@@ -22,7 +22,9 @@ Features:
 - smooth scrolling
 - table of contents aware of text position
 - the URL hashes respond to the text
-- iOS-aware responsive-web themes
+
+iOS-aware responsive-web themes:
+
   - `dark.haml` ([sample](http://boscoh.github.com/supplescroll/index.html))
   - `light.haml` ([sample](http://boscoh.github.com/supplescroll/sample2.html))
   - `lucid.haml` ([sample](http://boscoh.github.com/supplescroll/sample3.html))
