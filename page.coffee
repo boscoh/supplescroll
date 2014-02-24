@@ -78,7 +78,7 @@ resize_window = () ->
   if window_width >= one_columnn_width
 
     # special youtube video handler
-    $('.fig-in-list iframe[src*="youtube.com"]').each(() ->
+    $('.fig-in-figlist iframe[src*="youtube.com"]').each(() ->
       iframe = $(this)
       parent_width = iframe.parent().width()
       if parent_width < max_youtube_video_width

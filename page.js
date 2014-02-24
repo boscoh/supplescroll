@@ -63,7 +63,7 @@
       supplescroll.set_outer_width(figlist, figlist_width);
     }
     if (window_width >= one_columnn_width) {
-      $('.fig-in-list iframe[src*="youtube.com"]').each(function() {
+      $('.fig-in-figlist iframe[src*="youtube.com"]').each(function() {
         var height, iframe, parent_width;
         iframe = $(this);
         parent_width = iframe.parent().width();
