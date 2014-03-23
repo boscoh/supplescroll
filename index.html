@@ -122,10 +122,13 @@ a video [](#fig-youtube)
 
 
 <h3>Figures</h3>
-<p>To create a figure, you must escape markdown with a <code>&lt;div&gt;</code> tag, and give the <code>&lt;div&gt;</code> an appropriate <code>id</code>:</p>
+<p>To create a figure, you must escape markdown with a <code>&lt;div&gt;</code> tag, and give the <code>&lt;div&gt;</code> an <code>id</code> beginning with 'fig-':</p>
 <div class="codehilite"><pre>&lt;div id=&#39;fig-code&#39;&gt;
 &lt;code&gt;&lt;pre&gt;Hello World&lt;/pre&gt;&lt;/code&gt;
 &lt;/div&gt;
+</pre></div>
+<p>Don't forget to link to it:</p>
+<div class="codehilite"><pre>&lt;a href=&#39;#fig-code&#39;&gt;&lt;/a&gt;
 </pre></div>
 
 
