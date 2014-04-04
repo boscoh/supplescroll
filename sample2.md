@@ -137,13 +137,26 @@ Write the text in markdown, making sure to use proper markdown headers, which wi
     ## A Secondary Header
 
 
+### Code and Code Blocks
+
+The way that styles are structured, use `<pre>` for a multi-line block, and `<code>` for inline references. In particular `<pre>` blocks have been styled to not exceed the widths of the main text column. If the internal width of the main text column is too wide then the Scroll.To module will cause unseemly horizontal scrolling when scrolling to figure links.
+
+
 ### Figures
 
 To create a figure, you must escape markdown with a `<div>` tag, and give the `<div>` an appropriate `id`:
 
-    <div id='fig-code'>
-    <code><pre>Hello World</pre></code>
+    <div id='fig-code'> 
+      Code Fragment Label
+      <pre>Hello World</pre>
     </div>
+
+which gives [](#fig-code). Here, we have an examlple of a code block. Basically, any text before the `<pre>` and `<code>` tags can be used as a figure label.
+
+<div id='fig-code'> 
+  Code Fragment Label
+  <pre>Hello World</pre>
+</div>
 
 Note: if you want to display HTML-code, make sure you escape special HTML characters (`<`, `&`) properly. Use an [HTML-escape sanitizer](http://www.freeformatter.com/html-escape.html).
 
@@ -153,12 +166,14 @@ Note: if you want to display HTML-code, make sure you escape special HTML charac
 You'd probably want to insert a photo:
 
     <div id='fig-photo'>
+      Photo Label <br>
       <img src='photo.jpg'>
     </div>
 
-which would take you here [](#fig-photo).
+which would take you here [](#fig-photo). Text before the `<img>` tag works as a figure label.
 
-<div id='fig-photo'> A sample photo
+<div id='fig-photo'> 
+  Photo Label <br>
   <img src='photo.jpg'>
 </div>
 
@@ -168,15 +183,15 @@ which would take you here [](#fig-photo).
 Or how about a youtube video:
 
     <div id='fig-youtube'>
-      Link to youtube
+      Label to Youtube Video
       <br><br>
       <iframe width="560" height="315" src="//www.youtube.com/embed/Fk5reVYChlo?list=FLnRk0rt9QwA9a_mmCvlfXDw&start=52" frameborder="0" allowfullscreen></iframe>
     </div>
 
-which would take you here [](#fig-youtube).
+which would take you here [](#fig-youtube). Text before the `<img>` tag works as a figure label. The `supplescroll` resize functions knows how to resize embedded youtube videos properly.
 
 <div id='fig-youtube'>
-  Link to youtube
+  Label to Youtube Video
   <br><br>
   <iframe src="http://www.youtube.com/embed/Fk5reVYChlo?list=FLnRk0rt9QwA9a_mmCvlfXDw&start=52" frameborder="0" allowfullscreen></iframe>
 </div>

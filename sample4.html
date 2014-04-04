@@ -120,41 +120,52 @@ a video [](#fig-youtube)
 </pre></div>
 
 
+<h3>Code and Code Blocks</h3>
+<p>The way that styles are structured, use <code>&lt;pre&gt;</code> for a multi-line block, and <code>&lt;code&gt;</code> for inline references. In particular <code>&lt;pre&gt;</code> blocks have been styled to not exceed the widths of the main text column. If the internal width of the main text column is too wide then the Scroll.To module will cause unseemly horizontal scrolling when scrolling to figure links.</p>
 <h3>Figures</h3>
 <p>To create a figure, you must escape markdown with a <code>&lt;div&gt;</code> tag, and give the <code>&lt;div&gt;</code> an appropriate <code>id</code>:</p>
-<div class="codehilite"><pre>&lt;div id=&#39;fig-code&#39;&gt;
-&lt;code&gt;&lt;pre&gt;Hello World&lt;/pre&gt;&lt;/code&gt;
+<div class="codehilite"><pre>&lt;div id=&#39;fig-code&#39;&gt; 
+  Code Fragment Label
+  &lt;pre&gt;Hello World&lt;/pre&gt;
 &lt;/div&gt;
 </pre></div>
 
+
+<p>which gives <a href="#fig-code"></a>. Here, we have an examlple of a code block. Basically, any text before the <code>&lt;pre&gt;</code> and <code>&lt;code&gt;</code> tags can be used as a figure label.</p>
+<div id='fig-code'> 
+  Code Fragment Label
+  <pre>Hello World</pre>
+</div>
 
 <p>Note: if you want to display HTML-code, make sure you escape special HTML characters (<code>&lt;</code>, <code>&amp;</code>) properly. Use an <a href="http://www.freeformatter.com/html-escape.html">HTML-escape sanitizer</a>.</p>
 <h3>Images</h3>
 <p>You'd probably want to insert a photo:</p>
 <div class="codehilite"><pre>&lt;div id=&#39;fig-photo&#39;&gt;
+  Photo Label &lt;br&gt;
   &lt;img src=&#39;photo.jpg&#39;&gt;
 &lt;/div&gt;
 </pre></div>
 
 
-<p>which would take you here <a href="#fig-photo"></a>.</p>
-<div id='fig-photo'> A sample photo
+<p>which would take you here <a href="#fig-photo"></a>. Text before the <code>&lt;img&gt;</code> tag works as a figure label.</p>
+<div id='fig-photo'> 
+  Photo Label <br>
   <img src='photo.jpg'>
 </div>
 
 <h3>Youtube Videos</h3>
 <p>Or how about a youtube video:</p>
 <div class="codehilite"><pre>&lt;div id=&#39;fig-youtube&#39;&gt;
-  Link to youtube
+  Label to Youtube Video
   &lt;br&gt;&lt;br&gt;
   &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;//www.youtube.com/embed/Fk5reVYChlo?list=FLnRk0rt9QwA9a_mmCvlfXDw&amp;start=52&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 &lt;/div&gt;
 </pre></div>
 
 
-<p>which would take you here <a href="#fig-youtube"></a>.</p>
+<p>which would take you here <a href="#fig-youtube"></a>. Text before the <code>&lt;img&gt;</code> tag works as a figure label. The <code>supplescroll</code> resize functions knows how to resize embedded youtube videos properly.</p>
 <div id='fig-youtube'>
-  Link to youtube
+  Label to Youtube Video
   <br><br>
   <iframe src="http://www.youtube.com/embed/Fk5reVYChlo?list=FLnRk0rt9QwA9a_mmCvlfXDw&start=52" frameborder="0" allowfullscreen></iframe>
 </div>
