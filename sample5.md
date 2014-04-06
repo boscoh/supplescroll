@@ -30,6 +30,7 @@ iOS-aware responsive-web themes:
   - `lucid.haml` ([sample](http://boscoh.github.com/supplescroll/sample3.html))
   - `yeolde.haml` ([sample](http://boscoh.github.com/supplescroll/sample4.html))
   - `clown.haml` ([sample](http://boscoh.github.com/supplescroll/sample5.html))
+  - `sphinx.haml` ([sample](http://boscoh.github.com/supplescroll/sample6.html))
 
 
 ## Installation
@@ -120,6 +121,7 @@ There are several templates provided in the package:
   - `lucid.haml` ([sample](http://boscoh.github.com/supplescroll/sample3.html))
   - `yeolde.haml` ([sample](http://boscoh.github.com/supplescroll/sample4.html))
   - `clown.haml` ([sample](http://boscoh.github.com/supplescroll/sample5.html))
+  - `sphinx.haml` ([sample](http://boscoh.github.com/supplescroll/sample6.html))
 
 For embellish to work, two lines of: `---` are needed to separate the header and excerpt from the main body. Whilst the excerpt is optional, to avoid potential bugs with `---` later in the text, I'd suggest:
     
@@ -427,7 +429,8 @@ One of the key to manually resizing is to fit the columns exactly onto the width
 
 Then, we need to set all the resizable elements to `position:absolute`, which will allow the following helper functions to work [](#fig-helper-fns).
 
-<div id="fig-helper-fns">
+<div id="fig-helper-fns"> 
+  <code>supplescroll</code> functions to resize DOM elements
   <pre>
 # routines to get the absolute position of a jquery element
 supplescroll.get_left
@@ -476,5 +479,5 @@ The `.touchscroll` class enables inertia touch-based scrolling through the `-web
 All the selections are displayed through CSS class changes, with the `.active` class applied to the active header in the `#table-of-contents`, the active `.figlink` in the `#main-text`, and the active `.fig-in-list` in `#figure-list`. These classes can be overriden to apply the display of your choice.
 
 
-&copy; 2014, Bosco K. Ho.
+&copy; Copyright 2014, Bosco K. Ho.
 

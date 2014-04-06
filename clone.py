@@ -3,6 +3,7 @@ pairs = [
   ('sample3.md', 'lucid.haml'),
   ('sample4.md', 'yeolde.haml'),
   ('sample5.md', 'clown.haml'),
+  ('sample6.md', 'sphinx.haml'),
 ]
 
 for out_md, template in pairs:
