@@ -1,4 +1,3 @@
-template: clown.haml
 title: My Article
 ---
 ---
