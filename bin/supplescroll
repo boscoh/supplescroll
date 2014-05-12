@@ -1,0 +1,36 @@
+#!/usr/bin/env python
+ 
+import os
+import supplescroll
+from docopt import docopt
+
+
+__doc__ = """
+A decorator for markdown-generated HTML pages.
+
+Usage: supplescroll [-o<output>] <markdown> [<theme>]
+
+Options:
+ -o <output>  Alternative ouptut.html is made.
+
+Themes: %s
+
+""" % (' '.join(supplescroll.themes))
+
+
+if __name__ == "__main__":
+  arg = docopt(__doc__)
+  in_markdown = arg['<markdown>']
+  theme = 'lucid'
+  if arg['<theme>']:
+    theme = arg['<theme>']
+  if arg['-o']:
+    html = arg['-o']
+  else:
+    html = os.path.splitext(arg['<markdown>'])[0] + '.html'
+  print html
+  supplescroll.make_html(theme, in_markdown, html)
+
+
+
+
