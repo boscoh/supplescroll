@@ -120,6 +120,7 @@ There are several other themes provided in the package:
   - `lucid.haml` ([sample](http://boscoh.github.com/supplescroll/sample3.html))
   - `yeolde.haml` ([sample](http://boscoh.github.com/supplescroll/sample4.html))
   - `clown.haml` ([sample](http://boscoh.github.com/supplescroll/sample5.html))
+  - `sphinx.haml` ([sample](http://boscoh.github.com/supplescroll/sample6.html))
 
 You can choose another theme, say `clown` with your choice of output `.html` name:
 
