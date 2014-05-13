@@ -1,6 +1,4 @@
 *.html.md
-supplescroll.inc
-sample*html
 supplescroll.egg-info
 *pyc
 build
