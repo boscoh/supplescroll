@@ -10,6 +10,9 @@ from docopt import docopt
 import embellish.engine
 
 
+from _version import *
+
+
 supplescroll_dir = os.path.join(os.path.dirname(__file__))
 themes_dir = os.path.join(supplescroll_dir, 'themes')
 themes = glob.glob(os.path.join(themes_dir, '*'))

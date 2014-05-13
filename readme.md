@@ -9,7 +9,7 @@ title: supplescroll documentation
 
 _scrolling articles to your heart's delight_
 
-> Supplescroll is a javascript plugin that dynamically generates an interactive document knitted together with some very supple scrolling.
+> Supplescroll converts your markdown into an integrated HTML page with an auto-generated Table of Contents, independent column of Figures, all connected together with some very supple scrolling.
 
 It turns this documentation in [markdown](https://github.com/boscoh/supplescroll/blob/master/readme.md) into this [interactive webpage](http://boscoh.github.com/supplescroll).
 
@@ -29,6 +29,7 @@ iOS-aware responsive-web themes:
   - `lucid.haml` ([sample](http://boscoh.github.com/supplescroll/sample3.html))
   - `yeolde.haml` ([sample](http://boscoh.github.com/supplescroll/sample4.html))
   - `clown.haml` ([sample](http://boscoh.github.com/supplescroll/sample5.html))
+  - `sphinx.haml` ([sample](http://boscoh.github.com/supplescroll/sample6.html))
 
 
 ## Installation
@@ -37,13 +38,15 @@ To install the package, download from github:
 
 &nbsp;&nbsp;&nbsp; [zip-package](https://github.com/boscoh/supplescroll/archive/master.zip)
 
-Then you should install [embellish](http://boscoh.github.io/embellish), which includes a coffeescript and sass compiler. 
+Then run:
+
+    > python setup.py install
 
 Then edit the file `article.md` in markdown, following the guide below.
 
 When you're done, run:
 
-    > embellish .
+    > supplescroll article.md
 
 And open `article.html`.
 
@@ -63,11 +66,9 @@ Supplescroll was inspired by Ariel Flesier's [jquery.ScrollTo](http://plugins.jq
 
 
 
-## Write Article with Embellish
+## Write Article with Markdown
 
-The easiest way to use supplescroll is to compile your article with the static website generator [embellish](http://boscoh.github.com/embellish).
-
-To write the article, use the YAML/markdown format, for example in [](#fig-markdown).
+`supplescroll` uses the `embellish` static web-site generator as the build engine. Following [embellish](http://boscoh.github.com/embellish), articles are written using the markdown/yaml format, for example in [](#fig-markdown).
 
 
 <div id="fig-markdown"> <code>article.md</code> - example of an article in supplescroll
@@ -108,11 +109,11 @@ The format consists of a:
 2. an excerpt
 2. body in [markdown](https://daringfireball.net/projects/markdown/basics)
 
-In the header, give the name of a supplescroll template you want to use:
+Once the article is written, run `supplescroll` with the lucid theme:
 
-    template: lucid.haml
+    > supplescroll article.md lucid
 
-There are several templates provided in the package:
+There are several other themes provided in the package:
 
   - `dark.haml` ([sample](http://boscoh.github.com/supplescroll/index.html))
   - `light.haml` ([sample](http://boscoh.github.com/supplescroll/sample2.html))
@@ -120,12 +121,9 @@ There are several templates provided in the package:
   - `yeolde.haml` ([sample](http://boscoh.github.com/supplescroll/sample4.html))
   - `clown.haml` ([sample](http://boscoh.github.com/supplescroll/sample5.html))
 
-For embellish to work, two lines of: `---` are needed to separate the header and excerpt from the main body. Whilst the excerpt is optional, to avoid potential bugs with `---` later in the text, I'd suggest:
-    
-    template: lucid.haml
-    ---
-    ---
+You can also choose the output .html filename:
 
+    > supplescroll -o index.html article clown
 
 
 ### Headers
