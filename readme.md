@@ -9,9 +9,9 @@ title: supplescroll documentation
 
 _scrolling articles to your heart's delight_
 
-> Supplescroll converts your markdown into an integrated HTML page with an auto-generated Table of Contents, independent column of Figures, all connected together with some very supple scrolling.
+> Supplescroll converts markdown into an integrated HTML page with an auto-generated Table of Contents, independent Column of Figures, all connected together with some Smooth and Supple Scrolling.
 
-It turns this documentation in [markdown](https://github.com/boscoh/supplescroll/blob/master/readme.md) into this [interactive webpage](http://boscoh.github.com/supplescroll).
+It turns this plain documentation in [markdown](https://github.com/boscoh/supplescroll/blob/master/readme.md) into this [interactive webpage](http://boscoh.github.com/supplescroll).
 
 Features:
 
@@ -109,9 +109,9 @@ The format consists of a:
 2. an excerpt
 2. body in [markdown](https://daringfireball.net/projects/markdown/basics)
 
-Once the article is written, run `supplescroll` with the lucid theme:
+Once the article is written, run `supplescroll` with the default `lucid` theme:
 
-    > supplescroll article.md lucid
+    > supplescroll article.md 
 
 There are several other themes provided in the package:
 
@@ -121,9 +121,9 @@ There are several other themes provided in the package:
   - `yeolde.haml` ([sample](http://boscoh.github.com/supplescroll/sample4.html))
   - `clown.haml` ([sample](http://boscoh.github.com/supplescroll/sample5.html))
 
-You can also choose the output .html filename:
+You can choose another theme, say `clown` with your choice of output `.html` name:
 
-    > supplescroll -o index.html article clown
+    > supplescroll -o colorful_article.html article.md clown
 
 
 ### Headers
