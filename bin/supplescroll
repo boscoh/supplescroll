@@ -6,16 +6,19 @@ from docopt import docopt
 
 
 __doc__ = """
-A decorator for markdown-generated HTML pages.
+Creates HTML from markdown with auto-generated TOC, figure list
+and supple scrolling.
 
-Usage: supplescroll [-o<output>] <markdown> [<theme>]
+Usage: supplescroll [-o <html>] <markdown> [<theme>]
 
 Options:
- -o <output>  Alternative ouptut.html is made.
+ <theme>     Theme for HTML page. See below for available themes.
+ -o <html>   Output HTML filename
 
-Themes: %s
+Themes:
+%s
 
-""" % (' '.join(supplescroll.themes))
+""" % '\n'.join(' - '+t for t in supplescroll.themes)
 
 
 if __name__ == "__main__":
