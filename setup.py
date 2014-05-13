@@ -9,9 +9,9 @@ setup(
     author='Bosco Ho',
     author_email='boscoh@gmail.com',
     url='http://boscoh.github.io/supplescroll',
-    description='converts markdown to HTML with integrated TOC, '
-                'figure panel, combined with some smoothe and supple '
-                'scrolling',
+    description='converts markdown to HTML with integrated table '
+                ' of contents and figure panel, tied together '
+                'with some supple scrolling',
     long_description='Docs at http://boscoh.github.io/supplescroll',
     license='BSD',
     install_requires=[
