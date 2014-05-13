@@ -9,7 +9,7 @@ title: supplescroll documentation
 
 _scrolling articles to your heart's delight_
 
-> Supplescroll converts markdown into an integrated HTML page with an auto-generated Table of Contents, independent Column of Figures, all connected together with some Smooth and Supple Scrolling.
+> Supplescroll converts markdown into an integrated HTML page with an auto-generated table of contents and column of figures, stitched  together with some smooth and supple scrolling.
 
 It turns this plain documentation in [markdown](https://github.com/boscoh/supplescroll/blob/master/readme.md) into this [interactive webpage](http://boscoh.github.com/supplescroll).
 
