@@ -17,7 +17,7 @@ setup(
     install_requires=[
         'PyYaml',
         'docopt',
-        'embellish',
+        'embellish>=0.9.7',
     ],
     packages=['supplescroll',],
     include_package_data=True,
