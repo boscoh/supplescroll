@@ -24,25 +24,29 @@ Features:
 
 iOS-aware responsive-web themes:
 
-  - `dark.haml` ([sample](http://boscoh.github.com/supplescroll/index.html))
-  - `light.haml` ([sample](http://boscoh.github.com/supplescroll/sample2.html))
-  - `lucid.haml` ([sample](http://boscoh.github.com/supplescroll/sample3.html))
-  - `yeolde.haml` ([sample](http://boscoh.github.com/supplescroll/sample4.html))
-  - `clown.haml` ([sample](http://boscoh.github.com/supplescroll/sample5.html))
-  - `sphinx.haml` ([sample](http://boscoh.github.com/supplescroll/sample6.html))
+  - `dark` ([sample](http://boscoh.github.com/supplescroll/index.html))
+  - `light` ([sample](http://boscoh.github.com/supplescroll/sample2.html))
+  - `lucid` ([sample](http://boscoh.github.com/supplescroll/sample3.html))
+  - `yeolde` ([sample](http://boscoh.github.com/supplescroll/sample4.html))
+  - `clown` ([sample](http://boscoh.github.com/supplescroll/sample5.html))
+  - `sphinx` ([sample](http://boscoh.github.com/supplescroll/sample6.html))
 
 
 ## Installation
 
-To install the package, download from github:
+To install the package, the easiest is to:
+
+    > pip install supplescroll
+
+Or you could download from github:
 
 &nbsp;&nbsp;&nbsp; [zip-package](https://github.com/boscoh/supplescroll/archive/master.zip)
 
-Then run:
+And install with:
 
     > python setup.py install
 
-Then edit the file `article.md` in markdown, following the guide below.
+Then edit the file `article.md` in markdown [article.md](#fig-markdown), following the guide below.
 
 When you're done, run:
 
@@ -68,12 +72,11 @@ Supplescroll was inspired by Ariel Flesier's [jquery.ScrollTo](http://plugins.jq
 
 ## Write Article with Markdown
 
-`supplescroll` uses the `embellish` static web-site generator as the build engine. Following [embellish](http://boscoh.github.com/embellish), articles are written using the markdown/yaml format, for example in [](#fig-markdown).
+`supplescroll` uses the `embellish` static web-site generator as the build engine. Following [embellish](http://boscoh.github.com/embellish), articles are written using the markdown/yaml format, for example in [article.md](#fig-markdown).
 
 
 <div id="fig-markdown"> <code>article.md</code> - example of an article in supplescroll
 <pre>
-template: lucid.haml
 title: My Article
 ---
 ---
@@ -132,7 +135,7 @@ To create a figure, you must escape markdown with a `<div>` tag, and give the `<
       <pre>Hello World</pre>
     </div>
 
-which gives [](#fig-code). Here, we have an examlple of a code block. Basically, any text before the `<pre>` and `<code>` tags can be used as a figure label.
+which gives [Code Fragment](#fig-code). Here, we have an examlple of a code block. Basically, any text before the `<pre>` and `<code>` tags can be used as a figure label.
 
 <div id='fig-code'> 
   Code Fragment Label
@@ -151,7 +154,7 @@ You'd probably want to insert a photo:
       <img src='photo.jpg'>
     </div>
 
-which would take you here [](#fig-photo). Text before the `<img>` tag works as a figure label.
+which would take you here [Photo Insert](#fig-photo). Text before the `<img>` tag works as a figure label.
 
 <div id='fig-photo'> 
   Photo Label <br>
@@ -169,7 +172,7 @@ Or how about a youtube video:
       <iframe width="560" height="315" src="//www.youtube.com/embed/Fk5reVYChlo?list=FLnRk0rt9QwA9a_mmCvlfXDw&start=52" frameborder="0" allowfullscreen></iframe>
     </div>
 
-which would take you here [](#fig-youtube). Text before the `<img>` tag works as a figure label. The `supplescroll` resize functions knows how to resize embedded youtube videos properly.
+which would take you here [Youtube Embedding](#fig-youtube). Text before the `<img>` tag works as a figure label. The `supplescroll` resize functions knows how to resize embedded youtube videos properly.
 
 <div id='fig-youtube'>
   Label to Youtube Video
@@ -205,12 +208,12 @@ Which makes `article.html`. The function webpage, which uses the lucid theme, an
 
 There are several other themes provided in the package:
 
-  - `dark.haml` ([sample](http://boscoh.github.com/supplescroll/index.html))
-  - `light.haml` ([sample](http://boscoh.github.com/supplescroll/sample2.html))
-  - `lucid.haml` ([sample](http://boscoh.github.com/supplescroll/sample3.html))
-  - `yeolde.haml` ([sample](http://boscoh.github.com/supplescroll/sample4.html))
-  - `clown.haml` ([sample](http://boscoh.github.com/supplescroll/sample5.html))
-  - `sphinx.haml` ([sample](http://boscoh.github.com/supplescroll/sample6.html))
+  - `dark` ([sample](http://boscoh.github.com/supplescroll/index.html))
+  - `light` ([sample](http://boscoh.github.com/supplescroll/sample2.html))
+  - `lucid` ([sample](http://boscoh.github.com/supplescroll/sample3.html))
+  - `yeolde` ([sample](http://boscoh.github.com/supplescroll/sample4.html))
+  - `clown` ([sample](http://boscoh.github.com/supplescroll/sample5.html))
+  - `sphinx` ([sample](http://boscoh.github.com/supplescroll/sample6.html))
 
 You can choose another theme, say `clown` with your choice of output `.html` name:
 
@@ -283,7 +286,7 @@ If you are familiar with the holy triumvirate of HTML/CSS/javascript, you might 
 
 Note: the supplescroll modules are actually written in coffeescript, then compiled to javascript.
 
-Below, we'll discuss how supplescroll works with respect to the `lucid.haml` theme.
+Below, we'll discuss how supplescroll works with respect to the `lucid.haml` theme in the `themes/lucid` directory in the `supplescroll` directory.
 
 
 
@@ -309,7 +312,7 @@ init = () ->
 </pre>
 </div>
 
-The `init` function [](#fig-init):
+The `init` function [Initialization Function](#fig-init):
 
 1. declares page variables
 2. calls the page builder 
@@ -376,7 +379,7 @@ Well, I wanted multiple columns that spanned the whole page, where some columns 
 
 Alas, you cannot do all that with CSS. 
 
-So I wrote my own resize function. Here's a snippet for three-column resize [](#fig-resize-3)
+So I wrote my own resize function. Here's a snippet for three-column resize [Resize Function](#fig-resize-3)
 
 
 <div id="fig-resize-3"> Code fragment showing three-column resize
@@ -420,7 +423,7 @@ One of the key to manually resizing is to fit the columns exactly onto the width
       overflow: hidden
     }
 
-Then, we need to set all the resizable elements to `position:absolute`, which will allow the following helper functions to work [](#fig-helper-fns).
+Then, we need to set all the resizable elements to `position:absolute`, which will allow the following helper functions to work [Helper Functions](#fig-helper-fns).
 
 <div id="fig-helper-fns">
   <pre>
@@ -444,7 +447,7 @@ supplescroll.set_outer_height
   </pre>
 </div>
 
-These helper functions can be used in combination with each other to get perfect placement in the resize function [](#fig-resize-3). For example, by getting the right edge of `toc` by `get_right`, and assigning this right edge to the left edge of `text` with `set_left`, we can place `toc` right next to `text`.
+These helper functions can be used in combination with each other to get perfect placement in the resize function [Resize Functions](#fig-resize-3). For example, by getting the right edge of `toc` by `get_right`, and assigning this right edge to the left edge of `text` with `set_left`, we can place `toc` right next to `text`.
 
 We can also calculate exactly the `figlist_width` needed to fill the remaining space, and assign this to `figlist` via `set_outer_width`.
 
