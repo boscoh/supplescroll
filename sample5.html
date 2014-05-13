@@ -30,22 +30,27 @@
 </ul>
 <p>iOS-aware responsive-web themes:</p>
 <ul>
-<li><code>dark.haml</code> (<a href="http://boscoh.github.com/supplescroll/index.html">sample</a>)</li>
-<li><code>light.haml</code> (<a href="http://boscoh.github.com/supplescroll/sample2.html">sample</a>)</li>
-<li><code>lucid.haml</code> (<a href="http://boscoh.github.com/supplescroll/sample3.html">sample</a>)</li>
-<li><code>yeolde.haml</code> (<a href="http://boscoh.github.com/supplescroll/sample4.html">sample</a>)</li>
-<li><code>clown.haml</code> (<a href="http://boscoh.github.com/supplescroll/sample5.html">sample</a>)</li>
-<li><code>sphinx.haml</code> (<a href="http://boscoh.github.com/supplescroll/sample6.html">sample</a>)</li>
+<li><code>dark</code> (<a href="http://boscoh.github.com/supplescroll/index.html">sample</a>)</li>
+<li><code>light</code> (<a href="http://boscoh.github.com/supplescroll/sample2.html">sample</a>)</li>
+<li><code>lucid</code> (<a href="http://boscoh.github.com/supplescroll/sample3.html">sample</a>)</li>
+<li><code>yeolde</code> (<a href="http://boscoh.github.com/supplescroll/sample4.html">sample</a>)</li>
+<li><code>clown</code> (<a href="http://boscoh.github.com/supplescroll/sample5.html">sample</a>)</li>
+<li><code>sphinx</code> (<a href="http://boscoh.github.com/supplescroll/sample6.html">sample</a>)</li>
 </ul>
 <h2>Installation</h2>
-<p>To install the package, download from github:</p>
+<p>To install the package, the easiest is to:</p>
+<div class="codehilite"><pre>&gt; pip install supplescroll
+</pre></div>
+
+
+<p>Or you could download from github:</p>
 <p>&nbsp;&nbsp;&nbsp; <a href="https://github.com/boscoh/supplescroll/archive/master.zip">zip-package</a></p>
-<p>Then run:</p>
+<p>And install with:</p>
 <div class="codehilite"><pre>&gt; python setup.py install
 </pre></div>
 
 
-<p>Then edit the file <code>article.md</code> in markdown, following the guide below.</p>
+<p>Then edit the file <code>article.md</code> in markdown, which is also described below.</p>
 <p>When you're done, run:</p>
 <div class="codehilite"><pre>&gt; supplescroll article.md
 </pre></div>
@@ -59,10 +64,9 @@
 <p>New themes particularly welcome!</p>
 <p>Supplescroll was inspired by Ariel Flesier's <a href="http://plugins.jquery.com/project/ScrollTo">jquery.ScrollTo</a> library.</p>
 <h2>Write Article with Markdown</h2>
-<p><code>supplescroll</code> uses the <code>embellish</code> static web-site generator as the build engine. Following <a href="http://boscoh.github.com/embellish">embellish</a>, articles are written using the markdown/yaml format, for example in <a href="#fig-markdown"></a>.</p>
+<p><code>supplescroll</code> uses the <code>embellish</code> static web-site generator as the build engine. Following <a href="http://boscoh.github.com/embellish">embellish</a>, articles are written using the markdown/yaml format, for example in <a href="#fig-markdown">article.md</a>.</p>
 <div id="fig-markdown"> <code>article.md</code> - example of an article in supplescroll
 <pre>
-template: lucid.haml
 title: My Article
 ---
 ---
@@ -115,12 +119,14 @@ a video [](#fig-youtube)
 </pre></div>
 
 
-<p>which gives <a href="#fig-code"></a>. Here, we have an examlple of a code block. Basically, any text before the <code>&lt;pre&gt;</code> and <code>&lt;code&gt;</code> tags can be used as a figure label.</p>
+<p>which renders as <a href="#fig-code">Code Fragment</a>.</p>
 <div id='fig-code'> 
-  Code Fragment Label
+  Code Fragment 
   <pre>Hello World</pre>
 </div>
 
+<p>Here, we have an examlple of a code block. </p>
+<p>Basically, any text before the <code>&lt;pre&gt;</code> and <code>&lt;code&gt;</code> tags can be used as a figure label.</p>
 <p>Note: if you want to display HTML-code, make sure you escape special HTML characters (<code>&lt;</code>, <code>&amp;</code>) properly. Use an <a href="http://www.freeformatter.com/html-escape.html">HTML-escape sanitizer</a>.</p>
 <h3>Images</h3>
 <p>You'd probably want to insert a photo:</p>
@@ -131,12 +137,13 @@ a video [](#fig-youtube)
 </pre></div>
 
 
-<p>which would take you here <a href="#fig-photo"></a>. Text before the <code>&lt;img&gt;</code> tag works as a figure label.</p>
+<p>which would gives <a href="#fig-photo">Photo Insert</a>. </p>
 <div id='fig-photo'> 
-  Photo Label <br>
+  Photo Insert <br>
   <img src='photo.jpg'>
 </div>
 
+<p>Text before the <code>&lt;img&gt;</code> tag works as a figure label.</p>
 <h3>Youtube Videos</h3>
 <p>Or how about a youtube video:</p>
 <div class="codehilite"><pre>&lt;div id=&#39;fig-youtube&#39;&gt;
@@ -147,13 +154,14 @@ a video [](#fig-youtube)
 </pre></div>
 
 
-<p>which would take you here <a href="#fig-youtube"></a>. Text before the <code>&lt;img&gt;</code> tag works as a figure label. The <code>supplescroll</code> resize functions knows how to resize embedded youtube videos properly.</p>
+<p>which renders as <a href="#fig-youtube">Youtube Embedding</a>.</p>
 <div id='fig-youtube'>
-  Label to Youtube Video
+  Youtube Embedding
   <br><br>
   <iframe src="http://www.youtube.com/embed/Fk5reVYChlo?list=FLnRk0rt9QwA9a_mmCvlfXDw&start=52" frameborder="0" allowfullscreen></iframe>
 </div>
 
+<p>Text before the <code>&lt;img&gt;</code> tag works as a figure label. The <code>supplescroll</code> resize functions knows how to resize embedded youtube videos properly.</p>
 <h3>Figure links</h3>
 <p>In the main text, links to figures are identified as relative links to <code>#fig*</code>:</p>
 <div class="codehilite"><pre>I will talk about a code fragment [](#fig-code-fragment).
@@ -179,12 +187,12 @@ a video [](#fig-youtube)
 </ul>
 <p>There are several other themes provided in the package:</p>
 <ul>
-<li><code>dark.haml</code> (<a href="http://boscoh.github.com/supplescroll/index.html">sample</a>)</li>
-<li><code>light.haml</code> (<a href="http://boscoh.github.com/supplescroll/sample2.html">sample</a>)</li>
-<li><code>lucid.haml</code> (<a href="http://boscoh.github.com/supplescroll/sample3.html">sample</a>)</li>
-<li><code>yeolde.haml</code> (<a href="http://boscoh.github.com/supplescroll/sample4.html">sample</a>)</li>
-<li><code>clown.haml</code> (<a href="http://boscoh.github.com/supplescroll/sample5.html">sample</a>)</li>
-<li><code>sphinx.haml</code> (<a href="http://boscoh.github.com/supplescroll/sample6.html">sample</a>)</li>
+<li><code>dark</code> (<a href="http://boscoh.github.com/supplescroll/index.html">sample</a>)</li>
+<li><code>light</code> (<a href="http://boscoh.github.com/supplescroll/sample2.html">sample</a>)</li>
+<li><code>lucid</code> (<a href="http://boscoh.github.com/supplescroll/sample3.html">sample</a>)</li>
+<li><code>yeolde</code> (<a href="http://boscoh.github.com/supplescroll/sample4.html">sample</a>)</li>
+<li><code>clown</code> (<a href="http://boscoh.github.com/supplescroll/sample5.html">sample</a>)</li>
+<li><code>sphinx</code> (<a href="http://boscoh.github.com/supplescroll/sample6.html">sample</a>)</li>
 </ul>
 <p>You can choose another theme, say <code>clown</code> with your choice of output <code>.html</code> name:</p>
 <div class="codehilite"><pre>&gt; supplescroll -o colorful_article.html article.md clown
@@ -192,8 +200,7 @@ a video [](#fig-youtube)
 
 
 <h2>Write Article directly in HTML</h2>
-<p>Of course, you don't have to use <code>supplescroll</code> to build your HTML file, you can write it yourself. To use the lucid theme, you'd make an HTML file like <code>article.html</code> <a href="#fig-html"></a>.</p>
-<p>This shows all the necessary declarations, style-sheets &amp; javascript modules.</p>
+<p>Of course, you don't have to use <code>supplescroll</code> to build your HTML file, you can write it yourself. To use the lucid theme, you'd make an HTML file like <code>article.html</code> in <a href="#fig-html">article.html</a>.</p>
 <div id='fig-html'> <code>article.html</code> - key ingredients of an HTML article page that works with the lucid theme.
 <pre>
 &lt;!DOCTYPE html&gt;
@@ -229,6 +236,7 @@ a video [](#fig-youtube)
 </pre>
 </div>
 
+<p>This shows all the necessary declarations, style-sheets &amp; javascript modules.</p>
 <p>The text of course will be written using HTML markup, with <code>&lt;p&gt;</code> tags and <code>&lt;i&gt;</code> tags and such impediments to writing.</p>
 <p>As above, header tags <code>&lt;h1&gt;</code>'s etc., will be used to build the table of contents:</p>
 <div class="codehilite"><pre>&lt;h1&gt; This is My Article Header &lt;/h1&gt;
@@ -246,14 +254,15 @@ a video [](#fig-youtube)
 <h2>Theme it Yourself</h2>
 <p>If you are familiar with the holy triumvirate of HTML/CSS/javascript, you might want to theme your own templates. To do this, you'll have to understand the internals of supplescroll so that all the HTML elements can happily work together. </p>
 <p>Note: the supplescroll modules are actually written in coffeescript, then compiled to javascript.</p>
-<p>Below, we'll discuss how supplescroll works with respect to the <code>lucid.haml</code> theme.</p>
+<p>Below, we'll discuss how supplescroll works with respect to the <code>lucid.haml</code> theme in the <code>themes/lucid</code> directory in the <code>supplescroll</code> directory.</p>
 <h3>Page Loader</h3>
 <p>The entry point into the javascript on your page is provided by <code>page.js</code>. It provides the main function that triggers the <code>supplescript.js</code> javascript module through the <code>init</code> function.</p>
 <div class="codehilite"><pre>$(window).ready(init)
 </pre></div>
 
 
-<div id="fig-init"> <code>init</code> - page intialization function in coffeescript
+<p>The <code>init</code> function <a href="#fig-init">init function</a>:</p>
+<div id="fig-init"> <code>init function</code> - page intialization function in coffeescript
 <pre>
 init = () ->
   text = $(text_href)
@@ -269,12 +278,12 @@ init = () ->
 </pre>
 </div>
 
-<p>The <code>init</code> function <a href="#fig-init"></a>:</p>
+<p>which is responsible for:</p>
 <ol>
-<li>declares page variables</li>
-<li>calls the page builder </li>
-<li>registers the resize function</li>
-<li>calls the touchscroll initializer</li>
+<li>declaring page variables</li>
+<li>calling the page builder </li>
+<li>registering the resize function</li>
+<li>calling the touchscroll initializer</li>
 </ol>
 <h3>Page Builder</h3>
 <p>The page builder is in the module <code>supplescroll.js</code>, which obviously, must be loaded first via the <code>&lt;script&gt;</code> tag in the HTML file. The function to build the page is:</p>
@@ -311,8 +320,8 @@ init = () ->
 <p>As a responsible web developer, you might ask, why would you override CSS for resizing?</p>
 <p>Well, I wanted multiple columns that spanned the whole page, where some columns had fixed widths, and others would expand to fill the remaining space. As well, I wanted the columns to fill the height of the page, but also to drop certain columns for mobile devices.</p>
 <p>Alas, you cannot do all that with CSS. </p>
-<p>So I wrote my own resize function. Here's a snippet for three-column resize <a href="#fig-resize-3"></a></p>
-<div id="fig-resize-3"> Code fragment showing three-column resize
+<p>So I wrote my own resize function. Here's a snippet for three-column resize in this <a href="#fig-resize-3">resizing code fragment</a></p>
+<div id="fig-resize-3"> resizing code fragment 
 <pre>
 toc.css('display','block')
 figlist.css('display','block')
@@ -352,8 +361,8 @@ supplescroll.set_outer_width(figlist, figlist_width)
 </pre></div>
 
 
-<p>Then, we need to set all the resizable elements to <code>position:absolute</code>, which will allow the following helper functions to work <a href="#fig-helper-fns"></a>.</p>
-<div id="fig-helper-fns">
+<p>Then, we need to set all the resizable elements to <code>position:absolute</code>, which will allow the helper functions to work in the following <a href="#fig-helper-fns">Positioning Functions</a>.</p>
+<div id="fig-helper-fns"> Positioning Functions
   <pre>
 # routines to get the absolute position of a jquery element
 supplescroll.get_left
@@ -375,7 +384,7 @@ supplescroll.set_outer_height
   </pre>
 </div>
 
-<p>These helper functions can be used in combination with each other to get perfect placement in the resize function <a href="#fig-resize-3"></a>. For example, by getting the right edge of <code>toc</code> by <code>get_right</code>, and assigning this right edge to the left edge of <code>text</code> with <code>set_left</code>, we can place <code>toc</code> right next to <code>text</code>.</p>
+<p>These helper functions can be used in combination with each other to get perfect placement in the above <a href="#fig-resize-3">resizing code fragment</a>. For example, by getting the right edge of <code>toc</code> by <code>get_right</code>, and assigning this right edge to the left edge of <code>text</code> with <code>set_left</code>, we can place <code>toc</code> right next to <code>text</code>.</p>
 <p>We can also calculate exactly the <code>figlist_width</code> needed to fill the remaining space, and assign this to <code>figlist</code> via <code>set_outer_width</code>.</p>
 <p>Finally, the resize function looks for images in the <code>figlist</code> and resizes them to fit the column. If the column is big enough, then the image will be displayed at its natural dimensions. Simarly, youtube videos will be resized until it reaches a maximum size. A fixed aspect ratio is applied to all youtube videos.</p>
 <p>Note: Firefox sometimes screws up the sizes unless the <code>&lt;doctype&gt;</code> in the <code>&lt;head&gt;</code> is defined to html.</p>
@@ -389,6 +398,8 @@ supplescroll.set_outer_height
 <p><code>init_touchscroll()</code> shuts down inertial scrolling of all elements except the ones indicated by <code>.touchscroll</code>. As well, it adds a hack to avoid an unwanted default behavior of iOS. Normally, if an element has been scrolled to the edge of its scrolling area, this will trigger the inertial scrolling of its parent, and so on up, until the whole page scrolls. To avoid this <code>init_touchscroll()</code> overrides the <code>touch</code> callback with a function that prevents any <code>.touchscroll</code> element from reaching its edge.</p>
 <h3>Overriding styles</h3>
 <p>All the selections are displayed through CSS class changes, with the <code>.active</code> class applied to the active header in the <code>#table-of-contents</code>, the active <code>.figlink</code> in the <code>#main-text</code>, and the active <code>.fig-in-list</code> in <code>#figure-list</code>. These classes can be overriden to apply the display of your choice.</p>
+<p><br>
+<br></p>
 <p>&copy; 2014, Bosco K. Ho.</p>
       <div class='timestamp'>
         <a href="http://github.com/boscoh/supplescroll">supplescroll</a>:<i>night</i> theme
