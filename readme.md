@@ -46,7 +46,7 @@ And install with:
 
     > python setup.py install
 
-Then edit the file `article.md` in markdown [article.md](#fig-markdown), following the guide below.
+Then edit the file `article.md` in markdown, which is also described below.
 
 When you're done, run:
 
@@ -138,7 +138,7 @@ To create a figure, you must escape markdown with a `<div>` tag, and give the `<
 which gives [Code Fragment](#fig-code). Here, we have an examlple of a code block. Basically, any text before the `<pre>` and `<code>` tags can be used as a figure label.
 
 <div id='fig-code'> 
-  Code Fragment Label
+  Code Fragment 
   <pre>Hello World</pre>
 </div>
 
@@ -157,7 +157,7 @@ You'd probably want to insert a photo:
 which would take you here [Photo Insert](#fig-photo). Text before the `<img>` tag works as a figure label.
 
 <div id='fig-photo'> 
-  Photo Label <br>
+  Photo Insert <br>
   <img src='photo.jpg'>
 </div>
 
@@ -175,7 +175,7 @@ Or how about a youtube video:
 which would take you here [Youtube Embedding](#fig-youtube). Text before the `<img>` tag works as a figure label. The `supplescroll` resize functions knows how to resize embedded youtube videos properly.
 
 <div id='fig-youtube'>
-  Label to Youtube Video
+  Youtube Embedding
   <br><br>
   <iframe src="http://www.youtube.com/embed/Fk5reVYChlo?list=FLnRk0rt9QwA9a_mmCvlfXDw&start=52" frameborder="0" allowfullscreen></iframe>
 </div>
@@ -224,7 +224,7 @@ You can choose another theme, say `clown` with your choice of output `.html` nam
 
 ## Write Article directly in HTML
 
-Of course, you don't have to use `supplescroll` to build your HTML file, you can write it yourself. To use the lucid theme, you'd make an HTML file like `article.html` [](#fig-html).
+Of course, you don't have to use `supplescroll` to build your HTML file, you can write it yourself. To use the lucid theme, you'd make an HTML file like `article.html` in [article.html](#fig-html).
 
 This shows all the necessary declarations, style-sheets & javascript modules.
 
@@ -296,7 +296,14 @@ The entry point into the javascript on your page is provided by `page.js`. It pr
 
     $(window).ready(init) 
    
-<div id="fig-init"> <code>init</code> - page intialization function in coffeescript
+The `init` function [init function](#fig-init):
+
+1. declares page variables
+2. calls the page builder 
+2. registers the resize function
+3. calls the touchscroll initializer
+
+<div id="fig-init"> <code>init function</code> - page intialization function in coffeescript
 <pre>
 init = () ->
   text = $(text_href)
@@ -311,14 +318,6 @@ init = () ->
   resize_window()
 </pre>
 </div>
-
-The `init` function [Initialization Function](#fig-init):
-
-1. declares page variables
-2. calls the page builder 
-2. registers the resize function
-3. calls the touchscroll initializer
-
 
 
 ### Page Builder
@@ -379,10 +378,10 @@ Well, I wanted multiple columns that spanned the whole page, where some columns 
 
 Alas, you cannot do all that with CSS. 
 
-So I wrote my own resize function. Here's a snippet for three-column resize [Resize Function](#fig-resize-3)
+So I wrote my own resize function. Here's a snippet for three-column resize in this [resizing code fragment](#fig-resize-3)
 
 
-<div id="fig-resize-3"> Code fragment showing three-column resize
+<div id="fig-resize-3"> resizing code fragment 
 <pre>
 toc.css('display','block')
 figlist.css('display','block')
@@ -423,9 +422,9 @@ One of the key to manually resizing is to fit the columns exactly onto the width
       overflow: hidden
     }
 
-Then, we need to set all the resizable elements to `position:absolute`, which will allow the following helper functions to work [Helper Functions](#fig-helper-fns).
+Then, we need to set all the resizable elements to `position:absolute`, which will allow the helper functions to work in the following [Positioning Functions](#fig-helper-fns).
 
-<div id="fig-helper-fns">
+<div id="fig-helper-fns"> Positioning Functions
   <pre>
 # routines to get the absolute position of a jquery element
 supplescroll.get_left
@@ -447,7 +446,7 @@ supplescroll.set_outer_height
   </pre>
 </div>
 
-These helper functions can be used in combination with each other to get perfect placement in the resize function [Resize Functions](#fig-resize-3). For example, by getting the right edge of `toc` by `get_right`, and assigning this right edge to the left edge of `text` with `set_left`, we can place `toc` right next to `text`.
+These helper functions can be used in combination with each other to get perfect placement in [resizing code fragment](#fig-resize-3). For example, by getting the right edge of `toc` by `get_right`, and assigning this right edge to the left edge of `text` with `set_left`, we can place `toc` right next to `text`.
 
 We can also calculate exactly the `figlist_width` needed to fill the remaining space, and assign this to `figlist` via `set_outer_width`.
 
@@ -473,6 +472,8 @@ The `.touchscroll` class enables inertia touch-based scrolling through the `-web
 
 All the selections are displayed through CSS class changes, with the `.active` class applied to the active header in the `#table-of-contents`, the active `.figlink` in the `#main-text`, and the active `.fig-in-list` in `#figure-list`. These classes can be overriden to apply the display of your choice.
 
+<br>
+<br>
 
 &copy; 2014, Bosco K. Ho.
 
