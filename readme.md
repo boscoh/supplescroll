@@ -109,23 +109,6 @@ The format consists of a:
 2. an excerpt
 2. body in [markdown](https://daringfireball.net/projects/markdown/basics)
 
-Once the article is written, run `supplescroll` with the default `lucid` theme:
-
-    > supplescroll article.md 
-
-There are several other themes provided in the package:
-
-  - `dark.haml` ([sample](http://boscoh.github.com/supplescroll/index.html))
-  - `light.haml` ([sample](http://boscoh.github.com/supplescroll/sample2.html))
-  - `lucid.haml` ([sample](http://boscoh.github.com/supplescroll/sample3.html))
-  - `yeolde.haml` ([sample](http://boscoh.github.com/supplescroll/sample4.html))
-  - `clown.haml` ([sample](http://boscoh.github.com/supplescroll/sample5.html))
-  - `sphinx.haml` ([sample](http://boscoh.github.com/supplescroll/sample6.html))
-
-You can choose another theme, say `clown` with your choice of output `.html` name:
-
-    > supplescroll -o colorful_article.html article.md clown
-
 
 ### Headers
 
@@ -206,11 +189,11 @@ These will be properly formatted, and linked to the relevant figure.
 
 ### Compile to HTML
 
-You then compile the page with: 
+Once the article is written, run `supplescroll` with the default `lucid` theme:
 
-     > embellish .
+    > supplescroll article.md 
 
-Which makes `article.html`. The function webpage, which uses the lucid theme, consists of the files:
+Which makes `article.html`. The function webpage, which uses the lucid theme, and refers to the files in a supplementary directory `supplescroll.inc`:
 
 - `article.html`
 - `jquery-2.0.3.js`
@@ -220,11 +203,25 @@ Which makes `article.html`. The function webpage, which uses the lucid theme, co
 - `page.js`
 - `lucid.css`
 
+There are several other themes provided in the package:
+
+  - `dark.haml` ([sample](http://boscoh.github.com/supplescroll/index.html))
+  - `light.haml` ([sample](http://boscoh.github.com/supplescroll/sample2.html))
+  - `lucid.haml` ([sample](http://boscoh.github.com/supplescroll/sample3.html))
+  - `yeolde.haml` ([sample](http://boscoh.github.com/supplescroll/sample4.html))
+  - `clown.haml` ([sample](http://boscoh.github.com/supplescroll/sample5.html))
+  - `sphinx.haml` ([sample](http://boscoh.github.com/supplescroll/sample6.html))
+
+You can choose another theme, say `clown` with your choice of output `.html` name:
+
+    > supplescroll -o colorful_article.html article.md clown
+
+
 
 
 ## Write Article directly in HTML
 
-Of course, you don't have to use embellish to build your HTML file, you can write it yourself. To use the lucid theme, you'd make an HTML file like `article.html` [](#fig-html).
+Of course, you don't have to use `supplescroll` to build your HTML file, you can write it yourself. To use the lucid theme, you'd make an HTML file like `article.html` [](#fig-html).
 
 This shows all the necessary declarations, style-sheets & javascript modules.
 
@@ -233,8 +230,8 @@ This shows all the necessary declarations, style-sheets & javascript modules.
 &lt;!DOCTYPE html&gt;
 &lt;head&gt;
   &lt;meta content='initial-scale=1.0' name='viewport' /&gt;
-  &lt;link href='supplescroll.css' rel='stylesheet' /&gt;
-  &lt;link href='lucid.css' rel='stylesheet' /&gt;
+  &lt;link href='supplescroll.inc/supplescroll.css' rel='stylesheet' /&gt;
+  &lt;link href='supplescroll.inc/lucid.css' rel='stylesheet' /&gt;
 
 &lt;/head&gt;
 &lt;body&gt;
@@ -256,10 +253,10 @@ This shows all the necessary declarations, style-sheets & javascript modules.
   &lt;/div&gt;
   &lt;div class='figures touchscroll'&gt;&lt;/div&gt;
 &lt;/body&gt;
-&lt;script src='jquery-2.0.3.js' type='text/javascript'&gt;&lt;/script&gt;
-&lt;script src='jquery.scrollTo.js' type='text/javascript'&gt;&lt;/script&gt;
-&lt;script src='supplescroll.js' type='text/javascript'&gt;&lt;/script&gt;
-&lt;script src='page.js' type='text/javascript'&gt;&lt;/script&gt;
+&lt;script src='supplescroll.inc/jquery-2.0.3.js' type='text/javascript'&gt;&lt;/script&gt;
+&lt;script src='supplescroll.inc/jquery.scrollTo.js' type='text/javascript'&gt;&lt;/script&gt;
+&lt;script src='supplescroll.inc/supplescroll.js' type='text/javascript'&gt;&lt;/script&gt;
+&lt;script src='supplescroll.inc/page.js' type='text/javascript'&gt;&lt;/script&gt;
 </pre>
 </div>
 
@@ -275,7 +272,7 @@ Any `<div>`s with `id="fig*"` will be copied into the figure list.
       <pre>Hello World</pre>
     </div>
 
-This is essentially what is generated with `embellish` in the section above.
+This is essentially what is generated with `supplescroll` in the section above.
 
 
 
@@ -292,7 +289,7 @@ Below, we'll discuss how supplescroll works with respect to the `lucid.haml` the
 
 ### Page Loader
 
-Your page needs to initialize supplescroll with javascript. In the package, `page.js` provides the entry point. Since jquery is included we can use jquery to register our `init` function.
+The entry point into the javascript on your page is provided by `page.js`. It provides the main function that triggers the `supplescript.js` javascript module through the `init` function.
 
     $(window).ready(init) 
    

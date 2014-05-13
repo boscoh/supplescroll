@@ -95,25 +95,6 @@ a video [](#fig-youtube)
 <li>an excerpt</li>
 <li>body in <a href="https://daringfireball.net/projects/markdown/basics">markdown</a></li>
 </ol>
-<p>Once the article is written, run <code>supplescroll</code> with the default <code>lucid</code> theme:</p>
-<div class="codehilite"><pre>&gt; supplescroll article.md
-</pre></div>
-
-
-<p>There are several other themes provided in the package:</p>
-<ul>
-<li><code>dark.haml</code> (<a href="http://boscoh.github.com/supplescroll/index.html">sample</a>)</li>
-<li><code>light.haml</code> (<a href="http://boscoh.github.com/supplescroll/sample2.html">sample</a>)</li>
-<li><code>lucid.haml</code> (<a href="http://boscoh.github.com/supplescroll/sample3.html">sample</a>)</li>
-<li><code>yeolde.haml</code> (<a href="http://boscoh.github.com/supplescroll/sample4.html">sample</a>)</li>
-<li><code>clown.haml</code> (<a href="http://boscoh.github.com/supplescroll/sample5.html">sample</a>)</li>
-<li><code>sphinx.haml</code> (<a href="http://boscoh.github.com/supplescroll/sample6.html">sample</a>)</li>
-</ul>
-<p>You can choose another theme, say <code>clown</code> with your choice of output <code>.html</code> name:</p>
-<div class="codehilite"><pre>&gt; supplescroll -o colorful_article.html article.md clown
-</pre></div>
-
-
 <h3>Headers</h3>
 <p>Write the text in markdown, making sure to use proper markdown headers, which will be used to construct the table of contents:</p>
 <div class="codehilite"><pre># A Header
@@ -179,12 +160,12 @@ a video [](#fig-youtube)
 
 <p>These will be properly formatted, and linked to the relevant figure.</p>
 <h3>Compile to HTML</h3>
-<p>You then compile the page with: </p>
-<div class="codehilite"><pre> &gt; embellish .
+<p>Once the article is written, run <code>supplescroll</code> with the default <code>lucid</code> theme:</p>
+<div class="codehilite"><pre>&gt; supplescroll article.md
 </pre></div>
 
 
-<p>Which makes <code>article.html</code>. The function webpage, which uses the lucid theme, consists of the files:</p>
+<p>Which makes <code>article.html</code>. The function webpage, which uses the lucid theme, and refers to the files in a supplementary directory <code>supplescroll.inc</code>:</p>
 <ul>
 <li><code>article.html</code></li>
 <li><code>jquery-2.0.3.js</code></li>
@@ -194,16 +175,30 @@ a video [](#fig-youtube)
 <li><code>page.js</code></li>
 <li><code>lucid.css</code></li>
 </ul>
+<p>There are several other themes provided in the package:</p>
+<ul>
+<li><code>dark.haml</code> (<a href="http://boscoh.github.com/supplescroll/index.html">sample</a>)</li>
+<li><code>light.haml</code> (<a href="http://boscoh.github.com/supplescroll/sample2.html">sample</a>)</li>
+<li><code>lucid.haml</code> (<a href="http://boscoh.github.com/supplescroll/sample3.html">sample</a>)</li>
+<li><code>yeolde.haml</code> (<a href="http://boscoh.github.com/supplescroll/sample4.html">sample</a>)</li>
+<li><code>clown.haml</code> (<a href="http://boscoh.github.com/supplescroll/sample5.html">sample</a>)</li>
+<li><code>sphinx.haml</code> (<a href="http://boscoh.github.com/supplescroll/sample6.html">sample</a>)</li>
+</ul>
+<p>You can choose another theme, say <code>clown</code> with your choice of output <code>.html</code> name:</p>
+<div class="codehilite"><pre>&gt; supplescroll -o colorful_article.html article.md clown
+</pre></div>
+
+
 <h2>Write Article directly in HTML</h2>
-<p>Of course, you don't have to use embellish to build your HTML file, you can write it yourself. To use the lucid theme, you'd make an HTML file like <code>article.html</code> <a href="#fig-html"></a>.</p>
+<p>Of course, you don't have to use <code>supplescroll</code> to build your HTML file, you can write it yourself. To use the lucid theme, you'd make an HTML file like <code>article.html</code> <a href="#fig-html"></a>.</p>
 <p>This shows all the necessary declarations, style-sheets &amp; javascript modules.</p>
 <div id='fig-html'> <code>article.html</code> - key ingredients of an HTML article page that works with the lucid theme.
 <pre>
 &lt;!DOCTYPE html&gt;
 &lt;head&gt;
   &lt;meta content='initial-scale=1.0' name='viewport' /&gt;
-  &lt;link href='supplescroll.css' rel='stylesheet' /&gt;
-  &lt;link href='lucid.css' rel='stylesheet' /&gt;
+  &lt;link href='supplescroll.inc/supplescroll.css' rel='stylesheet' /&gt;
+  &lt;link href='supplescroll.inc/lucid.css' rel='stylesheet' /&gt;
 
 &lt;/head&gt;
 &lt;body&gt;
@@ -225,10 +220,10 @@ a video [](#fig-youtube)
   &lt;/div&gt;
   &lt;div class='figures touchscroll'&gt;&lt;/div&gt;
 &lt;/body&gt;
-&lt;script src='jquery-2.0.3.js' type='text/javascript'&gt;&lt;/script&gt;
-&lt;script src='jquery.scrollTo.js' type='text/javascript'&gt;&lt;/script&gt;
-&lt;script src='supplescroll.js' type='text/javascript'&gt;&lt;/script&gt;
-&lt;script src='page.js' type='text/javascript'&gt;&lt;/script&gt;
+&lt;script src='supplescroll.inc/jquery-2.0.3.js' type='text/javascript'&gt;&lt;/script&gt;
+&lt;script src='supplescroll.inc/jquery.scrollTo.js' type='text/javascript'&gt;&lt;/script&gt;
+&lt;script src='supplescroll.inc/supplescroll.js' type='text/javascript'&gt;&lt;/script&gt;
+&lt;script src='supplescroll.inc/page.js' type='text/javascript'&gt;&lt;/script&gt;
 </pre>
 </div>
 
@@ -245,13 +240,13 @@ a video [](#fig-youtube)
 </pre></div>
 
 
-<p>This is essentially what is generated with <code>embellish</code> in the section above.</p>
+<p>This is essentially what is generated with <code>supplescroll</code> in the section above.</p>
 <h2>Theme it Yourself</h2>
 <p>If you are familiar with the holy triumvirate of HTML/CSS/javascript, you might want to theme your own templates. To do this, you'll have to understand the internals of supplescroll so that all the HTML elements can happily work together. </p>
 <p>Note: the supplescroll modules are actually written in coffeescript, then compiled to javascript.</p>
 <p>Below, we'll discuss how supplescroll works with respect to the <code>lucid.haml</code> theme.</p>
 <h3>Page Loader</h3>
-<p>Your page needs to initialize supplescroll with javascript. In the package, <code>page.js</code> provides the entry point. Since jquery is included we can use jquery to register our <code>init</code> function.</p>
+<p>The entry point into the javascript on your page is provided by <code>page.js</code>. It provides the main function that triggers the <code>supplescript.js</code> javascript module through the <code>init</code> function.</p>
 <div class="codehilite"><pre>$(window).ready(init)
 </pre></div>
 
