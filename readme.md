@@ -74,7 +74,6 @@ Supplescroll was inspired by Ariel Flesier's [jquery.ScrollTo](http://plugins.jq
 
 `supplescroll` uses the `embellish` static web-site generator as the build engine. Following [embellish](http://boscoh.github.com/embellish), articles are written using the markdown/yaml format, for example in [article.md](#fig-markdown).
 
-
 <div id="fig-markdown"> <code>article.md</code> - example of an article in supplescroll
 <pre>
 title: My Article
@@ -135,12 +134,16 @@ To create a figure, you must escape markdown with a `<div>` tag, and give the `<
       <pre>Hello World</pre>
     </div>
 
-which gives [Code Fragment](#fig-code). Here, we have an examlple of a code block. Basically, any text before the `<pre>` and `<code>` tags can be used as a figure label.
+which renders as [Code Fragment](#fig-code).
 
 <div id='fig-code'> 
   Code Fragment 
   <pre>Hello World</pre>
 </div>
+
+Here, we have an examlple of a code block. 
+
+Basically, any text before the `<pre>` and `<code>` tags can be used as a figure label.
 
 Note: if you want to display HTML-code, make sure you escape special HTML characters (`<`, `&`) properly. Use an [HTML-escape sanitizer](http://www.freeformatter.com/html-escape.html).
 
@@ -154,13 +157,14 @@ You'd probably want to insert a photo:
       <img src='photo.jpg'>
     </div>
 
-which would take you here [Photo Insert](#fig-photo). Text before the `<img>` tag works as a figure label.
+which would gives [Photo Insert](#fig-photo). 
 
 <div id='fig-photo'> 
   Photo Insert <br>
   <img src='photo.jpg'>
 </div>
 
+Text before the `<img>` tag works as a figure label.
 
 ### Youtube Videos
 
@@ -172,13 +176,16 @@ Or how about a youtube video:
       <iframe width="560" height="315" src="//www.youtube.com/embed/Fk5reVYChlo?list=FLnRk0rt9QwA9a_mmCvlfXDw&start=52" frameborder="0" allowfullscreen></iframe>
     </div>
 
-which would take you here [Youtube Embedding](#fig-youtube). Text before the `<img>` tag works as a figure label. The `supplescroll` resize functions knows how to resize embedded youtube videos properly.
+which renders as [Youtube Embedding](#fig-youtube).
 
 <div id='fig-youtube'>
   Youtube Embedding
   <br><br>
   <iframe src="http://www.youtube.com/embed/Fk5reVYChlo?list=FLnRk0rt9QwA9a_mmCvlfXDw&start=52" frameborder="0" allowfullscreen></iframe>
 </div>
+
+Text before the `<img>` tag works as a figure label. The `supplescroll` resize functions knows how to resize embedded youtube videos properly.
+
 
 
 ### Figure links
@@ -226,8 +233,6 @@ You can choose another theme, say `clown` with your choice of output `.html` nam
 
 Of course, you don't have to use `supplescroll` to build your HTML file, you can write it yourself. To use the lucid theme, you'd make an HTML file like `article.html` in [article.html](#fig-html).
 
-This shows all the necessary declarations, style-sheets & javascript modules.
-
 <div id='fig-html'> <code>article.html</code> - key ingredients of an HTML article page that works with the lucid theme.
 <pre>
 &lt;!DOCTYPE html&gt;
@@ -262,6 +267,8 @@ This shows all the necessary declarations, style-sheets & javascript modules.
 &lt;script src='supplescroll.inc/page.js' type='text/javascript'&gt;&lt;/script&gt;
 </pre>
 </div>
+
+This shows all the necessary declarations, style-sheets & javascript modules.
 
 The text of course will be written using HTML markup, with `<p>` tags and `<i>` tags and such impediments to writing.
 
@@ -298,11 +305,6 @@ The entry point into the javascript on your page is provided by `page.js`. It pr
    
 The `init` function [init function](#fig-init):
 
-1. declares page variables
-2. calls the page builder 
-2. registers the resize function
-3. calls the touchscroll initializer
-
 <div id="fig-init"> <code>init function</code> - page intialization function in coffeescript
 <pre>
 init = () ->
@@ -318,6 +320,14 @@ init = () ->
   resize_window()
 </pre>
 </div>
+
+which is responsible for:
+
+1. declaring page variables
+2. calling the page builder 
+2. registering the resize function
+3. calling the touchscroll initializer
+
 
 
 ### Page Builder
@@ -446,7 +456,7 @@ supplescroll.set_outer_height
   </pre>
 </div>
 
-These helper functions can be used in combination with each other to get perfect placement in [resizing code fragment](#fig-resize-3). For example, by getting the right edge of `toc` by `get_right`, and assigning this right edge to the left edge of `text` with `set_left`, we can place `toc` right next to `text`.
+These helper functions can be used in combination with each other to get perfect placement in the above [resizing code fragment](#fig-resize-3). For example, by getting the right edge of `toc` by `get_right`, and assigning this right edge to the left edge of `text` with `set_left`, we can place `toc` right next to `text`.
 
 We can also calculate exactly the `figlist_width` needed to fill the remaining space, and assign this to `figlist` via `set_outer_width`.
 
