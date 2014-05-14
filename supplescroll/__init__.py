@@ -21,7 +21,7 @@ themes = map(os.path.basename, themes)
 
 def get_theme_haml(theme):
   if theme not in themes:
-    raise Excpetion("%s not found in themes %s" % (theme, themes))
+    raise Exception("%s not found in themes %s" % (theme, themes))
   return os.path.join(themes_dir, theme, theme+'.haml')
 
 
