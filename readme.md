@@ -484,11 +484,11 @@ All the selections are displayed through CSS class changes, with the `.active` c
 
 ### Changelog
 
-0.9.x
+0.9.1.1
   - stays at top of text on load
   - text width in 3 column is always the same
 
-0.9.2
+0.9.1
   - embellish called that handles single files
 
 <br>
