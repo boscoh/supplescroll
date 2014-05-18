@@ -482,6 +482,15 @@ The `.touchscroll` class enables inertia touch-based scrolling through the `-web
 
 All the selections are displayed through CSS class changes, with the `.active` class applied to the active header in the `#table-of-contents`, the active `.figlink` in the `#main-text`, and the active `.fig-in-list` in `#figure-list`. These classes can be overriden to apply the display of your choice.
 
+### Changelog
+
+0.9.1.1
+  - stays at top of text on load
+  - text width in 3 column is always the same
+
+0.9.1
+  - embellish called that handles single files
+
 <br>
 <br>
 

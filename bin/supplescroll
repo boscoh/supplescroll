@@ -24,6 +24,8 @@ Themes:
 if __name__ == "__main__":
   arg = docopt(__doc__)
   in_markdown = arg['<markdown>']
+  if not os.path.isfile(in_markdown):
+    raise Exception("%s not found" % in_markdown)
   theme = 'lucid'
   if arg['<theme>']:
     theme = arg['<theme>']
