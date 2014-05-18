@@ -57,7 +57,7 @@ resize_window = () ->
     body_padding_left = parseInt($(document.body).css('padding-left'))
     body_padding_right = parseInt($(document.body).css('padding-right'))
 
-    supplescroll.set_outer_width(text, text_width)
+    text.width('')
     supplescroll.set_left(toc, body_padding_left)
 
     left = supplescroll.get_right(toc)
