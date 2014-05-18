@@ -398,6 +398,12 @@ supplescroll.set_outer_height
 <p><code>init_touchscroll()</code> shuts down inertial scrolling of all elements except the ones indicated by <code>.touchscroll</code>. As well, it adds a hack to avoid an unwanted default behavior of iOS. Normally, if an element has been scrolled to the edge of its scrolling area, this will trigger the inertial scrolling of its parent, and so on up, until the whole page scrolls. To avoid this <code>init_touchscroll()</code> overrides the <code>touch</code> callback with a function that prevents any <code>.touchscroll</code> element from reaching its edge.</p>
 <h3>Overriding styles</h3>
 <p>All the selections are displayed through CSS class changes, with the <code>.active</code> class applied to the active header in the <code>#table-of-contents</code>, the active <code>.figlink</code> in the <code>#main-text</code>, and the active <code>.fig-in-list</code> in <code>#figure-list</code>. These classes can be overriden to apply the display of your choice.</p>
+<h3>Changelog</h3>
+<p>0.9.1.1
+  - stays at top of text on load
+  - text width in 3 column is always the same</p>
+<p>0.9.1
+  - embellish called that handles single files</p>
 <p><br>
 <br></p>
 <p>&copy; 2014, Bosco K. Ho.</p>

@@ -63,8 +63,6 @@ class FigureList
           fig = $(hash)
           # wait till all assets have been loaded!
           fig.ready(@select_figlink_fn(figlink))
-    else
-      @scroll_in_text()
 
   make_toc: ->
     toc = $(@toc_href)
