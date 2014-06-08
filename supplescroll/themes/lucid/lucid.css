@@ -122,6 +122,11 @@ code, pre {
 #main-text a.figlink.active {
   background-color: #EEF;
 }
+#main-text .breadcrumb {
+  margin-top: 0.5em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
 #main-text .fig-in-text {
   background-color: #DDF;
   padding: 5px 10px;

@@ -133,6 +133,11 @@ code, pre {
 #main-text a.figlink.active:link, #main-text a.figlink.active:visited {
   color: #666;
 }
+#main-text .breadcrumb {
+  margin-top: 0.5em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
 #main-text .fig-in-text {
   font-style: italic;
   background-color: #F0F0FF;
@@ -206,3 +211,4 @@ code, pre {
     display: block;
   }
 }
+

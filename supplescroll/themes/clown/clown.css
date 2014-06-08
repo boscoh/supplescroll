@@ -138,6 +138,11 @@ code, pre {
   color: #330;
   text-decoration: none;
 }
+#main-text .breadcrumb {
+  margin-top: 0.5em;
+  text-transform: uppercase;
+  font-size: 10px;
+}
 #main-text .timestamp {
   margin-top: 6em;
   text-align: right;

@@ -72,12 +72,14 @@ def copy_theme_files(theme, target_dir):
 
 
 def make_html(theme, in_markdown, html):
-  page = parse_markdown(in_markdown)
-  page.update({
+  page = {
     'template': get_theme_haml(theme),
     'include_dir': 'supplescroll.inc',
     'target': html,
-  })
+    'breadrumb': '',
+    'postpend': '',
+  }
+  page.update(parse_markdown(in_markdown))
   copy_theme_files(theme, page['include_dir'])
   write_page_to_markdown(page, html+'.md')
   site = embellish.engine.default_site.copy()
