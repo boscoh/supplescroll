@@ -26,7 +26,7 @@
 
   FigureList = (function() {
     function FigureList(toc_href, text_href, figlist_href) {
-      var fig, figlink, hash, _i, _len, _ref,
+      var fig, figlink, hash, ref, reflink, _i, _j, _len, _len1, _ref, _ref1,
         _this = this;
       this.toc_href = toc_href;
       this.text_href = text_href;
@@ -62,6 +62,15 @@
           if (figlink.attr('href') === hash) {
             fig = $(hash);
             fig.ready(this.select_figlink_fn(figlink));
+          }
+        }
+      } else if (hash.slice(0, 4) === '#ref') {
+        _ref1 = this.reflinks;
+        for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+          reflink = _ref1[_j];
+          if (reflink.attr('href') === hash) {
+            ref = $(hash);
+            ref.ready(this.select_figlink_fn(reflink));
           }
         }
       }
@@ -129,6 +138,7 @@
       this.fig_hrefs = [];
       this.fig_href_from_orig = {};
       this.fig_label_dict = {};
+      this.figlinks = [];
       n_fig = 1;
       _ref = $(this.figlist_href).find('div');
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -147,7 +157,6 @@
         }
       }
       n_figlink = 1;
-      this.figlinks = [];
       _ref1 = $(this.text_href).find('a[href*="fig"]');
       for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
         figlink_dom = _ref1[_j];
@@ -160,7 +169,7 @@
         if (orig_fig_href in this.fig_href_from_orig) {
           fig_href = this.fig_href_from_orig[orig_fig_href];
           i_fig = this.i_fig_dict[fig_href];
-          figlink_label = '(Figure ' + i_fig + ')&rArr;';
+          figlink_label = 'Figure ' + i_fig + '&rArr;';
           figlink.html(figlink_label);
           figlink.attr('href', fig_href);
           figlink_href = '#' + figlink_id;
@@ -192,10 +201,11 @@
     };
 
     FigureList.prototype.make_reflinks = function() {
-      var click_fn, finish, n_reflink, p, ref, ref_div_dom, ref_href, ref_id, ref_label, reflink, reflink_dom, reflink_href, reflink_id, reverse_link, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2, _results,
+      var click_fn, finish, n_reflink, ref, ref_div_dom, ref_href, ref_id, ref_label, reflink, reflink_dom, reflink_href, reflink_id, reverse_link, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2, _results,
         _this = this;
       this.ref_hrefs = [];
       this.ref_label_dict = {};
+      this.reflinks = [];
       _ref = $(this.figlist_href).find('a');
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         ref_div_dom = _ref[_i];
@@ -208,7 +218,6 @@
         }
       }
       n_reflink = 1;
-      this.reflinks = [];
       _ref1 = $(this.text_href).find('a[href*="ref"]');
       for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
         reflink_dom = _ref1[_j];
@@ -234,9 +243,8 @@
       for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
         ref_href = _ref2[_k];
         ref = $(this.figlist_href).find(ref_href);
-        p = ref.parent();
         ref_label = this.ref_label_dict[ref_href];
-        _results.push(p.prepend(this.ref_label_dict[ref_href]));
+        _results.push(ref.parent().prepend(ref_label));
       }
       return _results;
     };
@@ -474,6 +482,9 @@
   resize_img_dom = function(img_dom, width) {
     var img_elem;
     img_elem = $(img_dom);
+    if (img_elem.hasClass('inline-graphic')) {
+      return;
+    }
     if (img_dom.naturalWidth > 0 && img_dom.naturalWidth < width) {
       return img_elem.css('width', '');
     } else {
