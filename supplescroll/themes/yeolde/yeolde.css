@@ -10,7 +10,7 @@ body {
 }
 
 #table-of-contents {
-  width: 180px;
+  width: 220px;
   padding-top: 140px;
   border-left: 1px solid #CCC;
   border-right: 1px solid #CCC;
@@ -19,8 +19,8 @@ body {
 }
 
 #main-text {
-  width: 500px;
-  padding: 0px 40px;
+  width: 450px;
+  padding: 0px 50px 0px 20px;
   border-left: 1px solid #CCC;
   border-right: 1px solid #CCC;
   margin-left: 3px;
@@ -63,7 +63,7 @@ h1, h2, h3, h4, h5, h6, h7 {
 }
 
 h1 {
-  font-size: 4 3px;
+  font-size: 27px;
   letter-spacing: 0.1em;
   padding-top: 100px;
   padding-bottom: 0em;
@@ -105,8 +105,15 @@ code, pre {
   line-height: 1.5em;
 }
 
-#table-of-contents .toc {
+#table-of-contents {
+  padding-left: 20px;
+  padding-right: 50px;
+  text-transform: uppercase;
   font-size: 12px;
+}
+#table-of-contents a {
+  border: none;
+  text-decoration: none;
 }
 #table-of-contents .toc h1, #table-of-contents .toc h2, #table-of-contents .toc h3,
 #table-of-contents .toc h4, #table-of-contents .toc h5, #table-of-contents .toc h6,
@@ -118,13 +125,9 @@ code, pre {
 #table-of-contents .toc a h1 {
   border: none;
 }
-#table-of-contents .toc a {
-  border: none;
-  text-decoration: none;
-}
 #table-of-contents .toc .active {
-  background-color: transparent;
   text-decoration: underline;
+  background-color: transparent;
 }
 
 #main-text a.figlink.active {
@@ -132,6 +135,11 @@ code, pre {
 }
 #main-text a.figlink.active:link, #main-text a.figlink.active:visited {
   color: #666;
+}
+#main-text .breadcrumb {
+  margin-top: 0.5em;
+  text-transform: uppercase;
+  font-size: 12px;
 }
 #main-text .fig-in-text {
   font-style: italic;
@@ -167,6 +175,8 @@ code, pre {
   border-bottom: 1px solid #CCC;
   margin-top: 3px;
   margin-bottom: 3px;
+  padding-left: 20px;
+  padding-right: 50px;
 }
 #figure-list .active {
   background-color: #F0F0FF;
@@ -178,13 +188,8 @@ code, pre {
 }
 
 @media screen and (max-width: 1200px) {
-  #main-text {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
   h1 {
     padding-top: 2em;
-    font-size: 35px;
   }
   h2 {
     font-size: 18px;
@@ -197,7 +202,6 @@ code, pre {
 @media screen and (max-width: 480px) {
   h1 {
     padding-top: 2em;
-    font-size: 24px;
   }
   h2 {
     font-size: 14px;

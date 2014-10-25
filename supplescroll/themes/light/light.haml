@@ -9,6 +9,9 @@
   #table-of-contents.touchscroll
   #main-text.touchscroll
     .relative_position
+      - if page.breadcrumb:
+        .breadcrumb
+          {{ page.breadcrumb }}
       {{ page.content }}
       .timestamp
         <i><a href='http://github.com/boscoh/supplescroll'>supplescroll</a></i>:lucid theme
@@ -19,3 +22,5 @@
 %script{type:'text/javascript', src:'{{ page.include_dir }}/supplescroll.js'}
 %script{type:'text/javascript', src:'{{ page.include_dir }}/page.js'}
 
+- if page.postpend:
+  {{ page.postpend }}

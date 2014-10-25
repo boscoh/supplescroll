@@ -15,8 +15,8 @@
 
   #main-text.touchscroll
     .relative_position
-      - if page.title:
-        {{ page.title }}
+      - if page.breadcrumb:
+        {{ page.breadcrumb }}
       %hr
       {{ page.content }}
       .timestamp
@@ -28,3 +28,5 @@
 %script{type:'text/javascript', src:'{{ page.include_dir }}/supplescroll.js'}
 %script{type:'text/javascript', src:'{{ page.include_dir }}/page.js'}
 
+- if page.postpend:
+  {{ page.postpend }}

@@ -21,7 +21,7 @@ body
   position: absolute
   background-color: white
   width: 420px
-  padding: 0px 120px 0px 30px
+  padding: 0px 50px 0px 30px
   height: 100%
   overflow: auto
 #figure-list 
@@ -52,7 +52,7 @@ h1, h2, h3, h4, h5, h6, h7
   padding-top: 3em
   padding-bottom: 0 
 h1 
-  font-size: 45px 
+  font-size: 27px 
   letter-spacing: 0.1em
   text-transform: uppercase
   padding-top: 100px
@@ -87,27 +87,37 @@ code, pre
 #table-of-contents 
   font-size: 12px
   line-height: 1.2em
+  padding-left: 10px
+  padding-right: 50px
+  color: #555
+  a, a:visited
+    text-decoration: none
+    color: #555
 .toc
   a, a:visited
     color: #555
     border-left: 3px solid transparent
-    padding-left: 10px
-    padding-right: 20px
     &.active
+      margin-left: -10px
+      padding-left: 10px
+      margin-right: -50px
+      padding-right: 50px
       background-color: $highlight-color
       border-left: 3px solid $dark-highlight-color
 
 #main-text
   a.figlink.active
     background-color: $highlight-color
+  .breadcrumb
+    margin-top: 0.5em
+    text-transform: uppercase
+    font-size: 12px
   .fig-in-text 
     pre, code
       border: 1px solid #BBE
       background-color: #DDDDF9
     background-color: #DDF
     padding: 5px 10px
-    img
-      width: 100%
   .timestamp 
     margin-top: 6em
     text-align: right
@@ -118,6 +128,7 @@ code, pre
   font-size: 12px
   line-height: 1.2em
   .fig-in-figlist
+    padding-right: 50px
     border-right: 3px solid transparent
     &.active
       border-right: 3px solid $dark-highlight-color
@@ -129,11 +140,8 @@ code, pre
 @media screen and (max-width: 1200px) 
   #main-text,
   .fig-in-figlist
-    padding-left: 15px
-    padding-right: 15px
   h1 
     padding-top: 2em
-    font-size: 30px
   h2 
     font-size: 18px
   h3, h4, h5, h6, h7 

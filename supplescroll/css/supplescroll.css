@@ -81,6 +81,12 @@ a.figlink.active:link, a.figlink.active:visited {
   padding-bottom: 10px;
   width: 100%;
 }
+.fig-in-text img.inline-graphic {
+  display: inline;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  width: '';
+}
 
 .fig-in-figlist {
   padding: 20px 20px 10px 20px;
@@ -97,3 +103,10 @@ a.figlink.active:link, a.figlink.active:visited {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+.fig-in-figlist img.inline-graphic {
+  display: inline;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  width: '';
+}
+
