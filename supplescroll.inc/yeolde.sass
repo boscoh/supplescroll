@@ -16,15 +16,15 @@ body
   height: 100%
   overflow: auto
 #table-of-contents 
-  width: 180px
+  width: 220px
   padding-top: 140px
   border-left: $border-style
   border-right: $border-style
   margin-left: $margin-size
   display: none
 #main-text 
-  width: 500px
-  padding: 0px 40px
+  width: 450px
+  padding: 0px 50px 0px 20px
   border-left: $border-style
   border-right: $border-style
   margin-left: $margin-size
@@ -59,7 +59,7 @@ h1, h2, h3, h4, h5, h6, h7
   padding-bottom: 0 
   text-transform: uppercase
 h1 
-  font-size: 4$margin-size 
+  font-size: 27px
   letter-spacing: 0.1em
   padding-top: 100px
   padding-bottom: 0em 
@@ -94,26 +94,33 @@ code, pre
 
 /* supplescroll override styles
 #table-of-contents 
+  padding-left: 20px
+  padding-right: 50px
+  text-transform: uppercase
+  font-size: 12px
+  a 
+    border: none
+    text-decoration: none
   .toc
-    font-size: 12px
     h1, h2, h3, h4, h5, h6, h7
       line-height: 1.2em
       border: none
       text-transform: uppercase
     a h1
       border: none
-    a 
-      border: none
-      text-decoration: none
     .active 
-      background-color: transparent
       text-decoration: underline
+      background-color: transparent
 
 #main-text
   a.figlink.active
     background-color: $highlight-color
     &:link, &:visited
       color: #666
+  .breadcrumb
+    margin-top: 0.5em
+    text-transform: uppercase
+    font-size: 12px
   .fig-in-text
     pre, code
       border: 1px solid #CCE
@@ -141,6 +148,8 @@ code, pre
     border-bottom: $border-style
     margin-top: $margin-size
     margin-bottom: $margin-size
+    padding-left: 20px
+    padding-right: 50px
   .active
     background-color: $highlight-color
     color: #666
@@ -150,12 +159,8 @@ code, pre
 
 
 @media screen and (max-width: 1200px) 
-  #main-text
-    padding-left: 10px
-    padding-right: 10px
   h1 
     padding-top: 2em
-    font-size: 35px
   h2 
     font-size: 18px
   h3, h4, h5, h6, h7 
@@ -166,7 +171,6 @@ code, pre
 @media screen and (max-width: 480px) 
   h1 
     padding-top: 2em
-    font-size: 24px
   h2 
     font-size: 14px
   .fig-in-text 

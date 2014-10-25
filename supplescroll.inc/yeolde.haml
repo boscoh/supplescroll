@@ -11,6 +11,9 @@
   #table-of-contents.touchscroll
   #main-text.touchscroll
     .relative_position
+      - if page.breadcrumb:
+        .breadcrumb
+          {{ page.breadcrumb }}
       {{ page.content }}
       .timestamp
         <a href="http://github.com/boscoh/supplescroll">supplescroll</a>:<i>Ye Olde!</i> theme
@@ -20,4 +23,7 @@
 %script{type:'text/javascript', src:'{{ page.include_dir }}/jquery.scrollTo.js'}
 %script{type:'text/javascript', src:'{{ page.include_dir }}/supplescroll.js'}
 %script{type:'text/javascript', src:'{{ page.include_dir }}/page.js'}
+
+- if page.postpend:
+  {{ page.postpend }}
 

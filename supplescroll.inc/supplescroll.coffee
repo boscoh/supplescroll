@@ -42,6 +42,7 @@ class FigureList
 
     if @figlist_href != ''
       @transfer_figs()
+      @make_reflinks()
       @make_figlinks()
       $(@figlist_href).append(
           $('<div>').addClass('page-filler'))
@@ -63,6 +64,12 @@ class FigureList
           fig = $(hash)
           # wait till all assets have been loaded!
           fig.ready(@select_figlink_fn(figlink))
+    else if hash.slice(0, 4) == '#ref'
+      for reflink in @reflinks
+        if reflink.attr('href') == hash
+          ref = $(hash)
+          # wait till all assets have been loaded!
+          ref.ready(@select_figlink_fn(reflink))
 
   make_toc: ->
     toc = $(@toc_href)
@@ -111,6 +118,7 @@ class FigureList
     @fig_hrefs = []
     @fig_href_from_orig = {}
     @fig_label_dict = {}
+    @figlinks = []
 
     # find all figures in the figlist, and change their id's to figure{n}
     n_fig = 1
@@ -129,10 +137,10 @@ class FigureList
 
     # find all figlinks, and set their href's and id's
     n_figlink = 1
-    @figlinks = []
     for figlink_dom in $(@text_href).find('a[href*="fig"]')
       figlink = $(figlink_dom)
 
+      # make an ID for a figlink so backlinks can point to it
       figlink_id = 'figlink'+n_figlink
       figlink.attr('id', figlink_id)
       figlink.addClass('figlink')
@@ -141,9 +149,11 @@ class FigureList
       orig_fig_href = figlink.attr('href')
 
       if orig_fig_href of @fig_href_from_orig
+        # figure out from the figlink what figure it points
+        # to and what the new figure id is
         fig_href = @fig_href_from_orig[orig_fig_href]
         i_fig =  @i_fig_dict[fig_href]
-        figlink_label = '(Figure ' + i_fig + ')&rArr;'
+        figlink_label = 'Figure ' + i_fig + '&rArr;'
         figlink.html(figlink_label)
         figlink.attr('href', fig_href)
 
@@ -167,6 +177,51 @@ class FigureList
       num_fig = i + 1
       fig_label = @fig_label_dict[fig_href]
       $(fig_href).prepend(fig_label)
+
+  make_reflinks: () ->
+    @ref_hrefs = []
+    @ref_label_dict = {}
+    @reflinks = []
+
+    # find all figures in the figlist, and change their id's to figure{n}
+    for ref_div_dom in $(@figlist_href).find('a')
+      ref = $(ref_div_dom)
+      ref_id = ref.attr('id')
+      if ref_id? and ref_id[0..3] == 'ref-'
+        ref_href = '#' + ref_id
+        @ref_hrefs.push(ref_href)
+        # initialize DOM object for reverse_links
+        @ref_label_dict[ref_href] = $('<span>')
+
+    # find all reflinks, set their href's and id's
+    n_reflink = 1
+    for reflink_dom in $(@text_href).find('a[href*="ref"]')
+      reflink = $(reflink_dom)
+
+      # make an ID for a reflink so backlinks can point to it
+      reflink_id = 'reflink'+n_reflink
+      reflink.attr('id', reflink_id)
+      reflink.addClass('reflink')
+      reflink.click(@select_figlink_fn(reflink))
+      @reflinks.push(reflink)
+      n_reflink += 1
+
+      # check for actural ref's pointed to by reflink
+      # and makes a dangling DOM object for a reverse_link
+      ref_href = reflink.attr('href')
+      if ref_href in @ref_hrefs
+        reflink_href = '#'+reflink_id
+        reverse_link = $('<a>').append('&lArr;').attr('href', reflink_href)
+        finish = ()=>
+          return
+        click_fn = @scroll_to_href_in_text_fn(reflink_href, false, finish)
+        reverse_link.click(click_fn)
+        @ref_label_dict[ref_href].append(reverse_link)
+
+    for ref_href in @ref_hrefs
+      ref = $(@figlist_href).find(ref_href)
+      ref_label = @ref_label_dict[ref_href]
+      ref.parent().prepend(ref_label)
 
   select_figlink: (figlink) ->
     if @selected_figlink == figlink
@@ -334,6 +389,8 @@ set_left = (div, left) -> div.css('left', left)
 
 resize_img_dom = (img_dom, width) ->
   img_elem = $(img_dom)
+  if img_elem.hasClass('inline-graphic')
+    return
   if img_dom.naturalWidth > 0 and img_dom.naturalWidth < width
     img_elem.css('width', '')
   else
