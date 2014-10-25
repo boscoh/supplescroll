@@ -3,10 +3,10 @@ $border-color: #CCC
 $text-color: #333
 $highlight-background: #EEF
 $medium-highlight-color: #E3E3FF
+$heading-color: #666
 
 @mixin caption
   font-size: 12px
-  text-transform: uppercase
   line-height: 1.2em
   code, pre
     font-size: 12px
@@ -15,7 +15,6 @@ $medium-highlight-color: #E3E3FF
     color: #99A
   img
     padding-top: 10px
-    display: block
 
 @mixin caption-highlight
   background-color: $highlight-background
@@ -46,15 +45,15 @@ a, a:link, a:visited
 h1, h2, h3, h3, h4, h5, h6, h7
   font-size: 14px
   text-transform: uppercase
-  color: #666
+  color: $heading-color
   margin: 0
   padding-top: 4em
   padding-bottom: 0em
   font-weight: normal
-  letter-spacing: 0.3em
+  letter-spacing: 0.15em
   line-height: 1.2em
 h1
-  font-size: 30px
+  font-size: 25px
   padding-top: 120px
   padding-bottom: 10px
 h2
@@ -83,11 +82,11 @@ code, pre
 #table-of-contents
   width: 250px
   border-right: 1px solid $border-color
-  padding-top: 180px
+  padding: 180px 50px 0px 20px
 #main-text
   width: 450px
-  padding-left: 50px
-  padding-right: 100px
+  padding-left: 20px
+  padding-right: 50px
 #figure-list
   border-left: 1px solid $border-color
 
@@ -98,6 +97,11 @@ code, pre
   font-size: 12px
   font-weight: normal
   line-height: 1.5em
+  color: $heading-color
+  a
+    text-decoration: none
+    &:link, &:visited
+      color: $heading-color
   .toc 
     h1, h2
       text-transform: uppercase
@@ -105,12 +109,13 @@ code, pre
     h3, h4, h5, h6, h7
       font-style: italic
     a
-      text-decoration: none
       display: block
-      &:link, &:visited
-        color: $text-color
       &.active
         background-color: $highlight-background
+        margin-left: -20px
+        padding-left: 20px
+        margin-right: -50px
+        padding-right: 50px
 
 #main-text
   a.figlink.active 
@@ -139,15 +144,10 @@ code, pre
     @include caption
     &.active
       @include caption-highlight
-    padding: 20px 10px
+    padding: 20px 50px 20px 20px
 
 
 @media (max-width: 1200px)
-  #main-text
-    padding-left: 15px
-    padding-right: 15px
-  h1
-    font-size: 25px
 
 
 @media (max-width: 480px)

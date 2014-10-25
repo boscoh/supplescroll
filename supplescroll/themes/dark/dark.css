@@ -1,3 +1,5 @@
+@media (max-width: 1200px);
+
 body {
   background-color: #4A5059;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
@@ -27,12 +29,12 @@ h1, h2, h3, h3, h4, h5, h6, h7 {
   padding-top: 4em;
   padding-bottom: 0em;
   font-weight: normal;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.15em;
   line-height: 1.2em;
 }
 
 h1 {
-  font-size: 30px;
+  font-size: 24px;
   padding-top: 120px;
   padding-bottom: 10px;
 }
@@ -68,14 +70,14 @@ code, pre {
 #table-of-contents {
   width: 250px;
   border-right: 1px solid #595959;
-  padding-top: 180px;
+  padding: 180px 50px 0px 20px;
   display: none;
 }
 
 #main-text {
   width: 450px;
-  padding-left: 50px;
-  padding-right: 100px;
+  padding-left: 20px;
+  padding-right: 50px;
 }
 
 #figure-list {
@@ -87,6 +89,13 @@ code, pre {
   font-size: 12px;
   font-weight: normal;
   line-height: 1.5em;
+  color: #888;
+}
+#table-of-contents a {
+  text-decoration: none;
+}
+#table-of-contents a:link, #table-of-contents a:visited {
+  color: #888;
 }
 #table-of-contents .toc h1, #table-of-contents .toc h2 {
   text-transform: uppercase;
@@ -97,14 +106,14 @@ code, pre {
   font-style: italic;
 }
 #table-of-contents .toc a {
-  text-decoration: none;
   display: block;
-}
-#table-of-contents .toc a:link, #table-of-contents .toc a:visited {
-  color: #AAA;
 }
 #table-of-contents .toc a.active {
   background-color: #456;
+  margin-left: -20px;
+  padding-left: 20px;
+  margin-right: -50px;
+  padding-right: 50px;
 }
 
 #main-text a.figlink.active {
@@ -127,7 +136,6 @@ code, pre {
 }
 #main-text .fig-in-text {
   font-size: 12px;
-  text-transform: uppercase;
   line-height: 1.2em;
   a, a: link, a:visited, color: #99A;
   background-color: #456;
@@ -140,7 +148,6 @@ code, pre {
 }
 #main-text .fig-in-text img {
   padding-top: 10px;
-  display: block;
 }
 #main-text .fig-in-text pre, #main-text .fig-in-text code {
   border: 1px solid #668;
@@ -153,10 +160,9 @@ code, pre {
 
 #figure-list .fig-in-figlist {
   font-size: 12px;
-  text-transform: uppercase;
   line-height: 1.2em;
   a, a: link, a:visited, color: #99A;
-  padding: 20px 10px;
+  padding: 20px 50px 20px 20px;
 }
 #figure-list .fig-in-figlist code, #figure-list .fig-in-figlist pre {
   font-size: 12px;
@@ -164,7 +170,6 @@ code, pre {
 }
 #figure-list .fig-in-figlist img {
   padding-top: 10px;
-  display: block;
 }
 #figure-list .fig-in-figlist.active {
   background-color: #456;
@@ -174,16 +179,6 @@ code, pre {
   border: 1px solid #668;
   background-color: #345;
   color: #888;
-}
-
-@media (max-width: 1200px) {
-  #main-text {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  h1 {
-    font-size: 25px;
-  }
 }
 
 @media (max-width: 480px) {
