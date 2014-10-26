@@ -105,7 +105,8 @@ class FigureList
       div_id = $(div_dom).attr('id')
       if div_id? and div_id[0..2] == 'fig'
         div = $(div_dom)
-        div.prepend('(Figure ' + num_fig + '). ') 
+        # div.prepend('(Figure ' + num_fig + '). ') 
+        div.prepend(' ') 
         new_div = div.clone()
         div.addClass('fig-in-text')
         new_div.addClass('fig-in-figlist')
@@ -153,8 +154,9 @@ class FigureList
         # to and what the new figure id is
         fig_href = @fig_href_from_orig[orig_fig_href]
         i_fig =  @i_fig_dict[fig_href]
-        figlink_label = 'Figure ' + i_fig + '&rArr;'
-        figlink.html(figlink_label)
+        # figlink_label = 'Figure ' + i_fig + '&rArr;'
+        # figlink.html(figlink_label)
+        figlink.append('&rArr;')
         figlink.attr('href', fig_href)
 
         figlink_href = '#'+figlink_id
@@ -201,6 +203,7 @@ class FigureList
       # make an ID for a reflink so backlinks can point to it
       reflink_id = 'reflink'+n_reflink
       reflink.attr('id', reflink_id)
+      reflink.append('&rArr;')
       reflink.addClass('reflink')
       reflink.click(@select_figlink_fn(reflink))
       @reflinks.push(reflink)
@@ -221,6 +224,7 @@ class FigureList
     for ref_href in @ref_hrefs
       ref = $(@figlist_href).find(ref_href)
       ref_label = @ref_label_dict[ref_href]
+      ref.parent().prepend(' ')
       ref.parent().prepend(ref_label)
 
   select_figlink: (figlink) ->
