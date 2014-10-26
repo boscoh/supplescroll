@@ -18,6 +18,7 @@ setup(
         'PyYaml',
         'docopt',
         'embellish>=0.9.7',
+        'beautifulsoup4',
     ],
     packages=['supplescroll',],
     include_package_data=True,

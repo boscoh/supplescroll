@@ -118,7 +118,7 @@
         div_id = $(div_dom).attr('id');
         if ((div_id != null) && div_id.slice(0, 3) === 'fig') {
           div = $(div_dom);
-          div.prepend('(Figure ' + num_fig + '). ');
+          div.prepend(' ');
           new_div = div.clone();
           div.addClass('fig-in-text');
           new_div.addClass('fig-in-figlist');
@@ -132,7 +132,7 @@
     };
 
     FigureList.prototype.make_figlinks = function() {
-      var click_fn, fig, fig_div_dom, fig_href, fig_id, fig_label, figlink, figlink_dom, figlink_href, figlink_id, figlink_label, finish, i, i_fig, n_fig, n_figlink, new_fig_href, num_fig, orig_fig_href, reverse_link, select_fig_fn, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2, _results,
+      var click_fn, fig, fig_div_dom, fig_href, fig_id, fig_label, figlink, figlink_dom, figlink_href, figlink_id, finish, i, i_fig, n_fig, n_figlink, new_fig_href, num_fig, orig_fig_href, reverse_link, select_fig_fn, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2, _results,
         _this = this;
       this.i_fig_dict = {};
       this.fig_hrefs = [];
@@ -169,8 +169,7 @@
         if (orig_fig_href in this.fig_href_from_orig) {
           fig_href = this.fig_href_from_orig[orig_fig_href];
           i_fig = this.i_fig_dict[fig_href];
-          figlink_label = 'Figure ' + i_fig + '&rArr;';
-          figlink.html(figlink_label);
+          figlink.append('&rArr;');
           figlink.attr('href', fig_href);
           figlink_href = '#' + figlink_id;
           reverse_link = $('<a>').append('&lArr;').attr('href', figlink_href);
@@ -224,6 +223,7 @@
         reflink = $(reflink_dom);
         reflink_id = 'reflink' + n_reflink;
         reflink.attr('id', reflink_id);
+        reflink.append('&rArr;');
         reflink.addClass('reflink');
         reflink.click(this.select_figlink_fn(reflink));
         this.reflinks.push(reflink);
@@ -244,6 +244,7 @@
         ref_href = _ref2[_k];
         ref = $(this.figlist_href).find(ref_href);
         ref_label = this.ref_label_dict[ref_href];
+        ref.parent().prepend(' ');
         _results.push(ref.parent().prepend(ref_label));
       }
       return _results;
