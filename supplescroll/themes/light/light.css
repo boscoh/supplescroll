@@ -18,7 +18,6 @@ blockquote {
 
 a, a:link, a:visited {
   text-decoration: none;
-  color: #99B;
 }
 
 h1, h2, h3, h3, h4, h5, h6, h7 {
@@ -119,7 +118,6 @@ code, pre {
   background-color: #EEF;
 }
 #main-text a.figlink.active:link, #main-text a.figlink.active:visited {
-  color: #99C;
   text-decoration: underline;
 }
 #main-text .breadcrumb {
@@ -135,7 +133,6 @@ code, pre {
 #main-text .fig-in-text {
   font-size: 12px;
   line-height: 1.2em;
-  a, a: link, a:visited, color: #99A;
   background-color: #EEF;
   color: #333;
   padding: 10px 10px;
@@ -159,7 +156,6 @@ code, pre {
 #figure-list .fig-in-figlist {
   font-size: 12px;
   line-height: 1.2em;
-  a, a: link, a:visited, color: #99A;
   padding: 20px 50px 20px 20px;
 }
 #figure-list .fig-in-figlist code, #figure-list .fig-in-figlist pre {
@@ -188,3 +184,4 @@ code, pre {
     display: block;
   }
 }
+
