@@ -26,8 +26,8 @@ h1, h2, h3, h3, h4, h5, h6, h7 {
   text-transform: uppercase;
   color: #888;
   margin: 0;
-  padding-top: 4em;
-  padding-bottom: 0em;
+  margin-top: 4em;
+  margin-bottom: 0em;
   font-weight: normal;
   letter-spacing: 0.15em;
   line-height: 1.2em;
@@ -35,8 +35,8 @@ h1, h2, h3, h3, h4, h5, h6, h7 {
 
 h1 {
   font-size: 24px;
-  padding-top: 120px;
-  padding-bottom: 10px;
+  margin-top: 120px;
+  margin-bottom: 10px;
 }
 
 h2 {
@@ -61,6 +61,15 @@ code, pre {
   line-height: 1.5em;
 }
 
+#navbar {
+  position: absolute;
+  width: 100%;
+  border-bottom: 1px solid #595959;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+
 #table-of-contents, #main-text, #figure-list {
   position: absolute;
   height: 100%;
@@ -70,8 +79,7 @@ code, pre {
 #table-of-contents {
   width: 250px;
   border-right: 1px solid #595959;
-  padding: 180px 50px 0px 20px;
-  display: none;
+  padding: 20px 50px 0px 20px;
 }
 
 #main-text {
@@ -82,7 +90,22 @@ code, pre {
 
 #figure-list {
   border-left: 1px solid #595959;
-  display: none;
+}
+
+#toc-trigger {
+  display: block;
+  float: left;
+  cursor: pointer;
+  margin-right: 1em;
+  margin-left: 0em;
+  width: 1.7em;
+  height: 1.4em;
+  background: linear-gradient(to bottom, #AAA, #AAA 20%, #4A5059 20%, #4A5059 40%, #AAA 40%,
+    #AAA 60%, #4A5059 60%, #4A5059 80%, #AAA 80%, #AAA);
+}
+
+.breadcrumb {
+  display: inline;
 }
 
 #table-of-contents {
@@ -99,7 +122,7 @@ code, pre {
 }
 #table-of-contents .toc h1, #table-of-contents .toc h2 {
   text-transform: uppercase;
-  padding-top: 4px;
+  margin-top: 4px;
 }
 #table-of-contents .toc h3, #table-of-contents .toc h4, #table-of-contents .toc h5,
 #table-of-contents .toc h6, #table-of-contents .toc h7 {

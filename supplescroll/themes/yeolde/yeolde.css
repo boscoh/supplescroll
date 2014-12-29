@@ -3,19 +3,36 @@ body {
   padding-right: 3px;
 }
 
+#navbar {
+  position: absolute;
+  height: 15px;
+  width: 100%;
+  border-bottom: 1px solid #CCC;
+  margin-top: 3px;
+  margin-left: 3px;
+  margin-right: 3px;
+  padding-top: 5px;
+  padding-bottom: 8px;
+  padding-left: 20px;
+  border-top: 1px solid #CCC;
+  border-left: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+}
+
 #table-of-contents, #main-text, #figure-list {
   position: absolute;
   height: 100%;
   overflow: auto;
+  border-top: 1px solid #CCC;
+  margin-top: 3px;
 }
 
 #table-of-contents {
   width: 220px;
-  padding-top: 140px;
+  padding-top: 3px;
   border-left: 1px solid #CCC;
   border-right: 1px solid #CCC;
   margin-left: 3px;
-  display: none;
 }
 
 #main-text {
@@ -31,7 +48,23 @@ body {
   border-left: 1px solid #CCC;
   border-right: 1px solid #CCC;
   margin-right: 3px;
-  display: none;
+}
+
+#toc-trigger {
+  float: left;
+  cursor: pointer;
+  margin-right: 1em;
+  margin-left: 0em;
+  margin-top: 2px;
+  width: 1.2em;
+  height: 15px;
+  background: linear-gradient(to bottom, black, black 20%, white 20%, white 40%, black 40%,
+    black 60%, white 60%, white 80%, black 80%, black);
+}
+
+.breadcrumb {
+  text-transform: uppercase;
+  float: left;
 }
 
 body {
@@ -57,16 +90,16 @@ h1, h2, h3, h4, h5, h6, h7 {
   letter-spacing: 0.1em;
   font-weight: 300;
   line-height: 1.1em;
-  padding-top: 2em;
-  padding-bottom: 0;
+  margin-top: 2em;
+  margin-bottom: 0;
   text-transform: uppercase;
 }
 
 h1 {
   font-size: 27px;
   letter-spacing: 0.1em;
-  padding-top: 100px;
-  padding-bottom: 0em;
+  margin-top: 100px;
+  margin-bottom: 0em;
 }
 
 h2 {
@@ -189,7 +222,7 @@ code, pre {
 
 @media screen and (max-width: 1200px) {
   h1 {
-    padding-top: 2em;
+    margin-top: 2em;
   }
   h2 {
     font-size: 18px;
@@ -201,7 +234,7 @@ code, pre {
 
 @media screen and (max-width: 480px) {
   h1 {
-    padding-top: 2em;
+    margin-top: 2em;
   }
   h2 {
     font-size: 14px;

@@ -63,6 +63,16 @@ code, pre {
   line-height: 1.5em;
 }
 
+#navbar {
+  background-color: #243;
+  color: #99A;
+  position: absolute;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+
 #table-of-contents, #main-text, #figure-list {
   position: absolute;
   height: 100%;
@@ -70,9 +80,8 @@ code, pre {
 
 #table-of-contents {
   width: 250px;
-  padding-top: 180px;
+  padding-top: 20px;
   background-color: #324;
-  display: none;
 }
 
 #main-text {
@@ -81,8 +90,19 @@ code, pre {
   padding-right: 50px;
 }
 
-#figure-list {
-  display: none;
+#toc-trigger {
+  float: left;
+  cursor: pointer;
+  margin-right: 1em;
+  margin-left: 0em;
+  width: 1.7em;
+  height: 1.4em;
+  background: linear-gradient(to bottom, #A99, #A99 20%, #243 20%, #243 40%, #A99 40%,
+    #A99 60%, #243 60%, #243 80%, #A99 80%, #A99);
+}
+
+.breadcrumb {
+  display: inline;
 }
 
 #table-of-contents {
@@ -103,8 +123,8 @@ code, pre {
 #table-of-contents .toc h7 {
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  padding-top: 0em;
-  padding-bottom: 0em;
+  margin-top: 0em;
+  margin-bottom: 0em;
   font-style: italic;
 }
 #table-of-contents .toc h1, #table-of-contents .toc h2 {
@@ -148,11 +168,6 @@ code, pre {
 #main-text a.figlink.active:link, #main-text a.figlink.active:visited {
   color: #330;
   text-decoration: none;
-}
-#main-text .breadcrumb {
-  margin-top: 0.5em;
-  text-transform: uppercase;
-  font-size: 10px;
 }
 #main-text .timestamp {
   margin-top: 6em;

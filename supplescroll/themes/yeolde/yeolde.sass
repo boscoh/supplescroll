@@ -9,19 +9,34 @@ $margin-size: 3px
 body 
   padding-left: $margin-size
   padding-right: $margin-size
+#navbar
+  position: absolute
+  height: 15px
+  width: 100%
+  border-bottom: $border-style
+  margin-top: $margin-size
+  margin-left: $margin-size
+  margin-right: $margin-size
+  padding-top: 5px
+  padding-bottom: 8px
+  padding-left: 20px
+  border-top: $border-style
+  border-left: $border-style
+  border-right: $border-style
 #table-of-contents, 
 #main-text, 
 #figure-list 
   position: absolute
   height: 100%
   overflow: auto
+  border-top: $border-style
+  margin-top: $margin-size
 #table-of-contents 
   width: 220px
-  padding-top: 140px
+  padding-top: $margin-size
   border-left: $border-style
   border-right: $border-style
   margin-left: $margin-size
-  display: none
 #main-text 
   width: 450px
   padding: 0px 50px 0px 20px
@@ -33,7 +48,20 @@ body
   border-left: $border-style
   border-right: $border-style
   margin-right: $margin-size
-  display: none
+
+
+#toc-trigger 
+  float: left
+  cursor: pointer
+  margin-right: 1em
+  margin-left: 0em
+  margin-top: 2px
+  width: 1.2em
+  height: 15px
+  background: linear-gradient(to bottom, black, black 20%, white 20%, white 40%,  black 40%, black 60%, white 60%, white 80%, black 80%, black 100%)
+.breadcrumb
+  text-transform: uppercase
+  float: left
 
 
 
@@ -55,14 +83,14 @@ h1, h2, h3, h4, h5, h6, h7
   letter-spacing: 0.1em
   font-weight: 300
   line-height: 1.1em 
-  padding-top: 2em
-  padding-bottom: 0 
+  margin-top: 2em
+  margin-bottom: 0 
   text-transform: uppercase
 h1 
   font-size: 27px
   letter-spacing: 0.1em
-  padding-top: 100px
-  padding-bottom: 0em 
+  margin-top: 100px
+  margin-bottom: 0em 
 h2
   font-size: 20px
   border-bottom: $border-style
@@ -160,7 +188,7 @@ code, pre
 
 @media screen and (max-width: 1200px) 
   h1 
-    padding-top: 2em
+    margin-top: 2em
   h2 
     font-size: 18px
   h3, h4, h5, h6, h7 
@@ -170,7 +198,7 @@ code, pre
 
 @media screen and (max-width: 480px) 
   h1 
-    padding-top: 2em
+    margin-top: 2em
   h2 
     font-size: 14px
   .fig-in-text 
