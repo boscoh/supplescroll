@@ -71,6 +71,7 @@ code, pre {
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 20px;
+  overflow: hidden;
 }
 
 #table-of-contents, #main-text, #figure-list {
