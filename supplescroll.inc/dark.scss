@@ -65,13 +65,6 @@ code, pre {
   font-size: 12px;
   line-height: 1.5em; }
 /* LAYOUT */
-#navbar {
-  position: absolute;
-  width: 100%;
-  border-bottom: 1px solid $border-color;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px; }
 #table-of-contents, #main-text, #figure-list {
   position: absolute;
   height: 100%;
@@ -86,17 +79,31 @@ code, pre {
   padding-right: 50px; }
 #figure-list {
   border-left: 1px solid $border-color; }
+/* navbar and menu icon */
+$line-color: $text-color;
+$back-color: $background-color;
+#navbar {
+  position: absolute;
+  overflow: hidden;
+  height: 25px;
+  line-height: 25px;
+  width: 100%;
+  border-bottom: 1px solid $border-color;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px; }
 #toc-trigger {
-  display: block;
   float: left;
   cursor: pointer;
   margin-right: 1em;
   margin-left: 0em;
-  width: 1.7em;
-  height: 1.4em;
-  background: linear-gradient(to bottom, $text-color, $text-color 20%, $background-color 20%, $background-color 40%,  $text-color 40%, $text-color 60%, $background-color 60%, $background-color 80%, $text-color 80%, $text-color 100%); }
-.breadcrumb {
-  display: inline; }
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 15px; }
+#hamburger {
+  width: 25px;
+  height: 15px;
+  background: linear-gradient(to bottom, $line-color, $line-color 20%, $back-color 20%, $back-color 40%,  $line-color 40%, $line-color 60%, $back-color 60%, $back-color 80%, $line-color 80%, $line-color 100%); }
 /* font override */
 #table-of-contents {
   font-size: 12px;
@@ -127,12 +134,7 @@ code, pre {
     background-color: $highlight-background;
     &:link, &:visited {
       color: #99C;
-      text-decoration: underline; } }
-  .breadcrumb {
-    margin-top: 0.5em;
-    text-transform: uppercase;
-    font-size: 10px; }
-  .timestamp {
+      text-decoration: underline; }
     margin-top: 6em;
     text-align: right;
     border-top: 1px solid #CCC; }

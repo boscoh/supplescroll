@@ -69,15 +69,6 @@ code, pre
 
 
 /* LAYOUT
-#navbar
-  position: absolute
-  overflow: hidden
-  height: 1em
-  width: 100%
-  border-bottom: 1px solid $border-color
-  padding-top: 10px
-  padding-bottom: 10px
-  padding-left: 20px
 #table-of-contents, 
 #main-text,
 #figure-list
@@ -96,16 +87,33 @@ code, pre
   border-left: 1px solid $border-color
 
 
+/* navbar and menu icon
+$line-color: #333
+$back-color: white
+#navbar
+  position: absolute
+  overflow: hidden
+  height: 25px
+  line-height: 25px
+  width: 100%
+  white-space: nowrap
 #toc-trigger 
   float: left
   cursor: pointer
   margin-right: 1em
   margin-left: 0em
-  width: 1.7em
-  height: 1.4em
-  background: linear-gradient(to bottom, $text-color, $text-color 20%, white 20%, white 40%,  $text-color 40%, $text-color 60%, white 60%, white 80%, $text-color 80%, $text-color 100%)
-.breadcrumb
-  display: inline
+  padding-top: 5px
+  padding-bottom: 5px
+  height: 15px
+#hamburger
+  width: 25px
+  height: 15px
+  background: linear-gradient(to bottom, $line-color, $line-color 20%, $back-color 20%, $back-color 40%,  $line-color 40%, $line-color 60%, $back-color 60%, $back-color 80%, $line-color 80%, $line-color 100%)
+#navbar
+  border-bottom: 1px solid $border-color
+  padding-top: 10px
+  padding-bottom: 10px
+  padding-left: 20px
 
 /* font override
 

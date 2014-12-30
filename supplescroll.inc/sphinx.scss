@@ -92,6 +92,35 @@ code, pre {
   padding-right: 50px; }
 #figure-list {
   background-color: #edf0f2; }
+/* navbar and menu icon */
+$line-color: #fcfcfc;
+$back-color: #2980b9;
+#navbar {
+  position: absolute;
+  overflow: hidden;
+  height: 25px;
+  line-height: 25px;
+  width: 100%; }
+#toc-trigger {
+  float: left;
+  cursor: pointer;
+  margin-right: 1em;
+  margin-left: 0em;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 15px; }
+#hamburger {
+  width: 25px;
+  height: 15px;
+  background: linear-gradient(to bottom, $line-color, $line-color 20%, $back-color 20%, $back-color 40%, $line-color 40%, $line-color 60%, $back-color 60%, $back-color 80%, $line-color 80%, $line-color 100%); }
+#navbar {
+  font-size: 16px;
+  background-color: #2980b9;
+  &, a:link, a:visited {
+    color: #fcfcfc; }
+  font-weight: 100;
+  text-align: left;
+  padding: 10px 20px; }
 /* font override */
 #table-of-contents {
   font-size: 12px;
@@ -112,26 +141,6 @@ code, pre {
       padding-right: 50px;
       &.active {
         background-color: #5C5A5A; } } } }
-$text-color: #fcfcfc;
-#toc-trigger {
-  float: left;
-  cursor: pointer;
-  margin-right: 1em;
-  margin-left: 0em;
-  width: 1.7em;
-  height: 20px;
-  background: linear-gradient(to bottom, $text-color, $text-color 20%, #2980b9 20%, #2980b9 40%,  $text-color 40%, $text-color 60%, #2980b9 60%, #2980b9 80%, $text-color 80%, $text-color 100%); }
-#navbar {
-  position: absolute;
-  font-size: 16px;
-  background-color: #2980b9;
-  &, a:link, a:visited {
-    color: #fcfcfc; }
-  font-weight: 100;
-  text-align: left;
-  padding: 10px 20px; }
-.breadcrumb {
-  display: inline; }
 #main-text {
   a.figlink.active {
     padding: 4px 0px;

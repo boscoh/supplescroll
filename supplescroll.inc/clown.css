@@ -63,17 +63,6 @@ code, pre {
   line-height: 1.5em;
 }
 
-#navbar {
-  background-color: #243;
-  color: #99A;
-  position: absolute;
-  width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px;
-  overflow: hidden;
-}
-
 #table-of-contents, #main-text, #figure-list {
   position: absolute;
   height: 100%;
@@ -91,19 +80,34 @@ code, pre {
   padding-right: 50px;
 }
 
+#navbar {
+  background-color: #FF6;
+  color: #336;
+  position: absolute;
+  overflow: hidden;
+  height: 25px;
+  line-height: 25px;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+
 #toc-trigger {
   float: left;
   cursor: pointer;
   margin-right: 1em;
   margin-left: 0em;
-  width: 1.7em;
-  height: 1.4em;
-  background: linear-gradient(to bottom, #A99, #A99 20%, #243 20%, #243 40%, #A99 40%,
-    #A99 60%, #243 60%, #243 80%, #A99 80%, #A99);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 15px;
 }
 
-.breadcrumb {
-  display: inline;
+#hamburger {
+  width: 25px;
+  height: 15px;
+  background: linear-gradient(to bottom, #336, #336 20%, #FF6 20%, #FF6 40%, #336 40%,
+    #336 60%, #FF6 60%, #FF6 80%, #336 80%, #336);
 }
 
 #table-of-contents {
