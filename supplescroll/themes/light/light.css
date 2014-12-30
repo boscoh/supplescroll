@@ -58,17 +58,6 @@ code, pre {
   line-height: 1.5em;
 }
 
-#navbar {
-  position: absolute;
-  overflow: hidden;
-  height: 1em;
-  width: 100%;
-  border-bottom: 1px solid #CCC;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px;
-}
-
 #table-of-contents, #main-text, #figure-list {
   position: absolute;
   height: 100%;
@@ -91,19 +80,36 @@ code, pre {
   border-left: 1px solid #CCC;
 }
 
+#navbar {
+  position: absolute;
+  overflow: hidden;
+  height: 25px;
+  line-height: 25px;
+  width: 100%;
+}
+
 #toc-trigger {
   float: left;
   cursor: pointer;
   margin-right: 1em;
   margin-left: 0em;
-  width: 1.7em;
-  height: 1.4em;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 15px;
+}
+
+#hamburger {
+  width: 25px;
+  height: 15px;
   background: linear-gradient(to bottom, #333, #333 20%, white 20%, white 40%, #333 40%,
     #333 60%, white 60%, white 80%, #333 80%, #333);
 }
 
-.breadcrumb {
-  display: inline;
+#navbar {
+  border-bottom: 1px solid #CCC;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
 }
 
 #table-of-contents {

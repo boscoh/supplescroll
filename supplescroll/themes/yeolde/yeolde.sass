@@ -9,21 +9,6 @@ $margin-size: 3px
 body 
   padding-left: $margin-size
   padding-right: $margin-size
-#navbar
-  position: absolute
-  overflow: hidden
-  width: 100%
-  height: 15px
-  border-bottom: $border-style
-  margin-top: $margin-size
-  margin-left: $margin-size
-  margin-right: $margin-size
-  padding-top: 5px
-  padding-bottom: 8px
-  padding-left: 20px
-  border-top: $border-style
-  border-left: $border-style
-  border-right: $border-style
 #table-of-contents, 
 #main-text, 
 #figure-list 
@@ -34,7 +19,7 @@ body
   margin-top: $margin-size
 #table-of-contents 
   width: 220px
-  padding-top: $margin-size
+  padding-top: 20px
   border-left: $border-style
   border-right: $border-style
   margin-left: $margin-size
@@ -52,18 +37,41 @@ body
   margin-right: $margin-size
 
 
+/* navbar and menu icon
+$line-color: black
+$back-color: white
+#navbar
+  position: absolute
+  overflow: hidden
+  height: 25px
+  line-height: 25px
+  width: 100%
 #toc-trigger 
   float: left
   cursor: pointer
   margin-right: 1em
   margin-left: 0em
-  margin-top: 2px
-  width: 1.2em
+  padding-top: 5px
+  padding-bottom: 5px
   height: 15px
-  background: linear-gradient(to bottom, black, black 20%, white 20%, white 40%,  black 40%, black 60%, white 60%, white 80%, black 80%, black 100%)
-.breadcrumb
+#hamburger
+  width: 25px
+  height: 15px
+  background: linear-gradient(to bottom, $line-color, $line-color 20%, $back-color 20%, $back-color 40%,  $line-color 40%, $line-color 60%, $back-color 60%, $back-color 80%, $line-color 80%, $line-color 100%)
+#navbar
+  border-bottom: 1px solid $border-color
+  padding-top: 10px
+  padding-bottom: 10px
+  padding-left: 20px
   text-transform: uppercase
-  display: inline
+  border-bottom: $border-style
+  margin-top: $margin-size
+  margin-left: $margin-size
+  margin-right: $margin-size
+  padding-left: 20px
+  border-top: $border-style
+  border-left: $border-style
+  border-right: $border-style
 
 
 
