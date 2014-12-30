@@ -5,12 +5,21 @@ body {
   padding-right: 15px;
 }
 
+#navbar {
+  position: absolute;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 0px;
+  border-bottom: 1px solid #DDD;
+}
+
 #table-of-contents {
-  display: none;
   position: absolute;
   background-color: #EEE;
   width: 200px;
-  padding-top: 160px;
+  padding-top: 10px;
   overflow: auto;
   height: 100%;
 }
@@ -26,15 +35,31 @@ body {
 
 #figure-list {
   position: absolute;
-  display: none;
   height: 100%;
   overflow: auto;
   background-color: #EEE;
 }
 
-#table-of-contents, #figure-list {
+#navbar, #table-of-contents, #figure-list {
   background-image: url(crossword.png);
   background-repeat: repeat;
+}
+
+#toc-trigger {
+  float: left;
+  cursor: pointer;
+  margin-right: 1em;
+  margin-left: 0em;
+  width: 1.7em;
+  height: 1.4em;
+  background: linear-gradient(to bottom, #333, #333 20%, white 20%, white 40%, #333 40%,
+    #333 60%, white 60%, white 80%, #333 80%, #333);
+}
+
+.breadcrumb {
+  display: inline;
+  text-transform: uppercase;
+  font-size: 12px;
 }
 
 body {
@@ -51,16 +76,16 @@ h1, h2, h3, h4, h5, h6, h7 {
   letter-spacing: 0.1em;
   font-weight: 300;
   line-height: 1em;
-  padding-top: 3em;
-  padding-bottom: 0;
+  margin-top: 3em;
+  margin-bottom: 0;
 }
 
 h1 {
   font-size: 27px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding-top: 100px;
-  padding-bottom: 0em;
+  margin-top: 100px;
+  margin-bottom: 0em;
 }
 
 h2 {
@@ -131,11 +156,6 @@ code, pre {
 #main-text a.figlink.active {
   background-color: #EEF;
 }
-#main-text .breadcrumb {
-  margin-top: 0.5em;
-  text-transform: uppercase;
-  font-size: 12px;
-}
 #main-text .fig-in-text {
   background-color: #DDF;
   padding: 5px 10px;
@@ -173,7 +193,7 @@ code, pre {
 }
 @media screen and (max-width: 1200px) {
   h1 {
-    padding-top: 2em;
+    margin-top: 2em;
   }
   h2 {
     font-size: 18px;

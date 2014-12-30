@@ -118,7 +118,7 @@ code, pre {
   color: #b3b3b3;
 }
 #table-of-contents .toc h1, #table-of-contents .toc h2 {
-  padding-top: 4px;
+  margin-top: 4px;
 }
 #table-of-contents .toc a {
   padding-left: 20px;
@@ -128,16 +128,31 @@ code, pre {
   background-color: #5C5A5A;
 }
 
-#toc-header {
+#toc-trigger {
+  float: left;
+  cursor: pointer;
+  margin-right: 1em;
+  margin-left: 0em;
+  width: 1.7em;
+  height: 20px;
+  background: linear-gradient(to bottom, #fcfcfc, #fcfcfc 20%, #2980b9 20%, #2980b9 40%,
+    #fcfcfc 40%, #fcfcfc 60%, #2980b9 60%, #2980b9 80%, #fcfcfc 80%, #fcfcfc);
+}
+
+#navbar {
+  position: absolute;
   font-size: 16px;
   background-color: #2980b9;
   font-weight: 100;
-  text-align: center;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  text-align: left;
+  padding: 10px 20px;
 }
-#toc-header, #toc-header a:link, #toc-header a:visited {
+#navbar, #navbar a:link, #navbar a:visited {
   color: #fcfcfc;
+}
+
+.breadcrumb {
+  display: inline;
 }
 
 #main-text a.figlink.active {
@@ -155,7 +170,6 @@ code, pre {
   line-height: 1.2em;
   a, a: link, a:visited, color: #99A;
   background-color: #E8E8FF;
-  color: #333;
   padding: 10px 10px;
 }
 #main-text .fig-in-text code, #main-text .fig-in-text pre {
@@ -169,7 +183,6 @@ code, pre {
 #main-text .fig-in-text pre, #main-text .fig-in-text code {
   border: 1px solid #BBC;
   background-color: #EEF;
-  color: #666;
 }
 #main-text .fig-in-text img {
   width: 100%;
@@ -192,12 +205,10 @@ code, pre {
 }
 #figure-list .fig-in-figlist.active {
   background-color: #E8E8FF;
-  color: #333;
 }
 #figure-list .fig-in-figlist.active pre, #figure-list .fig-in-figlist.active code {
   border: 1px solid #BBC;
   background-color: #EEF;
-  color: #666;
 }
 #figure-list code, #figure-list pre {
   background-color: #F8F8F8;
@@ -216,7 +227,7 @@ code, pre {
 @media (max-width: 480px) {
   h1 {
     font-size: 20px;
-    padding-top: 70px;
+    margin-top: 70px;
   }
   .fig-in-text {
     display: block;

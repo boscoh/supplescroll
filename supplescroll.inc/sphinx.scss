@@ -17,11 +17,9 @@ $highlight-link-color: #99A;
     display: block; } }
 @mixin caption-highlight {
   background-color: $medium-highlight-color;
-  color: $text-color;
   pre, code {
     border: 1px solid #BBC;
-    background-color: $highlight-background;
-    color: #666; } }
+    background-color: $highlight-background; } }
 /* document fonts */
 body {
   background-color: #fcfcfc;
@@ -108,21 +106,32 @@ code, pre {
       text-transform: none;
       color: #b3b3b3; }
     h1, h2 {
-      padding-top: 4px; }
+      margin-top: 4px; }
     a {
       padding-left: 20px;
       padding-right: 50px;
       &.active {
         background-color: #5C5A5A; } } } }
-#toc-header {
+$text-color: #fcfcfc;
+#toc-trigger {
+  float: left;
+  cursor: pointer;
+  margin-right: 1em;
+  margin-left: 0em;
+  width: 1.7em;
+  height: 20px;
+  background: linear-gradient(to bottom, $text-color, $text-color 20%, #2980b9 20%, #2980b9 40%,  $text-color 40%, $text-color 60%, #2980b9 60%, #2980b9 80%, $text-color 80%, $text-color 100%); }
+#navbar {
+  position: absolute;
   font-size: 16px;
   background-color: #2980b9;
   &, a:link, a:visited {
     color: #fcfcfc; }
   font-weight: 100;
-  text-align: center;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em; }
+  text-align: left;
+  padding: 10px 20px; }
+.breadcrumb {
+  display: inline; }
 #main-text {
   a.figlink.active {
     padding: 4px 0px;
@@ -154,6 +163,6 @@ code, pre {
 @media (max-width: 480px) {
   h1 {
     font-size: 20px;
-    padding-top: 70px; }
+    margin-top: 70px; }
   .fig-in-text {
     display: block; } }

@@ -11,8 +11,6 @@ $heading-color: #666
   code, pre
     font-size: 12px
     text-transform: none
-  a, a:link, a:visited,
-    color: #99A
   img
     padding-top: 10px
 
@@ -23,7 +21,6 @@ $heading-color: #666
     border: 1px solid #BBC
     background-color: $medium-highlight-color
     color: #666
-
 
 
 /* document fonts
@@ -41,21 +38,20 @@ blockquote
   color: #888 
 a, a:link, a:visited
   text-decoration: none
-  color: #99B
 h1, h2, h3, h3, h4, h5, h6, h7
   font-size: 14px
   text-transform: uppercase
   color: $heading-color
   margin: 0
-  padding-top: 4em
-  padding-bottom: 0em
+  margin-top: 4em
+  margin-bottom: 0em
   font-weight: normal
   letter-spacing: 0.15em
   line-height: 1.2em
 h1
   font-size: 25px
-  padding-top: 120px
-  padding-bottom: 10px
+  margin-top: 120px
+  margin-bottom: 10px
 h2
   font-size: 16px
 code 
@@ -73,6 +69,15 @@ code, pre
 
 
 /* LAYOUT
+#navbar
+  position: absolute
+  overflow: hidden
+  height: 1em
+  width: 100%
+  border-bottom: 1px solid $border-color
+  padding-top: 10px
+  padding-bottom: 10px
+  padding-left: 20px
 #table-of-contents, 
 #main-text,
 #figure-list
@@ -82,7 +87,7 @@ code, pre
 #table-of-contents
   width: 250px
   border-right: 1px solid $border-color
-  padding: 180px 50px 0px 20px
+  padding: 20px 50px 0px 20px
 #main-text
   width: 450px
   padding-left: 20px
@@ -90,6 +95,17 @@ code, pre
 #figure-list
   border-left: 1px solid $border-color
 
+
+#toc-trigger 
+  float: left
+  cursor: pointer
+  margin-right: 1em
+  margin-left: 0em
+  width: 1.7em
+  height: 1.4em
+  background: linear-gradient(to bottom, $text-color, $text-color 20%, white 20%, white 40%,  $text-color 40%, $text-color 60%, white 60%, white 80%, $text-color 80%, $text-color 100%)
+.breadcrumb
+  display: inline
 
 /* font override
 
@@ -105,7 +121,7 @@ code, pre
   .toc 
     h1, h2
       text-transform: uppercase
-      padding-top: 4px
+      margin-top: 4px
     h3, h4, h5, h6, h7
       font-style: italic
     a
@@ -117,17 +133,13 @@ code, pre
         margin-right: -50px
         padding-right: 50px
 
+
 #main-text
   a.figlink.active 
     padding: 4px 0px
     background-color: $highlight-background
     &:link, &:visited
-      color: #99C
       text-decoration: underline
-  .breadcrumb
-    margin-top: 0.5em
-    text-transform: uppercase
-    font-size: 10px
   .timestamp 
     margin-top: 6em
     text-align: right
@@ -139,6 +151,7 @@ code, pre
     img
       width: 100%
 
+
 #figure-list 
   .fig-in-figlist
     @include caption
@@ -148,12 +161,18 @@ code, pre
 
 
 @media (max-width: 1200px)
-
+  #menu-trigger
+    visibility: visible
+  #table-of-contents
+    z-index: 500
+    left: 0
 
 @media (max-width: 480px)
+  #menu-trigger
+    visibility: visible
   h1
     font-size: 20px
-    padding-top: 70px
+    margin-top: 70px
   .fig-in-text
     display: block
 

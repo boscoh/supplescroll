@@ -8,16 +8,15 @@
   - if page.title:
     %title {{ page.title }}
 %body
+  #navbar
+    #toc-trigger
+    - if page.breadcrumb:
+      .breadcrumb
+        {{ page.breadcrumb }}
+    %br{clear:'all'}
   #table-of-contents.touchscroll
-    #toc-header
-      %a{href:"/"} 
-        <>
-
   #main-text.touchscroll
     .relative_position
-      - if page.breadcrumb:
-        {{ page.breadcrumb }}
-      %hr
       {{ page.content }}
       .timestamp
         <i><a href='http://github.com/boscoh/supplescroll'>supplescroll</a></i>:sphinx theme
