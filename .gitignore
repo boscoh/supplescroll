@@ -3,3 +3,5 @@ supplescroll.egg-info
 *pyc
 build
 dist
+*scss
+MANIFEST*

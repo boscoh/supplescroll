@@ -41,10 +41,7 @@ body {
   height: 25px;
   line-height: 25px;
   width: 100%;
-  border-bottom: 1px solid #CCC;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px;
+  white-space: nowrap;
 }
 
 #toc-trigger {
@@ -65,6 +62,10 @@ body {
 }
 
 #navbar {
+  border-bottom: 1px solid #CCC;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
   text-transform: uppercase;
   border-bottom: 1px solid #CCC;
   margin-top: 3px;
