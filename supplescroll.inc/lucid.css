@@ -41,6 +41,7 @@ body {
   height: 25px;
   line-height: 25px;
   width: 100%;
+  white-space: nowrap;
 }
 
 #toc-trigger {

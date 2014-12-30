@@ -88,10 +88,7 @@ $back-color: $background-color;
   height: 25px;
   line-height: 25px;
   width: 100%;
-  border-bottom: 1px solid $border-color;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px; }
+  white-space: nowrap; }
 #toc-trigger {
   float: left;
   cursor: pointer;
@@ -104,6 +101,11 @@ $back-color: $background-color;
   width: 25px;
   height: 15px;
   background: linear-gradient(to bottom, $line-color, $line-color 20%, $back-color 20%, $back-color 40%,  $line-color 40%, $line-color 60%, $back-color 60%, $back-color 80%, $line-color 80%, $line-color 100%); }
+#navbar {
+  border-bottom: 1px solid $border-color;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px; }
 /* font override */
 #table-of-contents {
   font-size: 12px;

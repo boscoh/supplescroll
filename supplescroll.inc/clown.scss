@@ -68,6 +68,7 @@ $line-color: #336;
 $back-color: $title-color;
 #navbar {
   background-color: $back-color;
+  white-space: nowrap;
   color: $line-color;
   position: absolute;
   overflow: hidden;

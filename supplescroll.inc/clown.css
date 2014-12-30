@@ -82,6 +82,7 @@ code, pre {
 
 #navbar {
   background-color: #FF6;
+  white-space: nowrap;
   color: #336;
   position: absolute;
   overflow: hidden;
