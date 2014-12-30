@@ -100,6 +100,42 @@ code, pre {
   background-color: #edf0f2;
 }
 
+#navbar {
+  position: absolute;
+  overflow: hidden;
+  height: 25px;
+  line-height: 25px;
+  width: 100%;
+}
+
+#toc-trigger {
+  float: left;
+  cursor: pointer;
+  margin-right: 1em;
+  margin-left: 0em;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 15px;
+}
+
+#hamburger {
+  width: 25px;
+  height: 15px;
+  background: linear-gradient(to bottom, #fcfcfc, #fcfcfc 20%, #2980b9 20%, #2980b9 40%,
+    #fcfcfc 40%, #fcfcfc 60%, #2980b9 60%, #2980b9 80%, #fcfcfc 80%, #fcfcfc);
+}
+
+#navbar {
+  font-size: 16px;
+  background-color: #2980b9;
+  font-weight: 100;
+  text-align: left;
+  padding: 10px 20px;
+}
+#navbar, #navbar a:link, #navbar a:visited {
+  color: #fcfcfc;
+}
+
 #table-of-contents {
   font-size: 12px;
   font-weight: normal;
@@ -126,33 +162,6 @@ code, pre {
 }
 #table-of-contents .toc a.active {
   background-color: #5C5A5A;
-}
-
-#toc-trigger {
-  float: left;
-  cursor: pointer;
-  margin-right: 1em;
-  margin-left: 0em;
-  width: 1.7em;
-  height: 20px;
-  background: linear-gradient(to bottom, #fcfcfc, #fcfcfc 20%, #2980b9 20%, #2980b9 40%,
-    #fcfcfc 40%, #fcfcfc 60%, #2980b9 60%, #2980b9 80%, #fcfcfc 80%, #fcfcfc);
-}
-
-#navbar {
-  position: absolute;
-  font-size: 16px;
-  background-color: #2980b9;
-  font-weight: 100;
-  text-align: left;
-  padding: 10px 20px;
-}
-#navbar, #navbar a:link, #navbar a:visited {
-  color: #fcfcfc;
-}
-
-.breadcrumb {
-  display: inline;
 }
 
 #main-text a.figlink.active {
