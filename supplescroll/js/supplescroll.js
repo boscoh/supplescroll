@@ -5,9 +5,9 @@
 
   is_onscreen = function(parent_div, div) {
     var x1, x2, y1, y2;
-    x1 = parent_div.scrollTop();
+    x1 = parent_div.offset().top;
     x2 = x1 + parent_div.height();
-    y1 = div.position().top;
+    y1 = div.offset().top;
     y2 = y1 + div.outerHeight(true);
     if (x1 <= y1 && y1 <= x2) {
       return true;
@@ -281,7 +281,7 @@
       };
       figlist = $(this.figlist_href);
       text = $(this.text_href);
-      if (figlist.css('display') === 'none') {
+      if (figlist.css('visibility') === 'hidden') {
         target = text;
       } else {
         target = figlist;

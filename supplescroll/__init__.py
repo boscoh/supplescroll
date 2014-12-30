@@ -69,10 +69,21 @@ def copy_theme_files(theme, target_dir):
   if not os.path.isdir(target_dir):
     os.makedirs(target_dir)
   for f in glob.glob(os.path.join(supplescroll_dir, 'js/*')):
+    coffee = f.replace('.js', '.coffee')
+    if os.path.isfile(coffee):
+      if os.path.getmtime(coffee) > os.path.getmtime(f):
+        cmd = 'coffee -c ' + coffee
+        os.system(cmd)
     shutil.copy(f, target_dir)
   for f in glob.glob(os.path.join(supplescroll_dir, 'css/*')):
     shutil.copy(f, target_dir)
   for f in glob.glob(os.path.join(theme_dir, '*')):
+    if f.endswith('.css'):
+      sass = f.replace('.css', '.sass')
+      if os.path.isfile(sass):
+        if os.path.getmtime(sass) > os.path.getmtime(f):
+          cmd = 'sassin ' + sass + ' ' + f
+          os.system(cmd)
     shutil.copy(f, target_dir)
 
 

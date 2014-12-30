@@ -10,9 +10,9 @@
 
 
 is_onscreen = (parent_div, div) ->
-  x1 = parent_div.scrollTop()
+  x1 = parent_div.offset().top
   x2 = x1 + parent_div.height()
-  y1 = div.position().top
+  y1 = div.offset().top 
   y2 = y1 + div.outerHeight(true)
   if x1 <= y1 and y1 <= x2
     return true
@@ -253,7 +253,7 @@ class FigureList
         @scroll_to_next_figlink()
     figlist = $(@figlist_href)
     text = $(@text_href)
-    if figlist.css('display') == 'none'
+    if figlist.css('visibility') == 'hidden'
       target = text
     else
       target = figlist
