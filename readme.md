@@ -131,10 +131,8 @@ The format consists of a:
 1. header in [YAML](http://www.keleshev.com/yaml-quick-intoduction)
 2. body in [markdown](https://daringfireball.net/projects/markdown/basics)
 
-In the YAML section, the string in `title` will be put in the webpage title, and the string in `breadcrumb` will be put in the banner at the top of the page.
 
-
-### Title & Banner
+### YAML header
 
 The `title` is the text that goes in the Window title. 
 
@@ -281,8 +279,9 @@ Of course, you can just write the html yourself as in (article.html [article.htm
 7. references should be labelel `<a id="ref*"></a>` and put in  figure `<div>`.
 
 
-<div id='fig-html'> <code>article.html</code> - key ingredients of an HTML article page that works with the lucid theme.
-<pre>
+<div id='fig-html'> 
+  <code>article.html</code> - key ingredients of an HTML article page that works with the lucid theme.
+  <pre>
 &lt;html&gt;
 &lt;head&gt;
   &lt;title&gt;My Article in Window&lt;/title&gt;
@@ -355,12 +354,8 @@ Of course, you can just write the html yourself as in (article.html [article.htm
     &lt;/div&gt;
 
 &lt;/body&gt;
-&lt;script src=&quot;supplescroll.compiled.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
-  </pre>
-  </div>
-
-
-
+&lt;script src=&quot;supplescroll.compiled.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt; </pre>
+</div>
 
 
 
