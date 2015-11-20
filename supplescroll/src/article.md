@@ -1,5 +1,5 @@
-title: My Article in Window
-breadcrumb: <a href="http://github.com/boscoh/supplescroll">supplescroll</a> > My Article 
+title: My Article
+---
 ---
 # This is my Article in markdown
 

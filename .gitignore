@@ -5,3 +5,5 @@ build
 dist
 *scss
 MANIFEST*
+supplescroll/src/node_modules
+supplescroll/src/*scss

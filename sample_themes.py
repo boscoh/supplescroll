@@ -19,10 +19,9 @@ else:
   for html, theme in [
       ('index.html', 'dark'),
       ('sample2.html', 'light'),
-      ('sample3.html', 'lucid'),
-      ('sample4.html', 'yeolde'),
-      ('sample5.html', 'clown'),
-      ('sample6.html', 'sphinx'),
+      ('sample3.html', 'yeolde'),
+      ('sample4.html', 'clown'),
+      ('sample5.html', 'sphinx'),
     ]:
     print html
     supplescroll.make_html(theme, 'readme.md', html)

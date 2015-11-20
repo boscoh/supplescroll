@@ -1,7 +1,8 @@
 title: supplescroll documentation
+banner: supplescroll documentation
+---
 
----
----
+
 
 
 
@@ -9,27 +10,44 @@ title: supplescroll documentation
 
 _scrolling articles to your heart's delight_
 
-> Supplescroll converts markdown into an integrated HTML page with an auto-generated table of contents and column of figures, stitched  together with some smooth and supple scrolling.
+> Supplescroll is a javascript plugin that converts a plain HTML document into an interactive document with auto-generated table-of-contents and easy-to-read figures and references.
 
-It turns this plain documentation in [markdown](https://github.com/boscoh/supplescroll/blob/master/readme.md) into this [interactive webpage](http://boscoh.github.com/supplescroll).
+It turns this [markdown documentation](https://github.com/boscoh/supplescroll/blob/master/readme.md) into this [interactive webpage](http://boscoh.github.com/supplescroll).
 
 Features:
 
 - table of contents generated from headers
 - figure list generated from `<div>`s
-- back links of figures to references in text
-- smooth scrolling
-- table of contents aware of text position
-- the URL hashes respond to the text
+- back links are generated to figure-links in text
+- context aware autoscrolling of figures and toc
+- movable dividers of columns
+- URL hashes added to all headers
+- iOS-aware and responsive-web themes
+ 
+Available themes:
 
-iOS-aware responsive-web themes:
+  - `dark` ([sample](index.html))
+  - `light` ([sample](sample2.html))
+  - `yeolde` ([sample](sample3.html))
+  - `clown` ([sample](sample4.html))
+  - `sphinx` ([sample](sample5.html))
 
-  - `dark` ([sample](http://boscoh.github.com/supplescroll/index.html))
-  - `light` ([sample](http://boscoh.github.com/supplescroll/sample2.html))
-  - `lucid` ([sample](http://boscoh.github.com/supplescroll/sample3.html))
-  - `yeolde` ([sample](http://boscoh.github.com/supplescroll/sample4.html))
-  - `clown` ([sample](http://boscoh.github.com/supplescroll/sample5.html))
-  - `sphinx` ([sample](http://boscoh.github.com/supplescroll/sample6.html))
+
+
+
+
+## Usage
+
+Once the `article.md` [article.md](#fig-markdown) is written, then:
+
+    > supplescroll article.md 
+
+Which makes `article.html`. Open it. To choose another theme with your choice of output:
+
+    > supplescroll -o colorful.html article.md clown
+
+
+
 
 
 ## Installation
@@ -56,28 +74,30 @@ And open `article.html`.
 
 
 
+
+
 ## Source Code
 
 You can browse the code at
 
 &nbsp;&nbsp;&nbsp; <http://github.com/boscoh/supplescroll>
 
-Please, fork and pull-request. 
+Please fork and pull-request. New themes welcome!
 
-New themes particularly welcome!
 
-Supplescroll was inspired by Ariel Flesier's [jquery.ScrollTo](http://plugins.jquery.com/project/ScrollTo) library.
 
 
 
 ## Write Article with Markdown
 
-`supplescroll` uses the `embellish` static web-site generator as the build engine. Following [embellish](http://boscoh.github.com/embellish), articles are written using the markdown/yaml format, for example in [article.md](#fig-markdown).
+`supplescroll` uses a classic YAML/markdown format to convert your documents into HTML. An example is in [article.md](#fig-markdown):
 
-<div id="fig-markdown"> <code>article.md</code> - example of an article in supplescroll
-<pre>
-title: My Article
----
+<div id="fig-markdown"> 
+	<code>article.md</code> - example of an article in supplescroll
+	<pre>
+
+title: My Article in Window Title
+banner: My Article Heading in Page
 ---
 # This is my Article in markdown
 
@@ -101,15 +121,24 @@ a video [](#fig-youtube)
   Link to youtube
   &lt;br&gt;&lt;br&gt;
   &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/Fk5reVYChlo?list=FLnRk0rt9QwA9a_mmCvlfXDw&amp;start=52&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;</pre>
-</div>
+&lt;/div&gt;
 
+	</pre>
+</div>
 
 The format consists of a: 
 
 1. header in [YAML](http://www.keleshev.com/yaml-quick-intoduction)
-2. an excerpt
 2. body in [markdown](https://daringfireball.net/projects/markdown/basics)
+
+In the YAML section, the string in `title` will be put in the webpage title, and the string in `breadcrumb` will be put in the banner at the top of the page.
+
+
+### Title & Banner
+
+The `title` is the text that goes in the Window title. 
+
+The `banner` string is inserted into the banner part of the page.
 
 
 ### Headers
@@ -120,55 +149,48 @@ Write the text in markdown, making sure to use proper markdown headers, which wi
     ## A Secondary Header
 
 
-### Code and Code Blocks
-
-The way that styles are structured, use `<pre>` for a multi-line block, and `<code>` for inline references. In particular `<pre>` blocks have been styled to not exceed the widths of the main text column. If the internal width of the main text column is too wide then the Scroll.To module will cause unseemly horizontal scrolling when scrolling to figure links.
-
-
 ### Figures
 
-To create a figure, you must escape markdown with a `<div>` tag, and give the `<div>` an appropriate `id`:
+To create a figure, you must escape markdown with a `<div>` tag, and give the `<div>` an appropriate `id="fig*"`.
+
+The plain text after the `<div>` tag serves as a figure label, and this can be differentiated by latter text that is wrapped in `<pre>` or `<code>` tags.
+
+It is important to note that if you want to display HTML-code, you need to escape special HTML characters (`<`, `&`). You can do this wiht an [HTML-escape sanitizer](http://www.freeformatter.com/html-escape.html).
+
+_Code Blocks_. This is to make large blocks of code that the reader might want to look at with the main text. Use `<pre>` for a multi-line block, and `<code>` for inline references. These will be wrapped in a scrollable style. Make sure you escape HTML tags. Here's an example:
 
     <div id='fig-code'> 
       Code Fragment Label
-      <pre>Hello World</pre>
+      <pre>
+      Hello World
+      &lt;escaped tag&rt;   </pre>
     </div>
 
 which renders as [Code Fragment](#fig-code).
 
 <div id='fig-code'> 
   Code Fragment 
-  <pre>Hello World</pre>
+  <pre>
+  Hello World
+  &lt;escaped tag&gt;  </pre>
 </div>
 
-Here, we have an examlple of a code block. 
 
-Basically, any text before the `<pre>` and `<code>` tags can be used as a figure label.
-
-Note: if you want to display HTML-code, make sure you escape special HTML characters (`<`, `&`) properly. Use an [HTML-escape sanitizer](http://www.freeformatter.com/html-escape.html).
-
-
-### Images
-
-You'd probably want to insert a photo:
+_Images_. To insert photos with a label, you can add a label as text before the `<img>` tag in the figure:
 
     <div id='fig-photo'>
       Photo Label <br>
       <img src='photo.jpg'>
     </div>
 
-which would gives [Photo Insert](#fig-photo). 
+which gives [Photo Insert](#fig-photo). 
 
 <div id='fig-photo'> 
   Photo Insert <br>
   <img src='photo.jpg'>
 </div>
 
-Text before the `<img>` tag works as a figure label.
-
-### Youtube Videos
-
-Or how about a youtube video:
+_Youtube Embeds_. Text before the `<img>` tag works as a figure label. `supplescroll` knows how to resize embeds properly:
 
     <div id='fig-youtube'>
       Label to Youtube Video
@@ -184,315 +206,199 @@ which renders as [Youtube Embedding](#fig-youtube).
   <iframe src="http://www.youtube.com/embed/Fk5reVYChlo?list=FLnRk0rt9QwA9a_mmCvlfXDw&start=52" frameborder="0" allowfullscreen></iframe>
 </div>
 
-Text before the `<img>` tag works as a figure label. The `supplescroll` resize functions knows how to resize embedded youtube videos properly.
 
 
 
 ### Figure links
 
-In the main text, links to figures are identified as relative links to `#fig*`:
+In the main text, links to figures are identified as relative links to `#fig*`. To link to the above few figures, we can type:
 
-    I will talk about a code fragment [](#fig-code-fragment).
+    - link to code [](#fig-code),  
+    - link to photo [](#fig-photo),  
+    - link to youtube [](#fig-youtube).
 
-These will be properly formatted, and linked to the relevant figure.
+which will generate: 
 
-
-### Compile to HTML
-
-Once the article is written, run `supplescroll` with the default `lucid` theme:
-
-    > supplescroll article.md 
-
-Which makes `article.html`. The function webpage, which uses the lucid theme, and refers to the files in a supplementary directory `supplescroll.inc`:
-
-- `article.html`
-- `jquery-2.0.3.js`
-- `jquery.scrollTo.js`
-- `supplescroll.js`
-- `supplescroll.css`
-- `page.js`
-- `lucid.css`
-
-There are several other themes provided in the package:
-
-  - `dark` ([sample](http://boscoh.github.com/supplescroll/index.html))
-  - `light` ([sample](http://boscoh.github.com/supplescroll/sample2.html))
-  - `lucid` ([sample](http://boscoh.github.com/supplescroll/sample3.html))
-  - `yeolde` ([sample](http://boscoh.github.com/supplescroll/sample4.html))
-  - `clown` ([sample](http://boscoh.github.com/supplescroll/sample5.html))
-  - `sphinx` ([sample](http://boscoh.github.com/supplescroll/sample6.html))
-
-You can choose another theme, say `clown` with your choice of output `.html` name:
-
-    > supplescroll -o colorful_article.html article.md clown
+  - link to code [](#fig-code),  
+  - link to photo [](#fig-photo),  
+  - link to youtube [](#fig-youtube).
 
 
 
+### References
 
-## Write Article directly in HTML
+References are similar to figures, in that you can push references into the third column, and back-links are generated. As such you list all your references in a `<div>` for a figure, which is illustrated with this code snippet [](#fig-reference-code). 
 
-Of course, you don't have to use `supplescroll` to build your HTML file, you can write it yourself. To use the lucid theme, you'd make an HTML file like `article.html` in [article.html](#fig-html).
+Note the references are `<a id="ref*"></a>` tags that are wrapped by a `<div>`. This allows the correct placement of the reference back-link at the beginning of the `<div>`.
+
+In the main text, links to a reference are written:
+
+    Thus some text can be liberally sprinkled  
+    with a reference to (google [](#ref-1)),  
+    or a reference to (github [](#ref-2)),  
+    or a reference to (boscoh [](#ref-3)).
+
+Thus some text can be liberally sprinkled with a reference to (google [](#ref-1)), or a reference to (github [](#ref-2)), or a reference to (boscoh [](#ref-3)).
+
+<div id="fig-reference-code"> 
+  example code for references
+  <pre>
+&lt;div id=&quot;fig-references&quot;&gt;
+    &lt;h1&gt;References&lt;/h1&gt;
+    &lt;div&gt;
+        &lt;a id=&quot;ref-1&quot;&gt;&lt;/a&gt;This is the detail to the linked reference, maybe it's a link&lt;a href=&quot;http://boscoh.com&quot;&gt;boscoh.com&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;a id=&quot;ref-2&quot;&gt;&lt;/a&gt;This is the detail to the linked reference, maybe it's a link&lt;a href=&quot;http://boscoh.com&quot;&gt;boscoh.com&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;a id=&quot;ref-3&quot;&gt;&lt;/a&gt;This is the detail to the linked reference, maybe it's a link&lt;a href=&quot;http://boscoh.com&quot;&gt;boscoh.com&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+  </pre>
+</div>
+
+
+
+
+
+## Write Article in HTML
+
+Of course, you can just write the html yourself as in (article.html [article.html](#fig-html). The only things you need to do are:
+
+1. include a css in the header `light.css`.
+
+2. include the script at the bottom `supplescroll.compiled.js`
+
+3. (optionally) include the banner as a top level `<div id="banner">`.
+
+4. headers will be incorporated into the table-of-contents.
+
+5. `<div id="fig*"` will be pulled into the figure column.
+
+6. `<a href="fig*">` and `<a href="ref*">` will be cross-referenced.
+
+7. references should be labelel `<a id="ref*"></a>` and put in  figure `<div>`.
+
 
 <div id='fig-html'> <code>article.html</code> - key ingredients of an HTML article page that works with the lucid theme.
 <pre>
-&lt;!DOCTYPE html&gt;
+&lt;html&gt;
 &lt;head&gt;
-  &lt;meta content='initial-scale=1.0' name='viewport' /&gt;
-  &lt;link href='supplescroll.inc/supplescroll.css' rel='stylesheet' /&gt;
-  &lt;link href='supplescroll.inc/lucid.css' rel='stylesheet' /&gt;
-
+  &lt;title&gt;My Article in Window&lt;/title&gt;
+  &lt;link href=&quot;light.css&quot; rel=&quot;stylesheet&quot;/&gt;
 &lt;/head&gt;
 &lt;body&gt;
-  &lt;div class='sidebar touchscroll'&gt;&lt;/div&gt;
-  &lt;div class='text touchscroll'&gt;
-    &lt;div class='relative_position'&gt;
-
-       &lt;!-- YOUR TEXT GOES HERE! --&gt;
-       &lt;h1&gt; This is My Article Header &lt;/h1&gt;
-
-       &lt;p&gt;I will talk about a code fragment
-       &lt;a href=&quot;#fig-code-fragment&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-      &lt;div id=&quot;fig-code-fragment&quot;&gt; A Code Fragment
-        &lt;pre&gt;Hello World&lt;/pre&gt;
-      &lt;/div&gt;
-
+    &lt;div id=&quot;banner&quot;&gt;
+        &lt;a href=&quot;http://github.com/boscoh/supplescroll&quot;&gt;
+            supplescroll
+        &lt;/a&gt; 
+        &amp;gt; My Article
     &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class='figures touchscroll'&gt;&lt;/div&gt;
+
+    &lt;h1&gt;My Article with Supplescroll&lt;/h1&gt;
+
+    &lt;h2&gt;A sub-heading&lt;/h2&gt;
+
+    This is example code
+
+    &lt;h3&gt;Figure links&lt;/h3&gt;
+
+    &lt;p&gt;I will talk about code 
+    &lt;a href=&quot;#fig-code-fragment&quot;&gt;&lt;/a&gt;,
+    a photo &lt;a href=&quot;#fig-photo&quot;&gt;&lt;/a&gt;, 
+    and a video &lt;a href=&quot;#fig-youtube&quot;&gt;&lt;/a&gt;.
+
+    &lt;h3&gt;Reference links&lt;/h3&gt;
+    With some links with references 
+    (to &lt;a href=&quot;#ref-1&quot;&gt;this&lt;a&gt;), 
+    to (&lt;a href=&quot;#ref-2&quot;&gt;that&lt;a&gt;), 
+    and to (&lt;a href=&quot;#ref-3&quot;&gt;this one&lt;a&gt;).
+
+
+    &lt;div id=&quot;fig-code-fragment&quot;&gt; 
+        A Code Fragment 
+        &lt;pre&gt;Hello World&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;div id=&quot;fig-photo&quot;&gt;
+        &lt;img src=&quot;photo.jpg&quot;/&gt;
+    &lt;/div&gt;
+
+    &lt;div id=&quot;fig-youtube&quot;&gt;
+        Link to youtube&lt;br/&gt;&lt;br/&gt;
+        &lt;iframe allowfullscreen=&quot;&quot; frameborder=&quot;0&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/Fk5reVYChlo?list=FLnRk0rt9QwA9a_mmCvlfXDw&amp;amp;start=52&quot; width=&quot;560&quot;&gt;&lt;/iframe&gt;
+    &lt;/div&gt;
+
+    &lt;div id=&quot;fig-references&quot;&gt;
+        REFERENCES
+        &lt;br&gt;
+        &lt;br&gt;
+        &lt;div&gt;
+            &lt;a id=&quot;ref-1&quot;&gt;&lt;/a&gt;
+            &lt;a href=&quot;http://google.com&quot;&gt;http://google.com&lt;/a&gt;
+            - a link to this well-known search engine.
+        &lt;/div&gt;
+        &lt;br&gt;
+        &lt;div&gt;
+            &lt;a id=&quot;ref-2&quot;&gt;&lt;/a&gt;
+            &lt;a href=&quot;http://github.com&quot;&gt;http://github.com&lt;/a&gt;
+            - where the source-code is stored.
+        &lt;/div&gt;
+        &lt;br&gt;
+        &lt;div&gt;
+            &lt;a id=&quot;ref-3&quot;&gt;&lt;/a&gt;
+            &lt;a href=&quot;http://boscoh.com&quot;&gt;http://boscoh.com&lt;/a&gt;
+            - the website of the author of this package.
+        &lt;/div&gt;
+        &lt;br&gt;
+    &lt;/div&gt;
+
 &lt;/body&gt;
-&lt;script src='supplescroll.inc/jquery-2.0.3.js' type='text/javascript'&gt;&lt;/script&gt;
-&lt;script src='supplescroll.inc/jquery.scrollTo.js' type='text/javascript'&gt;&lt;/script&gt;
-&lt;script src='supplescroll.inc/supplescroll.js' type='text/javascript'&gt;&lt;/script&gt;
-&lt;script src='supplescroll.inc/page.js' type='text/javascript'&gt;&lt;/script&gt;
-</pre>
-</div>
+&lt;script src=&quot;supplescroll.compiled.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+  </pre>
+  </div>
 
-This shows all the necessary declarations, style-sheets & javascript modules.
 
-The text of course will be written using HTML markup, with `<p>` tags and `<i>` tags and such impediments to writing.
-
-As above, header tags `<h1>`'s etc., will be used to build the table of contents:
-
-    <h1> This is My Article Header </h1>
-
-Any `<div>`s with `id="fig*"` will be copied into the figure list.
-
-    <div id="fig-code-fragment"> A Code Fragment
-      <pre>Hello World</pre>
-    </div>
-
-This is essentially what is generated with `supplescroll` in the section above.
 
 
 
 
 ## Theme it Yourself
 
-If you are familiar with the holy triumvirate of HTML/CSS/javascript, you might want to theme your own templates. To do this, you'll have to understand the internals of supplescroll so that all the HTML elements can happily work together. 
-
-Note: the supplescroll modules are actually written in coffeescript, then compiled to javascript.
-
-Below, we'll discuss how supplescroll works with respect to the `lucid.haml` theme in the `themes/lucid` directory in the `supplescroll` directory.
+If you are familiar with the holy triumvirate of HTML/CSS/javascript, you might want to theme your own templates. Just follow any of the css styles and tweak. At the moment, you'll have to hand-edit your HTML to link in your css.
 
 
-
-### Page Loader
-
-The entry point into the javascript on your page is provided by `page.js`. It provides the main function that triggers the `supplescript.js` javascript module through the `init` function.
-
-    $(window).ready(init) 
-   
-The `init` function [init function](#fig-init):
-
-<div id="fig-init"> <code>init function</code> - page intialization function in coffeescript
-<pre>
-init = () ->
-  text = $(text_href)
-  toc = $(toc_href)
-  figlist = $(figlist_href)
-  text_width = supplescroll.get_outer_width(text)
-
-  supplescroll.init_touchscroll()
-  supplescroll.build_page(toc_href, text_href, figlist_href)
-
-  $(window).resize(resize_window)
-  resize_window()
-</pre>
+<div id="fig-references">
+    REFERENCES
+    <br>
+    <br>
+    <div>
+        <a id="ref-1"></a><a href="http://google.com">http://google.com</a> - a link to this well-known search engine.
+    </div>
+    <br>
+    <div>
+        <a id="ref-2"></a><a href="http://github.com">http://github.com</a> - where the source-code is stored.
+    </div>
+    <br>
+    <div>
+        <a id="ref-3"></a><a href="http://boscoh.com">http://boscoh.com</a> - the website of the author of this package.
+    </div>
+    <br>
 </div>
 
-which is responsible for:
 
-1. declaring page variables
-2. calling the page builder 
-2. registering the resize function
-3. calling the touchscroll initializer
 
 
 
-### Page Builder
+## Changelog
 
-The page builder is in the module `supplescroll.js`, which obviously, must be loaded first via the `<script>` tag in the HTML file. The function to build the page is:
+- 2.0 (16/11/2015)
+    - written in ES6
+	- compiled into single js using browserify
+	- breadcrumb
+    - builds page with javascript
+    - references
+    - adjustable sliders
 
-    supplescroll.build_page(toc_href, text_href, figlist_href)
-     
-The three parameters are hrefs referring to an element in the DOM of the HTML page. If `toc_href` is empty string, the table of contents will not be built. Similarly for `figlist_href`.
-
-The table of contents is built from the header elements (`<h1>`, `<h2>` etc.) in the `text_href` and inserted into the element referred to by `toc_href`.
-
-The text is then scanned for figures, which are identified as `<div>`'s that have id's in the form `fig*`. These `<div>`'s are then copied in the figure list. The original `<div>`'s are hidden, but can be displayed by CSS class changes.
-
-It's important to ensure that each figure `<div>`s has a unique id.
-
-Then the text is scanned for `<a>` links that point to internal href's in the form `#fig*`. These links are linked to the corresponding figures in the figure list.
-
-The figure `<div>` id's are renamed consecutively from `(figure 1)` onwards.
-
-Finally, the location url is scannd and the initial header is assigned to the hash. 
-
-
-
-### Smooth Scrolling with ScrollTo
-
-One of the things that the page builder does is to put in custom callbacks for links, which use the jquery.ScrollTo plugin to smoothly  scroll to the text or figure of interest.
-
-However, for that to work, the `<div>` container must be sized properly. That is the explicit size of the `<div>` must be smaller than the onscreen window and have the CSS attribute
-
-    overflow:auto
-
-Furthermore, the page builder will add suffcient white-space to the end of these `<div>`s so that scrolling will always take the child element of interest to the top of the `<div>`.
-
-
-
-### Scrolling Callback
- 
-The supplescroll module overrides the `scroll` callback function in the main text element in order to detect which headers and figures are currently onscreen. On scrolling, the main text will scan for the first figure link, and if a new one pops up, will scroll the figure list to the that figure.
-
-For the `scroll` callback to work, it is __imperative__ that the main text element has the CSS style:
-
-    position:relative
-
-Otherwise, the positions of elements in the main text cannot be calculated correctly.
-
-To do this, wrap the main-text in the HTML with the utility class `.relative_position`
-
-
-
-### Overriding the resize function
-
-The themes in supplescroll use custom resize functions to resize columns. This is optional, as you could do resizing through CSS.
-
-As a responsible web developer, you might ask, why would you override CSS for resizing?
-
-Well, I wanted multiple columns that spanned the whole page, where some columns had fixed widths, and others would expand to fill the remaining space. As well, I wanted the columns to fill the height of the page, but also to drop certain columns for mobile devices.
-
-Alas, you cannot do all that with CSS. 
-
-So I wrote my own resize function. Here's a snippet for three-column resize in this [resizing code fragment](#fig-resize-3)
-
-
-<div id="fig-resize-3"> resizing code fragment 
-<pre>
-toc.css('display','block')
-figlist.css('display','block')
-
-# this function allows for some padding in the 
-# body to be filter through the resize function
-body_padding_left = parseInt($(document.body).css('padding-left'))
-body_padding_right = parseInt($(document.body).css('padding-right'))
-
-supplescroll.set_outer_width(text, text_width)
-supplescroll.set_left(toc, body_padding_left)
-
-left = supplescroll.get_right(toc)
-supplescroll.set_left(text, left)
-
-left = supplescroll.get_right(text)
-supplescroll.set_left(figlist, left)
-
-figlist_width = \
-    window_width \
-    - body_padding_left \
-    - body_padding_right \
-    - supplescroll.get_outer_width(toc) \
-    - supplescroll.get_outer_width(text)
-supplescroll.set_outer_width(figlist, figlist_width)
-</pre>
-</div>
-
-First, we make sure `toc` (table of contents) and `figlist` (figure list) are switched on with `display:block`. To turn these off in 1-column display, these would be set to `display:none`.
-
-In three column mode, we want the main text to have a fixed width `text_width` for easy reading. 
-
-One of the key to manually resizing is to fit the columns exactly onto the width of the window. This will prevent any bouncing effect of the page. This requires first that the CSS of the body and html to:
-
-    body, html {
-      width: 100%;
-      height: 100%;
-      overflow: hidden
-    }
-
-Then, we need to set all the resizable elements to `position:absolute`, which will allow the helper functions to work in the following [Positioning Functions](#fig-helper-fns).
-
-<div id="fig-helper-fns"> Positioning Functions
-  <pre>
-# routines to get the absolute position of a jquery element
-supplescroll.get_left
-supplescroll.get_top
-supplescroll.get_right
-supplescroll.get_bottom
-
-# routines to set the absolute position of a jquery element
-supplescroll.set_left
-supplescroll.set_top
-
-# routines to get the dimensions of a jquery element
-supplescroll.get_outer_width
-supplescroll.get_outer_height
-
-# routines to set the dimensions of a jquery element
-supplescroll.set_outer_width
-supplescroll.set_outer_height
-  </pre>
-</div>
-
-These helper functions can be used in combination with each other to get perfect placement in the above [resizing code fragment](#fig-resize-3). For example, by getting the right edge of `toc` by `get_right`, and assigning this right edge to the left edge of `text` with `set_left`, we can place `toc` right next to `text`.
-
-We can also calculate exactly the `figlist_width` needed to fill the remaining space, and assign this to `figlist` via `set_outer_width`.
-
-Finally, the resize function looks for images in the `figlist` and resizes them to fit the column. If the column is big enough, then the image will be displayed at its natural dimensions. Simarly, youtube videos will be resized until it reaches a maximum size. A fixed aspect ratio is applied to all youtube videos.
-
-Note: Firefox sometimes screws up the sizes unless the `<doctype>` in the `<head>` is defined to html.
-
-
-
-### Touchscroll on IOS
-
-Touch-based scrolling of webpages on iOS devices is really nice. However, the default scrolling in iOS does not work well with the `ScrollTo` library. To make it work properly, you need to do two things:
-
-1. add the class `.touchscroll` to scrollale elements
-2. initialize with `supplescroll.init_touchscroll()` 
-
-The `.touchscroll` class enables inertia touch-based scrolling through the `-webkit-overflow-scrolling:touch` attribute, and sets `overflow:auto`. 
-
-`init_touchscroll()` shuts down inertial scrolling of all elements except the ones indicated by `.touchscroll`. As well, it adds a hack to avoid an unwanted default behavior of iOS. Normally, if an element has been scrolled to the edge of its scrolling area, this will trigger the inertial scrolling of its parent, and so on up, until the whole page scrolls. To avoid this `init_touchscroll()` overrides the `touch` callback with a function that prevents any `.touchscroll` element from reaching its edge.
-
-
-### Overriding styles
-
-All the selections are displayed through CSS class changes, with the `.active` class applied to the active header in the `#table-of-contents`, the active `.figlink` in the `#main-text`, and the active `.fig-in-list` in `#figure-list`. These classes can be overriden to apply the display of your choice.
-
-### Changelog
-
-0.9.1.1
-  - stays at top of text on load
-  - text width in 3 column is always the same
-
-0.9.1
-  - embellish called that handles single files
-
-<br>
-<br>
-
-&copy; 2014, Bosco K. Ho.
 

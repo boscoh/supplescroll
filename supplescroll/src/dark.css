@@ -89,10 +89,7 @@ code, pre {
   height: 25px;
   line-height: 25px;
   width: 100%;
-  border-bottom: 1px solid #595959;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px;
+  white-space: nowrap;
 }
 
 #toc-trigger {
@@ -110,6 +107,13 @@ code, pre {
   height: 15px;
   background: linear-gradient(to bottom, #AAA, #AAA 20%, #4A5059 20%, #4A5059 40%, #AAA 40%,
     #AAA 60%, #4A5059 60%, #4A5059 80%, #AAA 80%, #AAA);
+}
+
+#navbar {
+  border-bottom: 1px solid #595959;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
 }
 
 #table-of-contents {
@@ -148,7 +152,6 @@ code, pre {
   background-color: #456;
   margin-top: 6em;
   text-align: right;
-  border-top: 1px solid #CCC;
 }
 #main-text a.figlink.active:link, #main-text a.figlink.active:visited {
   color: #99C;
