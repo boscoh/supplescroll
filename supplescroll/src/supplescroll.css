@@ -110,3 +110,8 @@ a.figlink.active:link, a.figlink.active:visited {
   padding-bottom: 0px;
   width: '';
 }
+
+#divider1, #divider2 {
+  position: absolute;
+  z-index: 100;
+}

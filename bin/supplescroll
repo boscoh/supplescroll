@@ -1,24 +1,32 @@
 #!/usr/bin/env python
  
 import os
-import supplescroll
+import glob
 from docopt import docopt
+import supplescroll
+
+theme = 'light'
+
+# get available themes from file
+supple_dir = os.path.dirname(supplescroll.__file__)
+fnames = glob.glob(os.path.join(supple_dir, 'src', '*.css'))
+fnames = map(os.path.basename, fnames)
+themes = map(lambda f: os.path.splitext(f)[0], fnames)
+themes.remove(theme)
+themes.remove('supplescroll')
+themes.insert(0, theme + '(default)')
+themes = ', '.join(themes)
 
 
 __doc__ = """
-Creates HTML from markdown with auto-generated TOC, figure list
-and supple scrolling.
+Makes HTML with auto-generated TOC, figure list from markdown
 
 Usage: supplescroll [-o <html>] <markdown> [<theme>]
 
 Options:
- <theme>     Theme for HTML page. See below for available themes.
+ <theme>     %s
  -o <html>   Output HTML filename
-
-Themes:
-%s
-
-""" % '\n'.join(' - '+t for t in supplescroll.themes)
+""" % themes
 
 
 if __name__ == "__main__":
@@ -26,16 +34,16 @@ if __name__ == "__main__":
   in_markdown = arg['<markdown>']
   if not os.path.isfile(in_markdown):
     raise Exception("%s not found" % in_markdown)
-  theme = 'lucid'
-  if arg['<theme>']:
-    theme = arg['<theme>']
-  if arg['-o']:
+
+  if arg['<theme>']:  
+    theme = arg['<theme>'] 
+
+  if arg['-o']: 
     html = arg['-o']
-  else:
+  else: 
     html = os.path.splitext(arg['<markdown>'])[0] + '.html'
-  print html
+
   supplescroll.make_html(theme, in_markdown, html)
-
-
+  print "Made", html
 
 
