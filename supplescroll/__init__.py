@@ -40,7 +40,7 @@ def convert_unicode_to_html(line):
 def insert_includes_to_html(theme, html):
   soup = bs4.BeautifulSoup(open(html, 'Ur'), 'html5lib')
 
-  supplescroll_js = 'supplescroll.compiled.js'
+  supplescroll_js = 'supplescroll.min.js'
   theme_css = theme + '.css'
   result = soup.find('link', attrs={'href':theme_css})
   if not result:
@@ -83,6 +83,7 @@ def make_html(theme, in_markdown, html):
   page_jinja2 = """\
   <html>
   <head>
+  <meta content="initial-scale=1.0" name="viewport"/>
   <title>{{ page.title }}</title>
   </head>
   <body>

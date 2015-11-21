@@ -92,24 +92,6 @@ function set_left( div, left ) {
     div.css( 'left', left )
 }
 
-function is_onscreen( parent_div, div ) {
-
-    let x1 = parent_div.offset().top
-    let x2 = x1 + parent_div.height()
-    let y1 = div.offset().top
-    let y2 = y1 + div.outerHeight( true )
-    if ( x1 <= y1 && y1 <= x2 )
-        return true
-    if ( x1 <= y2 && y2 <= x2 )
-        return true
-    if ( y1 <= x1 && x1 <= y2 )
-        return true
-    if ( y1 <= x2 && x2 <= y2 )
-        return true
-    return false
-
-}
-
 function init_touchscroll() {
 
     // block whole document from bouncing
@@ -157,6 +139,12 @@ class FigureList {
         this.text_href = text_href
         this.figlist_href = figlist_href
 
+        this.text = $( this.text_href )
+        this.figlist = $( this.figlist_href )
+        this.toc = $( this.toc_href )
+
+        this.scroll_offset = -15
+
         // initialize properties
         this.selected_figlink = null
         this.selected_header = null
@@ -166,60 +154,80 @@ class FigureList {
         this.headers = []
         this.figlinks = []
 
-        $( this.text_href ).append(
+        this.text.append(
             $( '<div>' )
-            .addClass( 'page-filler' )
+                .addClass( 'page-filler' )
         )
 
         if ( this.figlist_href !== '' ) {
             this.transfer_figs()
             this.make_reflinks()
             this.make_figlinks()
-            $( this.figlist_href ).append(
+            this.figlist.append(
                 $( '<div>' )
-                .addClass( 'page-filler' ) )
+                    .addClass( 'page-filler' ) )
         }
 
         if ( this.toc_href !== '' ) {
             this.make_toc()
-            $( this.toc_href ).append(
-                $( '<div>' ).addClass( 'page-filler' ) )
+            this.toc.append(
+                $( '<div>' )
+                    .addClass( 'page-filler' ) )
         }
 
-        $( this.text_href ).scroll( () => this.scroll_in_text() )
+        this.text.scroll( () => this.scroll_in_text() )
 
         // handle initial hash code
         let hash = window.location.hash
         if ( hash.slice( 0, 7 ) == '#header' ) {
             this.select_header( $( hash ) )
-        } else if ( hash.slice( 0, 4 ) == '#fig' ) {
+        } 
+        else if ( hash.slice( 0, 4 ) == '#fig' ) {
             for ( var figlink of this.figlinks ) {
                 if ( figlink.attr( 'href' ) == hash ) {
                     let fig = $( hash )
                         // wait till all assets have been loaded!
-                    fig.ready( this.select_figlink_fn( figlink ) )
+                    fig.ready( this.make_select_figlink_fn( figlink ) )
                 }
             }
-        } else if ( hash.slice( 0, 4 ) == '#ref' ) {
+        } 
+        else if ( hash.slice( 0, 4 ) == '#ref' ) {
             for ( let reflink of this.reflinks ) {
                 if ( reflink.attr( 'href' ) == hash ) {
                     let ref = $( hash )
                         // wait till all assets have been loaded!
-                    ref.ready( this.select_figlink_fn( reflink ) )
+                    ref.ready( this.make_select_figlink_fn( reflink ) )
                 }
             }
         }
     }
 
+    is_onscreen( div ) {
+
+        let x1 = this.text.offset().top
+        let x2 = x1 + this.text.height()
+        let y1 = div.offset().top + this.scroll_offset
+        let y2 = y1 + div.outerHeight( true ) + this.scroll_offset
+        if ( x1 <= y1 && y1 <= x2 )
+            return true
+        if ( x1 <= y2 && y2 <= x2 )
+            return true
+        if ( y1 <= x1 && x1 <= y2 )
+            return true
+        if ( y1 <= x2 && x2 <= y2 )
+            return true
+        return false
+
+    }
+
     make_toc() {
-        let toc = $( this.toc_href )
         let div = $( '<div>' ).addClass( 'toc' )
-        toc.append( div )
+        this.toc.append( div )
 
         let n_header = 1
         this.headers = []
         this.headerlinks = {}
-        for ( let header_dom of $.makeArray( $( this.text_href ).find(
+        for ( let header_dom of $.makeArray( this.text.find(
                 'h1, h2, h3, h4' ) ) ) {
             // give the header an id to link against
             let header = $( header_dom )
@@ -233,19 +241,21 @@ class FigureList {
             let headerlink = $( '<a>' ).attr( 'href', header_href )
             headerlink.append( header.clone().attr( 'id', '' ) )
             this.headerlinks[ header_id ] = headerlink
-            let finish = () =>
-                this.select_onscreen_figlink_and_figure()
-            headerlink.click( this.scroll_to_href_in_text_fn(
-                header_href, false, finish ) )
+            headerlink.click( 
+                this.make_scroll_to_href_in_text_fn(
+                    header_href, 
+                    () => this.select_onscreen_figlink_and_figure() 
+                ) 
+            )
             div.append( headerlink )
         }
     }
 
     transfer_figs() {
-        let figlist = $( this.figlist_href )
-            // in this.text_href, move all <div id='fig*'> into this.figlist_href
+
+        // in this.text_href, move all <div id='fig*'> into this.figlist_href
         let num_fig = 1
-        for ( let div_dom of $.makeArray( $( this.text_href ).find(
+        for ( let div_dom of $.makeArray( this.text.find(
                 'div' ) ) ) {
             let div_id = $( div_dom ).attr( 'id' )
             if ( exists( div_id ) && div_id.substring( 0, 3 ) ==
@@ -256,7 +266,7 @@ class FigureList {
                 let new_div = div.clone()
                 div.addClass( 'fig-in-text' )
                 new_div.addClass( 'fig-in-figlist' )
-                figlist.append( new_div )
+                this.figlist.append( new_div )
                 num_fig += 1
             }
         }
@@ -272,7 +282,7 @@ class FigureList {
 
         // find all figures in the figlist, && change their id's to figure{n}
         let n_fig = 1
-        for ( var fig_div_dom of $.makeArray( $( this.figlist_href )
+        for ( var fig_div_dom of $.makeArray( this.figlist
                 .find( 'div' ) ) ) {
             let fig = $( fig_div_dom )
             let fig_id = fig.attr( 'id' )
@@ -293,7 +303,7 @@ class FigureList {
         // find all figlinks, && set their href's && id's
         let n_figlink = 1
         this.figlinks = []
-        for ( let figlink_dom of $.makeArray( $( this.text_href )
+        for ( let figlink_dom of $.makeArray( this.text
                 .find( 'a[href*="fig"]' ) ) ) {
             let figlink = $( figlink_dom )
 
@@ -301,7 +311,7 @@ class FigureList {
             let figlink_id = 'figlink' + n_figlink
             figlink.attr( 'id', figlink_id )
             figlink.addClass( 'figlink' )
-            figlink.click( this.select_figlink_fn( figlink ) )
+            figlink.click( this.make_select_figlink_fn( figlink ) )
 
             let orig_fig_href = figlink.attr( 'href' )
 
@@ -311,8 +321,9 @@ class FigureList {
                 let fig_href = this.fig_href_from_orig[
                     orig_fig_href ]
                 let i_fig = this.i_fig_dict[ fig_href ]
-                    // figlink_label = 'Figure ' + i_fig + '&rArr;'
-                    // figlink.html(figlink_label)
+
+                // figlink_label = 'Figure ' + i_fig + '&rArr;'
+                // figlink.html(figlink_label)
                 let figlink_label = '(Figure ' + i_fig +
                     ')&rArr;'
                 figlink.html( figlink_label )
@@ -321,15 +332,15 @@ class FigureList {
                 let figlink_href = '#' + figlink_id
                 let reverse_link = $( '<a>' ).append( '&lArr;' ).attr(
                     'href', figlink_href )
-                let select_fig_fn = this.select_figlink_fn(
+                let select_fig_fn = this.make_select_figlink_fn(
                     figlink )
                 let finish = () => {
                     select_fig_fn()
                     window.location.hash = this.selected_figlink
                         .attr( 'href' )
                 }
-                let click_fn = this.scroll_to_href_in_text_fn(
-                    figlink_href, false, select_fig_fn )
+                let click_fn = this.make_scroll_to_href_in_text_fn(
+                    figlink_href, select_fig_fn )
                 reverse_link.click( click_fn )
 
                 this.figlinks.push( figlink )
@@ -356,7 +367,7 @@ class FigureList {
         this.reflinks = []
 
         // find all figures in the figlist, and change their id's to figure{n}
-        for ( let ref_div_dom of $.makeArray( $( this.figlist_href )
+        for ( let ref_div_dom of $.makeArray( this.figlist
                 .find( 'a' ) ) ) {
             let ref = $( ref_div_dom )
             let ref_id = ref.attr( 'id' )
@@ -380,7 +391,7 @@ class FigureList {
             reflink.attr( 'id', reflink_id )
             reflink.append( '&rArr;' )
             reflink.addClass( 'reflink' )
-            reflink.click( this.select_figlink_fn( reflink ) )
+            reflink.click( this.make_select_figlink_fn( reflink ) )
             this.reflinks.push( reflink )
             n_reflink += 1
 
@@ -391,9 +402,8 @@ class FigureList {
                 let reflink_href = '#' + reflink_id
                 let reverse_link = $( '<a>' ).append( '&lArr;' ).attr(
                     'href', reflink_href )
-                let finish = () => {}
-                let click_fn = this.scroll_to_href_in_text_fn(
-                    reflink_href, false, finish )
+                let click_fn = this.make_scroll_to_href_in_text_fn(
+                    reflink_href, () => {} )
                 reverse_link.click( click_fn )
                 this.ref_label_dict[ ref_href ].append(
                     reverse_link )
@@ -401,7 +411,7 @@ class FigureList {
         }
 
         for ( let ref_href of this.ref_hrefs ) {
-            let ref = $( this.figlist_href ).find( ref_href )
+            let ref = this.figlist.find( ref_href )
             let ref_label = this.ref_label_dict[ ref_href ]
             ref.parent().prepend( ' ' )
             ref.parent().prepend( ref_label )
@@ -425,29 +435,18 @@ class FigureList {
     }
 
     scroll_to_next_figlink() {
-        if ( this.is_scrolling_figlist )
-        // already scrolling so cancel
-            return
-        let finish = () => {
-            this.is_scrolling_figlist = false
-                // we've stopped scrolling now
-            if ( this.selected_figlink !== this.next_figlink ) {
-                // but this.next_figlink has changed, so do again
-                this.scroll_to_next_figlink()
-            }
-        }
-        let figlist = $( this.figlist_href )
-        let text = $( this.text_href )
-        if ( figlist.css( 'display' ) == 'none' ) {
-            var target = text
+        if ( this.figlist.css( 'display' ) == 'none' ) {
+            var target = this.text
         } else {
-            var target = figlist
+            var target = this.figlist
         }
-        this.is_scrolling_figlist = true
         this.select_figlink( this.next_figlink )
-        let fig_href = this.selected_figlink.attr( 'href' )
-        target.finish()
-        target.scrollTo( fig_href, 500, finish )
+        target.stop(true)
+        target.scrollTo( 
+            this.selected_figlink.attr( 'href' ), 
+            500, 
+            { offset: { top: this.scroll_offset } } 
+        )
     }
 
     select_figlink_and_scroll_to_fig( figlink ) {
@@ -458,12 +457,10 @@ class FigureList {
         this.scroll_to_next_figlink()
     }
 
-    select_figlink_fn( figlink ) {
+    make_select_figlink_fn( figlink ) {
         return ( e ) => {
-            if ( exists( e ) && e.hasOwnProperty(
-                    'preventDefault' ) ) {
+            if ( exists(e) && exists( e.preventDefault))
                 e.preventDefault()
-            }
             this.select_figlink_and_scroll_to_fig( figlink )
         }
     }
@@ -484,50 +481,44 @@ class FigureList {
         let hash = '#' + header_id
         // window.location.hash = hash
         // if ( history.pushState ) {
-        //     history.pushState( null, null, hash )
+        //     var o = {}
+        //     history.pushState( o, "", hash )
         // } else {
         //     window.location.hash = hash
         // }
     }
 
-    scroll_to_href_in_text( href, is_autodetect_figlink, callback ) {
-        this.is_autodetect_figlink = is_autodetect_figlink
-        let finish = () => {
-            this.is_autodetect_figlink = true
-            if ( exists( callback ) )
-                callback()
-        }
-        let delayed_finish = () => setTimeout( finish, 250 )
+    scroll_to_href_in_text( href, callback ) {
         let settings = {
-            onAfter: delayed_finish,
+            onAfter: callback,
             offset: {
-                top: -15
+                top: this.scroll_offset
             }
         }
-        $( this.text_href ).finish()
-        $( this.text_href ).scrollTo( href, 500, settings )
+        this.text.stop(true)
+        this.text.scrollTo( href, 500, settings )
     }
 
-    scroll_to_href_in_text_fn( href, is_autodetect_figlink, callback ) {
+    make_scroll_to_href_in_text_fn( href, callback ) {
         return ( e ) => {
             e.preventDefault()
-            this.scroll_to_href_in_text( href,
-                is_autodetect_figlink, callback )
+            this.scroll_to_href_in_text( href, callback )
         }
     }
 
     select_onscreen_figlink_and_figure() {
-        let text = $( this.text_href )
-            // check if this.selected_figlink is onsceen
+
+        // check if this.selected_figlink is onsceen
         if ( exists( this.selected_figlink ) ) {
-            if ( is_onscreen( text, this.selected_figlink ) ) {
+            if ( this.is_onscreen( this.selected_figlink ) ) {
                 return
             }
         }
+
         // check if this.selected_figlink is onsceen
         let onscreen_figlink = null
         for ( var figlink of this.figlinks ) {
-            if ( is_onscreen( text, figlink ) ) {
+            if ( this.is_onscreen( figlink ) ) {
                 onscreen_figlink = figlink
                 break
             }
@@ -539,17 +530,17 @@ class FigureList {
     }
 
     select_onscreen_header() {
-        let text = $( this.text_href )
 
         // check for onscreen header, && update toc
         // no big changes, so can always run
         let onscreen_header = null
         for ( var header of this.headers ) {
-            if ( is_onscreen( text, header ) ) {
+            if ( this.is_onscreen( header ) ) {
                 onscreen_header = header
                 break
             }
         }
+
         if ( exists( onscreen_header ) ) {
             if ( this.selected_header !== onscreen_header ) {
                 this.select_header( onscreen_header )
@@ -558,7 +549,7 @@ class FigureList {
     }
 
     scroll_in_text() {
-        // $(this.text_href) must be position:relative to work
+        // this.text must be position:relative to work
         this.select_onscreen_header()
         if ( this.is_autodetect_figlink ) {
             this.select_onscreen_figlink_and_figure()
@@ -594,7 +585,9 @@ class Page {
             </div>
             <div id="table-of-contents" class="touchscroll">
             </div>
-            <div id="main-text" class="touchscroll relative_position">
+            <div id="main-text" class="touchscroll">
+                <div id="insert" class="relative_position">
+                </div>
             </div>
             <div id="figure-list" class="touchscroll">
             </div>  
@@ -610,8 +603,9 @@ class Page {
         this.divider1 = $( '#divider1' )
         this.divider2 = $( '#divider2' )
 
+        var insert = $( '#insert' )
         for (let child of children) {
-            this.text.append(child)
+            insert.append(child)
         }
 
         if ( exists( banner)) {

@@ -26,13 +26,13 @@ body {
   border-left: 1px solid #CCC;
   border-right: 1px solid #CCC;
   margin-left: 3px;
-  margin-right: 3px;
 }
 
 #figure-list {
   border-left: 1px solid #CCC;
   border-right: 1px solid #CCC;
   margin-right: 3px;
+  margin-left: 3px;
 }
 
 #navbar {
@@ -144,7 +144,8 @@ code, pre {
   font-style: normal;
   color: #333;
   font-family: Courier, monospace;
-  font-size: 12px;
+  ;
+font-size: 12px;
   line-height: 1.5em;
 }
 
