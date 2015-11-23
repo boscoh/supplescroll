@@ -1,5 +1,9 @@
 <html><head>
+  <meta content="initial-scale=1.0" name="viewport"/>
   <title>supplescroll documentation</title>
+  
+    <script> window.is_rename = false </script>
+  
   <link href="clown.css" rel="stylesheet"/></head>
   <body>
     <div id="banner">supplescroll documentation</div>
@@ -69,6 +73,7 @@
     <pre>
 title: My Article in Window Title
 banner: My Article Heading in Page
+is_rename: False
 ---
 # This is my Article in markdown
 
@@ -102,10 +107,10 @@ a video [](#fig-youtube)
 <li>header in <a href="http://www.keleshev.com/yaml-quick-intoduction">YAML</a></li>
 <li>body in <a href="https://daringfireball.net/projects/markdown/basics">markdown</a></li>
 </ol>
-<p>In the YAML section, the string in <code>title</code> will be put in the webpage title, and the string in <code>breadcrumb</code> will be put in the banner at the top of the page.</p>
-<h3>Title &amp; Banner</h3>
+<h3>YAML header</h3>
 <p>The <code>title</code> is the text that goes in the Window title. </p>
 <p>The <code>banner</code> string is inserted into the banner part of the page.</p>
+<p>The <code>is_rename</code> boolean indicates whether links to references and figures are to be renamed.</p>
 <h3>Headers</h3>
 <p>Write the text in markdown, making sure to use proper markdown headers, which will be used to construct the table of contents:</p>
 <div class="codehilite"><pre># A Header
@@ -231,9 +236,13 @@ or a reference to (boscoh [](#ref-3)).
 <li>
 <p>references should be labelel <code>&lt;a id="ref*"&gt;&lt;/a&gt;</code> and put in  figure <code>&lt;div&gt;</code>.</p>
 </li>
+<li>
+<p>(optionally) to suppress figure/reference naming add <code>&lt;script&gt; window.is_rename = false &lt;/script&gt;</code></p>
+</li>
 </ol>
-<div id="fig-html"> <code>article.html</code> - key ingredients of an HTML article page that works with the lucid theme.
-<pre>&lt;html&gt;
+<div id="fig-html"> 
+  <code>article.html</code> - key ingredients of an HTML article page that works with the lucid theme.
+  <pre>&lt;html&gt;
 &lt;head&gt;
   &lt;title&gt;My Article in Window&lt;/title&gt;
   &lt;link href="light.css" rel="stylesheet"/&gt;
@@ -305,12 +314,11 @@ or a reference to (boscoh [](#ref-3)).
     &lt;/div&gt;
 
 &lt;/body&gt;
-&lt;script src="supplescroll.compiled.js" type="text/javascript"&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
-  </pre>
-  </div>
+&lt;script src="supplescroll.compiled.js" type="text/javascript"&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt; </pre>
+</div>
 
 <h2>Theme it Yourself</h2>
-<p>If you are familiar with the holy triumvirate of HTML/CSS/javascript, you might want to theme your own templates. Just follow any of the css styles and tweak. At the moment, you'll have to hand-edit your HTML to link in your css.</p>
+<p>If you are familiar with CSS then you can change substitute your own CSS file. Just open one of the existing ones, and restyle it the way you want.</p>
 <div id="fig-references">
     REFERENCES
     <br/>
@@ -343,4 +351,4 @@ or a reference to (boscoh [](#ref-3)).
 </ul>
   
   
-  <script src="supplescroll.compiled.js" type="text/javascript"></script></body></html>
+  <script src="supplescroll.min.js" type="text/javascript"></script></body></html>
