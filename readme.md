@@ -1,5 +1,6 @@
 title: supplescroll documentation
 banner: supplescroll documentation
+is_rename: False
 ---
 
 
@@ -98,6 +99,7 @@ Please fork and pull-request. New themes welcome!
 
 title: My Article in Window Title
 banner: My Article Heading in Page
+is_rename: False
 ---
 # This is my Article in markdown
 
@@ -137,6 +139,8 @@ The format consists of a:
 The `title` is the text that goes in the Window title. 
 
 The `banner` string is inserted into the banner part of the page.
+
+The `is_rename` boolean indicates whether links to references and figures are to be renamed.
 
 
 ### Headers
@@ -278,6 +282,8 @@ Of course, you can just write the html yourself as in (article.html [article.htm
 
 7. references should be labelel `<a id="ref*"></a>` and put in  figure `<div>`.
 
+8. (optionally) to suppress figure/reference naming add `<script> window.is_rename = false </script>`
+
 
 <div id='fig-html'> 
   <code>article.html</code> - key ingredients of an HTML article page that works with the lucid theme.
@@ -361,7 +367,7 @@ Of course, you can just write the html yourself as in (article.html [article.htm
 
 ## Theme it Yourself
 
-If you are familiar with the holy triumvirate of HTML/CSS/javascript, you might want to theme your own templates. Just follow any of the css styles and tweak. At the moment, you'll have to hand-edit your HTML to link in your css.
+If you are familiar with CSS then you can change substitute your own CSS file. Just open one of the existing ones, and restyle it the way you want.
 
 
 <div id="fig-references">

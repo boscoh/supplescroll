@@ -72,6 +72,7 @@ def make_html(theme, in_markdown, html):
     'template': 'page.haml',
     'target': html,
     'banner': '',
+    'is_rename': True,
     'title': '',
     'content': markdown(
         parts[-1], 
@@ -85,6 +86,9 @@ def make_html(theme, in_markdown, html):
   <head>
   <meta content="initial-scale=1.0" name="viewport"/>
   <title>{{ page.title }}</title>
+  {% if not page.is_rename: %}
+    <script> window.is_rename = false </script>
+  {% endif %}
   </head>
   <body>
     <div id="banner">{{ page.banner }}</div>
