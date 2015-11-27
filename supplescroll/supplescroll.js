@@ -16,7 +16,7 @@ import scrollto from 'jquery.scrollto';
 import scrollstop from 'jquery-scrollstop';
 
 
-import css from './supplescroll.css';
+// import css from './supplescroll.css';
 
 
 
@@ -592,9 +592,7 @@ class Page {
 
         body.append(`
             <div id="navbar">
-                <div id="toc-trigger">
-                    <div id="hamburger"></div>
-                </div>
+                <div id="toc-trigger">&#9776;</div>
             </div>
             <div id="table-of-contents" class="touchscroll">
             </div>
@@ -627,8 +625,8 @@ class Page {
         this.trigger.click( () => { this.activate_trigger() } )
 
         this.isDrag = 0;
-        this.divider1.mousedown( (e) => { this.isDrag = 1; } )
-        this.divider2.mousedown( (e) => { this.isDrag = 2; } )
+        this.divider1.mousedown( (e) => { e.preventDefault(); this.isDrag = 1; } )
+        this.divider2.mousedown( (e) => { e.preventDefault(); this.isDrag = 2; } )
         body.mouseup( (e) => { this.isDrag = 0; } )
         body.mousemove( (e) => this.mousemove( e ) )
 

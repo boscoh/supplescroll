@@ -1,5 +1,3 @@
-@media (max-width: 1200px);
-
 body {
   background-color: #3A6;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
@@ -54,7 +52,6 @@ pre {
 }
 
 code, pre {
-  overflow: auto;
   background-color: #333;
   border: 1px solid #555;
   border-radius: 5px;
@@ -63,54 +60,17 @@ code, pre {
   line-height: 1.5em;
 }
 
-#table-of-contents, #main-text, #figure-list {
-  position: absolute;
-  height: 100%;
-}
-
-#table-of-contents {
-  width: 250px;
-  padding-top: 20px;
-  background-color: #324;
-}
-
-#main-text {
-  width: 450px;
-  padding-left: 20px;
-  padding-right: 50px;
+#table-of-contents, #main-text, #navbar, #figure-list {
+  border: 0px;
 }
 
 #navbar {
   background-color: #FF6;
   color: #336;
-  position: absolute;
-  overflow: hidden;
-  height: 25px;
-  line-height: 25px;
-  width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px;
-}
-
-#toc-trigger {
-  float: left;
-  cursor: pointer;
-  margin-right: 1em;
-  margin-left: 0em;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  height: 15px;
-}
-
-#hamburger {
-  width: 25px;
-  height: 15px;
-  background: linear-gradient(to bottom, #336, #336 20%, #FF6 20%, #FF6 40%, #336 40%,
-    #336 60%, #FF6 60%, #FF6 80%, #336 80%, #336);
 }
 
 #table-of-contents {
+  background-color: #324;
   font-size: 10px;
   font-weight: normal;
   text-transform: uppercase;
@@ -174,13 +134,7 @@ code, pre {
   color: #330;
   text-decoration: none;
 }
-#main-text .timestamp {
-  margin-top: 6em;
-  text-align: right;
-  border-top: 1px solid #CCC;
-}
 #main-text .fig-in-text {
-  display: none;
   font-size: 12px;
   line-height: 1.2em;
   text-transform: uppercase;
@@ -189,13 +143,9 @@ code, pre {
   padding: 10px 10px;
 }
 #main-text .fig-in-text code, #main-text .fig-in-text pre {
-  text-transform: none;
   background-color: #CC0099;
   color: #000;
   border: 1px solid #330;
-}
-#main-text .fig-in-text img {
-  width: 100%;
 }
 
 #figure-list {
@@ -207,9 +157,6 @@ code, pre {
 #figure-list code, #figure-list pre {
   text-transform: none;
   background-color: #534;
-}
-#figure-list .fig-in-figlist {
-  padding: 30px 50px 20px 20px;
 }
 #figure-list .fig-in-figlist img {
   padding-top: 10px;
@@ -239,8 +186,5 @@ code, pre {
   }
   h2, h3, h4 {
     font-size: 12px;
-  }
-  #main-text .fig-in-text {
-    display: block;
   }
 }

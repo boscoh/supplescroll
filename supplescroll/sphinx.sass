@@ -8,11 +8,13 @@ $highlight-link-color: #99A
 @mixin caption
   font-size: 12px
   text-transform: none
+  font-weight: normal
   line-height: 1.2em
+  letter-spacing: 0.1em
   code, pre
     font-size: 12px
     text-transform: none
-  a, a:link, a:visited,
+  a, a:link, a:visited
     color: $highlight-link-color
   img
     padding-top: 10px
@@ -23,8 +25,6 @@ $highlight-link-color: #99A
   pre, code 
     border: 1px solid #BBC
     background-color: $highlight-background
-
-
 
 /* document fonts
 body
@@ -73,6 +73,8 @@ code
   padding: 1px 4px 
 pre 
   padding: 5px 20px 
+pre code
+  border: 0px
 code, pre 
   overflow: auto
   font-family:  "Incosolata","Consolata","Monaco",monospace
@@ -83,84 +85,43 @@ code, pre
   font-size: 12px 
   line-height: 1.5em 
 
+#navbar, #table-of-contents, #main-text, #figure-list
+  border: 0px
 
-/* LAYOUT
-#table-of-contents, 
-#main-text,
-#figure-list
-  position: absolute
-  height: 100%
-  overflow: auto
-#table-of-contents
-  width: 300px
-  padding-top: 25px
-  background-color: #343131
-#main-text
-  width: 450px
-  padding-top: 25px
-  padding-left: 20px
-  padding-right: 50px
-#figure-list
-  background-color: #edf0f2
-
-
-/* navbar and menu icon
-$line-color: #fcfcfc
-$back-color: #2980b9
 #navbar
-  position: absolute
-  overflow: hidden
-  height: 25px
-  line-height: 25px
-  width: 100%
-  white-space: nowrap
-#toc-trigger 
-  float: left
-  cursor: pointer
-  margin-right: 1em
-  margin-left: 0em
-  padding-top: 5px
-  padding-bottom: 5px
-  height: 15px
-#hamburger
-  width: 25px
-  height: 15px
-  background: linear-gradient(to bottom, $line-color, $line-color 20%, $back-color 20%, $back-color 40%, $line-color 40%, $line-color 60%, $back-color 60%, $back-color 80%, $line-color 80%, $line-color 100%)
-#navbar
+  font-family: "Lato","proxima-nova","Helvetica Neue",Arial,sans-serif
   font-size: 16px
+  font-weight: normal
+  letter-spacing: 0.1em
   background-color: #2980b9
   &, a:link, a:visited
     color: #fcfcfc
-  font-weight: 100
   text-align: left
   padding: 10px 20px
 
-
-/* font override
-
 #table-of-contents
-  font-size: 12px
-  font-weight: normal
-  line-height: 1.5em
+  padding-top: 25px
+  background-color: #343131
   padding-top: 0
   padding-bottom: 0
   .toc 
     padding-top: 1em
-
     h1, h2, h3, h4, h5, h6, h7
       font-family: "Lato","proxima-nova","Helvetica Neue",Arial,sans-serif
+      font-size: 12px
       text-transform: none
+      font-weight: normal
+      letter-spacing: 0.1em
       color: #b3b3b3
+      line-height: 1.2em
     h1, h2
       margin-top: 4px
-    a
-      padding-left: 20px
-      padding-right: 50px
-      &.active
+      line-height: 1.2em
+    a.active
         background-color: #5C5A5A
 
-
 #main-text
+  padding-top: 25px
   a.figlink.active 
     padding: 4px 0px
     background-color: $highlight-background
@@ -172,15 +133,13 @@ $back-color: #2980b9
     @include caption
     @include caption-highlight
     padding: 10px 10px
-    img
-      width: 100%
 
 #figure-list 
+  background-color: #edf0f2
   .fig-in-figlist
     @include caption
     &.active
       @include caption-highlight
-    padding: 20px 50px 20px 20px
   code, pre
     background-color: #F8F8F8
 
@@ -196,7 +155,5 @@ $back-color: #2980b9
   h1
     font-size: 20px
     margin-top: 70px
-  .fig-in-text
-    display: block
 
 

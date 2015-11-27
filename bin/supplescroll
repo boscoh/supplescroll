@@ -9,7 +9,7 @@ theme = 'light'
 
 # get available themes from file
 supple_dir = os.path.dirname(supplescroll.__file__)
-fnames = glob.glob(os.path.join(supple_dir, 'src', '*.css'))
+fnames = glob.glob(os.path.join(supple_dir, '*.css'))
 fnames = map(os.path.basename, fnames)
 themes = map(lambda f: os.path.splitext(f)[0], fnames)
 themes.remove(theme)

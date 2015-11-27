@@ -45,8 +45,14 @@ def insert_includes_to_html(theme, html):
   result = soup.find('link', attrs={'href':theme_css})
   if not result:
     tag = soup.new_tag('link')
+    tag['href'] = 'supplescroll.css'
+    tag['rel'] = 'stylesheet'
+    tag['type'] = 'text/css'
+    soup.head.append(tag)
+    tag = soup.new_tag('link')
     tag['href'] = theme_css
     tag['rel'] = 'stylesheet'
+    tag['type'] = 'text/css'
     soup.head.append(tag)
 
   result = soup.find('script', attrs={'src': supplescroll_js})
@@ -60,9 +66,9 @@ def insert_includes_to_html(theme, html):
   new_lines = map(convert_unicode_to_html, lines)
   open(html, 'w').write("\n".join(new_lines))
 
-  src_dir = os.path.join(os.path.dirname(__file__), 'src')
+  src_dir = os.path.dirname(__file__)
   out_dir = os.path.abspath(os.path.dirname(html))
-  for f in [theme + '.css', supplescroll_js]:
+  for f in [theme + '.css', 'supplescroll.css', supplescroll_js]:
     shutil.copy(os.path.join(src_dir, f), out_dir)
 
 

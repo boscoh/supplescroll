@@ -1,6 +1,6 @@
 title: supplescroll documentation
 banner: supplescroll documentation
-is_rename: False
+is_rename: True
 ---
 
 
