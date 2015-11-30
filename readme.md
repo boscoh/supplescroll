@@ -34,15 +34,3 @@ Then open `article.html` in the browser. Available themes: `light`, `dark`, `yeo
 
 
 
-## Change Log
-
-- 2.1 (30/11/2015)
-    - node packaging
-- 2.0 (16/11/2015)
-    - written in ES6
-	  - compiled into single js using browserify
-	  - breadcrumb
-    - builds page with javascript
-    - references
-    - adjustable sliders
-

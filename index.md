@@ -27,11 +27,11 @@ Features:
  
 Available themes:
 
-  - `dark` ([sample](index.html))
-  - `light` ([sample](light.html))
-  - `yeolde` ([sample](yeolde.html))
-  - `clown` ([sample](clown.html))
-  - `sphinx` ([sample](sphinx.html))
+  - `dark` ([index.html](index.html))
+  - `light` ([light.html](light.html))
+  - `yeolde` ([yeolde.html](yeolde.html))
+  - `clown` ([clown.html](clown.html))
+  - `sphinx` ([sphinx.html](sphinx.html))
 
 
 
@@ -391,15 +391,17 @@ If you are familiar with CSS then you can change substitute your own CSS file. J
 
 
 
+## Change Log
 
-## Changelog
+- 2.1 (30/11/2015)
+    - node version
 
 - 2.0 (16/11/2015)
-    - written in ES6
-	- compiled into single js using browserify
-	- breadcrumb
-    - builds page with javascript
+    - switched to ES6
+    - compiled into single js file
+    - breadcrumb
+    - builds columns in page dynamically
     - references
-    - adjustable sliders
+    - adjustable sliders for columns
 
 

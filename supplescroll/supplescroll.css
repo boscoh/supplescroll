@@ -158,6 +158,7 @@ a.figlink.active:link, a.figlink.active:visited {
   border-bottom: 1px solid #AAA;
   padding: 10px 0px 10px 20px;
   line-height: 2em;
+  height: 2em;
 }
 
 #toc-trigger {
