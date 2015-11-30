@@ -3,24 +3,31 @@
 
 
 let doc = `
-supplescroll: make interactive docs 
+Turn plain markdown/html into interactive 3-column articles
 
-Usage: run.js markdown theme
+Usage: supplescroll.js markdown|html theme
+    
+  - themes: light, dark, yeolde, clown, sphinx
+
 `;
 
-var mod = require('./supplescroll/build.js');
 
 if ( process.argv.length < 3 ) {
+
   console.log(doc);
+
 } 
 else {
-  const fname = process.argv[2];
-  let theme = 'dark';
-  if ( process.argv.length > 3 ) {
-      theme = process.argv[3];
-  }
-  let outFname = fname.replace('.md', '.html');
-  mod.processFile(fname, theme, outFname);
+
+    const fname = process.argv[2];
+    let theme = 'dark';
+    if ( process.argv.length > 3 ) {
+        theme = process.argv[3];
+    }
+    let outFname = fname.replace('.md', '.html');
+    let mod = require('./supplescroll/build.js');
+    mod.processFile(fname, theme, outFname);
+
 }
 
 
