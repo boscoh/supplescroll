@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from setuptools import setup
 
-version = open('_version.py').read().split()[-1][1:-1]
+version = open('supplescroll/_version.py').read().split()[-1][1:-1]
 
 setup(
     name='supplescroll',
@@ -24,5 +24,5 @@ setup(
     ],
     packages=['supplescroll',],
     include_package_data=True,
-    scripts=['bin/supplescroll'],
+    scripts=['python_bin/supplescroll'],
 )

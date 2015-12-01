@@ -26,7 +26,7 @@ In `python`:
 
 In `node`:
 
-    > npm install supplescroll
+    > npm install -g supplescroll
  
 
 

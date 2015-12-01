@@ -1,6 +1,6 @@
 {
   "name": "supplescroll",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "interactive 3-column documentation",
   "main": "supplescroll/build.js",
   "dependencies": {
@@ -9,7 +9,7 @@
     "marked": "^0.3.5",
     "mustache": "^2.2.0"
   },
-  "bin": { "supplescroll": "supplebuild.js" },
+  "bin": { "supplescroll": "node_bin/supplescroll" },
   "devDependencies": {
     "babel-preset-es2015": "^6.1.18",
     "babelify": "^7.2.0",
@@ -29,5 +29,5 @@
   "bugs": {
     "url": "https://github.com/boscoh/supplescroll/issues"
   },
-  "homepage": "https://boscoh.github.io/supplescroll/",
+  "homepage": "https://boscoh.github.io/supplescroll/"
 }
