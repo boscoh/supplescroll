@@ -1,6 +1,8 @@
 
-# SUPPLESCROLL
 
+
+
+# SUPPLESCROLL
 
 Supplescroll is a javascript plugin that converts a plain HTML document into an interactive document with:
 
@@ -15,6 +17,7 @@ Supplescroll is a javascript plugin that converts a plain HTML document into an 
 Full docs <http://boscoh.github.io/supplescroll>
 
 
+
 ## Quick Install
 
 In `python`:
@@ -26,11 +29,20 @@ In `node`:
     > npm install supplescroll
  
 
+
 ## Quick Usage
+
+If you have a markdown file:
 
     > supplescroll article.md light
 
-Then open `article.html` in the browser. Available themes: `light`, `dark`, `yeolde`, `clown` and `sphinx`.
+If you have a standard html file:
+ 
+    > supplescroll article.html light
+
+Then open `article.html` in the browser. 
+
+Available themes: `light`, `dark`, `yeolde`, `clown` and `sphinx`.
 
 
 

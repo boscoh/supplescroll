@@ -13,18 +13,18 @@ _scrolling articles to your heart's delight_
 
 > Supplescroll is a javascript plugin that converts a plain HTML document into an interactive document with auto-generated table-of-contents and easy-to-read figures and references.
 
-It turns this [markdown documentation](https://github.com/boscoh/supplescroll/blob/master/readme.md) into this [interactive webpage](http://boscoh.github.com/supplescroll).
+It turns this [markdown](https://github.com/boscoh/supplescroll/blob/master/readme.md) into this [interactive webpage](http://boscoh.github.com/supplescroll).
 
 Features:
 
-- table of contents generated from headers
-- figure list generated from `<div>`s
-- back links are generated to figure-links in text
-- context aware autoscrolling of figures and toc
-- movable dividers of columns
-- URL hashes added to all headers
-- iOS-aware and responsive-web themes
- 
+- auto-generated table of contents 
+- independent figure list
+- handy URL hashes
+- back links to references 
+- context-aware auto-scrolling  
+- movable dividers 
+- iOS-aware/responsive themes
+
 Available themes:
 
   - `dark` ([index.html](index.html))
@@ -36,48 +36,40 @@ Available themes:
 
 
 
-
 ## Usage
 
 Once the `article.md` [article.md](#fig-markdown) is written, then:
 
     > supplescroll article.md 
 
-Which makes `article.html`. Open it. To choose another theme with your choice of output:
+Which makes `article.html`. Open it. 
+
+To choose another theme with your choice of output:
 
     > supplescroll -o colorful.html article.md clown
 
+If you have a plain HTML file (article.html [article.html](#fig-html), you can add the supplescroll widget:
+
+    > supplescroll article.html
+
+Which will overwrite `article.html` and copy the required files over.
 
 
 
 
 ## Installation
 
-To install the package, the easiest is to:
+_Python_. You should:
 
     > pip install supplescroll
 
-Or you could download from github:
-
-&nbsp;&nbsp;&nbsp; [zip-package](https://github.com/boscoh/supplescroll/archive/master.zip)
-
-And install with:
+Or you could download from [github](https://github.com/boscoh/supplescroll/archive/master.zip) and:
 
     > python setup.py install
 
-Then edit the file `article.md` in markdown, which is also described below.
+_Node_. Then you should:
 
-When you're done, run:
-
-    > supplescroll article.md
-
-And open `article.html`.
-
-
-
-
-
-## Source Code
+    > npm install supplescroll
 
 You can browse the code at
 
@@ -91,7 +83,7 @@ Please fork and pull-request. New themes welcome!
 
 ## Write Article with Markdown
 
-`supplescroll` uses a classic YAML/markdown format to convert your documents into HTML. An example is in [article.md](#fig-markdown):
+`supplescroll` uses a typical YAML/markdown format to convert your documents into HTML. An example is in [article.md](#fig-markdown):
 
 <div id="fig-markdown"> 
 	<code>article.md</code> - example of an article in supplescroll

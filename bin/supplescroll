@@ -7,31 +7,20 @@ import supplescroll
 
 theme = 'light'
 
-# get available themes from file
-supple_dir = os.path.dirname(supplescroll.__file__)
-fnames = glob.glob(os.path.join(supple_dir, '*.css'))
-fnames = map(os.path.basename, fnames)
-themes = map(lambda f: os.path.splitext(f)[0], fnames)
-themes.remove(theme)
-themes.remove('supplescroll')
-themes.insert(0, theme + '(default)')
-themes = ', '.join(themes)
-
-
 __doc__ = """
 Makes HTML with auto-generated TOC, figure list from markdown
 
-Usage: supplescroll [-o <html>] <markdown> [<theme>]
+Usage: supplescroll [-o <html>] <markdown_or_html> [<theme>]
 
 Options:
- <theme>     %s
+ <theme>     light, dark, yolde, sphinx, clown
  -o <html>   Output HTML filename
-""" % themes
+""" 
 
 
 if __name__ == "__main__":
   arg = docopt(__doc__)
-  in_markdown = arg['<markdown>']
+  in_markdown = arg['<markdown_or_html>']
   if not os.path.isfile(in_markdown):
     raise Exception("%s not found" % in_markdown)
 
@@ -41,7 +30,9 @@ if __name__ == "__main__":
   if arg['-o']: 
     html = arg['-o']
   else: 
-    html = os.path.splitext(arg['<markdown>'])[0] + '.html'
+    base, ext = os.path.splitext(arg['<markdown_or_html>'])
+    if ext.lower() != '.html' or ext.lower() != '.htm':
+      html = base + '.html'
 
   supplescroll.make_html(theme, in_markdown, html)
   print "Made", html

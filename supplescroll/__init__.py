@@ -40,21 +40,24 @@ def convert_unicode_to_html(line):
 def insert_includes_to_html(theme, html):
   soup = bs4.BeautifulSoup(open(html, 'Ur'), 'html5lib')
 
-  supplescroll_js = 'supplescroll.min.js'
-  theme_css = theme + '.css'
-  result = soup.find('link', attrs={'href':theme_css})
+  result = soup.find('link', attrs={'href':'supplescroll.css'})
   if not result:
     tag = soup.new_tag('link')
     tag['href'] = 'supplescroll.css'
     tag['rel'] = 'stylesheet'
     tag['type'] = 'text/css'
     soup.head.append(tag)
+
+  theme_css = theme + '.css'
+  result = soup.find('link', attrs={'href':theme_css})
+  if not result:
     tag = soup.new_tag('link')
     tag['href'] = theme_css
     tag['rel'] = 'stylesheet'
     tag['type'] = 'text/css'
     soup.head.append(tag)
 
+  supplescroll_js = 'supplescroll.min.js'
   result = soup.find('script', attrs={'src': supplescroll_js})
   if not result:
     tag = soup.new_tag('script')
