@@ -2,45 +2,13 @@
 
 "use strict"
 
-var fs = require( "fs" )
 var path = require( "path" )
-
+var fs = require( "fs-extra" )
 var marked = require( "marked" )
-var yaml = require( "js-yaml" )
+var yamlFront = require('yaml-front-matter')
 var mustache = require( "mustache" )
 var cheerio = require( "cheerio" )
-
-
-function copyFile( source, target, callback ) {
-    var callbackCalled = false;
-
-    function done( err ) {
-        if ( !callbackCalled ) {
-            callback( err );
-            callbackCalled = true;
-        }
-    }
-
-    if ( !fs.existsSync( source ) ) {
-        throw new Error( `${source} not found` );
-    }
-
-    var read = fs.createReadStream( source );
-    read.on( "error", ( e ) => {
-        done( e );
-    } );
-
-    var write = fs.createWriteStream( target );
-    write.on( "error", ( e ) => {
-        done( e );
-    } );
-    write.on( "close", ( e ) => {
-        done();
-    } );
-
-    read.pipe( write );
-
-}
+var _ = require("lodash")
 
 
 let template =
@@ -57,59 +25,15 @@ let template =
 </html>`
 
 
-function splitByFirstDivider( s ) {
-
-    let linesList = [[], []]
-    let isFirst = true
-    for (let line of s.split(/\r?\n/)) {
-        if (isFirst) {
-            if (line.match(/^---/)) {
-                isFirst = false
-            }
-            else {
-                linesList[0].push(line)
-            }
-        }
-        else {
-            linesList[1].push(line)
-        }
-    }
-
-    let result = []
-    for (let lines of linesList) {
-        let piece = lines.join("\n")
-        if (piece) {
-            result.push( piece )
-        }
-    }
-    return result
-
-}
-
-
 function convertMarkdown( markdownText ) {
     let page = {
         'banner': '',
         'is_rename': true,
         'title': ''
     }
-    let parts = splitByFirstDivider( markdownText )
-    let content;
-    if (parts.length === 1) {
-        content = parts[0]
-    }
-    else {
-        content = parts[1]
-        let yamlText = parts[ 0 ]
-        if (yamlText.length > 0 ) {
-            let read_page = yaml.safeLoad( parts[ 0 ] )
-            for (var key in read_page){
-                page[key] = read_page[key];
-            }
-        }
-    }
-    page[ 'content' ] = marked( content )
-    return mustache.render( template, page )
+    _.assign( page, yamlFront.loadFront( markdownText, 'content' ) );
+    page.content = marked( page.content );
+    return mustache.render( template, page );
 }
 
 
@@ -171,7 +95,7 @@ function processFile( fname, theme, outFname ) {
     for ( let base of bases ) {
         let inFname = path.join( __dirname, base )
         let outFname = path.join( outDir, base )
-        copyFile( inFname, outFname, () => {} )
+        fs.copy( inFname, outFname )
         console.log( ` - ${inFname} -> ${outFname}` )
     }
 }
