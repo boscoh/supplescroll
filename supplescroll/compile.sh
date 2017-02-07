@@ -1,9 +1,9 @@
-./browserify.sh
+npm install
 if [ -f supplescroll.min.js ] 
     then
         rm supplescroll.min.js
 fi
-uglifyjs --compress --mangle -- supplescroll.compiled.js > supplescroll.min.js
+webpack
 cp supplescroll.min.js ../..
 sassin dark.sass dark.css
 sassin light.sass light.css
