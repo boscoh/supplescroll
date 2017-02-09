@@ -61,9 +61,6 @@ code, pre {
   font-size: 12px;
   line-height: 1.5em; }
 
-pre code {
-  border: 0px; }
-
 .active {
   background-color: #456; }
 
@@ -137,6 +134,12 @@ pre code {
   margin-bottom: 0.4em;
   text-indent: -1em;
   margin-left: 1em; }
+
+pre code,
+#figure-list .fig-in-figlist pre code,
+#figure-list .fig-in-figlist.active pre code,
+#main-text .fig-in-text pre code {
+  border: 0px; }
 
 @media (max-width: 480px) {
   h1 {

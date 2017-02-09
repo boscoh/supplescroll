@@ -68,8 +68,6 @@ code, pre
   color: $code-color
   font-size: 12px 
   line-height: 1.5em 
-pre code
-  border: 0px
 .active
   background-color: $active-background
 .fig-in-text 
@@ -94,7 +92,6 @@ pre code
     border: 1px solid $caption-highlight-code-border-color
     background-color: $caption-highlight-code-background-color
     color: $caption-highlight-code-color
-
 
 /* div font overrides
 
@@ -139,6 +136,12 @@ pre code
     margin-bottom: 0.4em
     text-indent: -1em
     margin-left: 1em
+
+pre code,
+#figure-list .fig-in-figlist pre code, 
+#figure-list .fig-in-figlist.active pre code,
+#main-text .fig-in-text pre code 
+  border: 0px
 
 @media (max-width: 480px)
   h1

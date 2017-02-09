@@ -5,6 +5,7 @@
 var path = require( "path" )
 var fs = require( "fs-extra" )
 var marked = require( "marked" )
+var commonmark = require('commonmark');
 var yamlFront = require('yaml-front-matter')
 var mustache = require( "mustache" )
 var cheerio = require( "cheerio" )
@@ -25,6 +26,34 @@ let template =
 </html>`
 
 
+function convertUnicodeCharsToHtml(str) {
+    let strLength = str.length;
+    if (strLength === 0) {
+        return '';
+    }
+    let result = '';
+    let i = 0;
+    while (i < strLength) {
+        let c = str.charCodeAt(i);
+        if (c <= 127) {
+            result += str[i++];
+            continue;
+        }
+        result += '&#' + c + ';';
+        i++
+    }
+    return result;
+}
+
+
+function convertCommonmarkToHtml(text) {
+    let reader = new commonmark.Parser();
+    let writer = new commonmark.HtmlRenderer();
+    let parsed = reader.parse(text);
+    return convertUnicodeCharsToHtml(writer.render(parsed));
+}
+
+
 function convertMarkdown( markdownText ) {
     let page = {
         'banner': '',
@@ -32,7 +61,7 @@ function convertMarkdown( markdownText ) {
         'title': ''
     }
     _.assign( page, yamlFront.loadFront( markdownText, 'content' ) );
-    page.content = marked( page.content );
+    page.content = convertCommonmarkToHtml( page.content );
     return mustache.render( template, page );
 }
 
@@ -85,7 +114,7 @@ function processFile( fname, theme, outFname ) {
     html = insertIncludes( html, theme )
     fs.writeFile( outFname, html )
 
-    console.log( ` - ${outFname}` )
+    console.log( `${outFname}` )
 
     let bases = [
         'supplescroll.min.js',
