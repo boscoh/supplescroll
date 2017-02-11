@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 npm install
 if [ -f supplescroll.min.js ] 
     then

@@ -4,7 +4,6 @@
 
 var path = require( "path" )
 var fs = require( "fs-extra" )
-var marked = require( "marked" )
 var commonmark = require('commonmark');
 var yamlFront = require('yaml-front-matter')
 var mustache = require( "mustache" )
@@ -54,7 +53,7 @@ function convertCommonmarkToHtml(text) {
 }
 
 
-function convertMarkdown( markdownText ) {
+function convertMarkdownToHtml( markdownText ) {
     let page = {
         'banner': '',
         'is_rename': true,
@@ -108,7 +107,7 @@ function processFile( fname, theme, outFname ) {
 
     if ( path.extname( fname )
         .toLowerCase() == '.md' ) {
-        html = convertMarkdown( html )
+        html = convertMarkdownToHtml( html )
     }
 
     html = insertIncludes( html, theme )

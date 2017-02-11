@@ -42,20 +42,6 @@ body {
   width: 100%;
   white-space: nowrap; }
 
-#toc-trigger {
-  float: left;
-  cursor: pointer;
-  margin-right: 1em;
-  margin-left: 0em;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  height: 15px; }
-
-#hamburger {
-  width: 25px;
-  height: 15px;
-  background: linear-gradient(to bottom, black, black 20%, white 20%, white 40%, black 40%, black 60%, white 60%, white 80%, black 80%, black 100%); }
-
 #navbar {
   border-bottom: 1px solid #CCC;
   padding-top: 10px;
