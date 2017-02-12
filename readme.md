@@ -20,12 +20,6 @@ Full docs <http://boscoh.github.io/supplescroll>
 
 ## Quick Install
 
-In `python`:
-
-    > pip install supplescroll
-
-In `node`:
-
     > npm install -g supplescroll
  
 
