@@ -1,14 +1,19 @@
-// supplescroll.js: make supplescroll from a markdown file
+#!/usr/bin/env node
+"use strict";
 
-"use strict"
 
-var path = require( "path" )
-var fs = require( "fs-extra" )
-var commonmark = require('commonmark');
-var yamlFront = require('yaml-front-matter')
-var mustache = require( "mustache" )
-var cheerio = require( "cheerio" )
-var _ = require("lodash")
+// buildsupplescroll.js: make supplescroll from a markdown file
+
+"use strict";
+
+let path = require( "path" );
+let fs = require( "fs-extra" );
+let commonmark = require('commonmark');
+let yamlFront = require('yaml-front-matter');
+let mustache = require( "mustache" );
+let cheerio = require( "cheerio" );
+let _ = require("lodash");
+let nopt = require('nopt');
 
 
 let template =
@@ -22,7 +27,7 @@ let template =
     <div id="banner">{{ banner }}</div>
     {{{ content }}}
 </body>
-</html>`
+</html>`;
 
 
 function convertUnicodeCharsToHtml(str) {
@@ -58,7 +63,7 @@ function convertMarkdownToHtml( markdownText ) {
         'banner': '',
         'is_rename': true,
         'title': ''
-    }
+    };
     _.assign( page, yamlFront.loadFront( markdownText, 'content' ) );
     page.content = convertCommonmarkToHtml( page.content );
     return mustache.render( template, page );
@@ -66,16 +71,16 @@ function convertMarkdownToHtml( markdownText ) {
 
 
 function insertIncludes( html, theme ) {
-    let $ = cheerio.load( html )
+    let $ = cheerio.load( html );
 
-    let root = $.root()
+    let root = $.root();
 
-    let body = $( 'body' )
+    let body = $( 'body' );
     if ( body.length == 0 ) {
         body = root
     }
 
-    let head = $( 'head' )
+    let head = $( 'head' );
     if ( head.length == 0 ) {
         head = root
     }
@@ -85,7 +90,7 @@ function insertIncludes( html, theme ) {
             `<link href="supplescroll.css" rel="stylesheet"/>` )
     }
 
-    let theme_css = `${theme}.css`
+    let theme_css = `${theme}.css`;
     if ( $( `link[href="${theme}.css"]`).length == 0 ) {
         head.append( 
             `<link href="${theme}.css" rel="stylesheet"/>` )
@@ -100,36 +105,81 @@ function insertIncludes( html, theme ) {
 
 
 function processFile( fname, theme, outFname ) {
-    let outDir = path.dirname( outFname )
+    let outDir = path.dirname( outFname );
 
     let html = fs.readFileSync( fname )
-        .toString()
+        .toString();
 
     if ( path.extname( fname )
         .toLowerCase() == '.md' ) {
         html = convertMarkdownToHtml( html )
     }
 
-    html = insertIncludes( html, theme )
-    fs.writeFile( outFname, html )
+    html = insertIncludes( html, theme );
+    fs.writeFile( outFname, html );
 
-    console.log( `${outFname}` )
+    console.log( `${outFname}` );
 
     let bases = [
         'supplescroll.min.js',
         'supplescroll.css',
         theme + '.css'
-    ]
+    ];
     for ( let base of bases ) {
-        let inFname = path.join( __dirname, base )
-        let outFname = path.join( outDir, base )
-        fs.copy( inFname, outFname )
+        let inFname = path.join( __dirname, 'supplescroll', base );
+        let outFname = path.join( outDir, base );
+        fs.copy( inFname, outFname );
         console.log( ` - ${inFname} -> ${outFname}` )
     }
 }
 
 
-module.exports = { processFile }
+let doc = `
+Turn plain markdown/html into interactive 3-column articles
+
+Usage: supplescroll.js [-o outhtml] markdown|html theme
+    
+  - themes: light, dark, yeolde, clown, sphinx
+
+`;
+
+
+if ( process.argv.length < 3 ) {
+
+  console.log(doc);
+
+} 
+else {
+
+    let knownOpts = {
+        "out": [String, null]
+    }
+    let shortHands = {
+        "o": ["--out"]
+    }
+
+    let parsed = nopt(knownOpts, shortHands, process.argv, 2)
+    let remain = parsed.argv.remain
+    const fname = remain[0];
+
+    let theme = 'dark';
+    if ( remain.length > 1 ) {
+        theme = remain[1];
+    } 
+
+    let outFname;
+    if (parsed.out) {
+        outFname = parsed.out
+    }
+    else {
+        outFname = fname.replace('.md', '.html');
+    }
+
+    processFile(fname, theme, outFname);
+
+}
+
+
 
 
 

@@ -1,5 +1,7 @@
-var path = require('path');
-var webpack = require("webpack");
+"use strict";
+
+let path = require('path');
+let webpack = require("webpack");
 module.exports = {
     entry: './supplescroll.js',
     // devtool: 'source-map',
@@ -19,7 +21,6 @@ module.exports = {
         ]
     },
     plugins: [
-        // Avoid publishing files when compilation fails
         new webpack.NoErrorsPlugin(),
         new webpack.optimize.UglifyJsPlugin({minimize: true})
     ],

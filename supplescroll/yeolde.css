@@ -35,8 +35,6 @@ body {
 
 /* navbar and menu icon */
 #navbar {
-  position: absolute;
-  overflow: hidden;
   height: 25px;
   line-height: 25px;
   width: 100%;
